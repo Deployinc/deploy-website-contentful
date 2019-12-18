@@ -1,11 +1,8 @@
-require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV}`
-})
+require('dotenv').config();
 
 const contentfulConfig = {
   spaceId: process.env.CONTENTFUL_SPACE_ID,
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-  host: process.env.CONTENTFUL_HOST
 }
 
 const { spaceId, accessToken } = contentfulConfig
@@ -18,7 +15,7 @@ if (!spaceId || !accessToken) {
 
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Contentful starter',
+    title: 'Deploy Inc.',
   },
   pathPrefix: '/gatsby-contentful-starter',
   plugins: [

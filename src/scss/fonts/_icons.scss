@@ -1,0 +1,19 @@
+.icon {
+  width: 26px;
+  height: 26px;
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.icon-facebook {
+  background-image: url(/src/scss/assets/icons/facebook.svg);
+}
+
+.icon-instagram {
+  background-image: url(/src/scss/assets/icons/instagram.svg);
+}
+
+.icon-linkedin {
+  background-image: url(/src/scss/assets/icons/linkedin.svg);
+}

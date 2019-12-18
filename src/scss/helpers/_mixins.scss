@@ -1,0 +1,71 @@
+@mixin clearfix () {
+  &:after,
+  &:before {
+    display: table;
+    content: '';
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+}
+
+@mixin centerX () {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+@mixin centerY () {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+@mixin transition($time, $property: all, $easing: ease-in, $delay: 0s) {
+  -webkit-transition: $property $time $easing $delay;
+  transition: $property $time $easing $delay;
+}
+
+@mixin fadeIn ($delay: 0s) {
+  @include transition(all, 0.7s, ease);
+  opacity: 0;
+
+  .enter & {
+    @include transition(1s, all, cubic-bezier(0.4, 0.69, 0.17, 1), $delay);
+    opacity: 1;
+  }
+}
+
+@mixin fadeInTop ($delay: 0s) {
+  @include transition(all, 0.7s, ease);
+  transform: translate3d(0, -150%, 0);
+  opacity: 0;
+
+  .enter & {
+    @include transition(1s, all, cubic-bezier(0.43, 0.76, 0.76, 0.84), $delay);
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@mixin fadeInBottom ($delay: 0s) {
+  transform: translate3d(0, 60%, 0);
+  opacity: 0;
+
+  .enter & {
+    transition: transform 1s cubic-bezier(0.43, 0.76, 0.76, 0.84), opacity 3s;
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}

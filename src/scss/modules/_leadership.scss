@@ -1,0 +1,102 @@
+.leadership {
+  overflow-x: hidden;
+
+  &__slider {
+    left: 18.666%;
+    position: relative;
+    overflow-y: hidden;
+  }
+
+    &__row {
+      display: flex;
+      flex-wrap: wrap;
+
+      .col-9 {
+        padding-right: 0;
+      }
+    }
+
+    .slick-slider {
+      @media screen and (min-width: $screen-lg + 1) {
+        @include fadeIn(.1s);
+      }
+
+      .slick-dots {
+        width: 55%;
+        bottom: 20px;
+      }
+    }
+
+    .slick-list {
+      padding-left: 0 !important;
+    }
+
+    &__item {
+        padding-right: 140px;
+        cursor: url(assets/images/cursor.svg), auto;
+    }
+
+    &__title {
+        font-size: 26px;
+        margin-top: 62px;
+        margin-bottom: 150px;
+        > span {
+            font-size: 20px;
+            color: $color-gray-2;
+        }
+    }
+
+    @media screen and (max-width: $screen-lg-x) {
+      &__item {
+        padding-right: 100px;
+      }
+
+       &__title {
+        font-size: 19px;
+        margin-top: 32px;
+        margin-bottom: 70px;
+            > span {
+                font-size: 16px;
+            }
+        }
+    } 
+
+    @media screen and (max-width: $screen-lg-max) {
+      &__item {
+        padding-right: 70px;
+      }
+      
+      &__title {
+       font-size: 17px;
+           > span {
+               font-size: 13px;
+           }
+       }
+   } 
+
+    @media screen and (max-width: $screen-lg) {
+      &__item {
+        padding-right: 30px;
+    }
+
+      &__title {
+           > span {
+               display: block;
+               margin-top: 3px;
+           }
+       }
+   } 
+
+    @media screen and (max-width: $screen-md) {
+        &__slider {
+          left: initial;
+        }
+        
+        &__item {
+            padding-right: 20px;
+            img {
+              max-width: 400px;
+            }
+        }
+    }
+}

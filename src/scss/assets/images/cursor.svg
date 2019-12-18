@@ -1,0 +1,19 @@
+<svg id="CURSOR" xmlns="http://www.w3.org/2000/svg" width="60" height="46" viewBox="0 0 138 104">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        fill-opacity: 0;
+        stroke: #000;
+        stroke-width: 2px;
+      }
+
+      .cls-2 {
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <circle class="cls-1" cx="69" cy="52" r="52"/>
+  <path class="cls-2" d="M0,51.5L7,57V46Z"/>
+  <path class="cls-2" d="M138,51.5L131,57V46Z"/>
+</svg>

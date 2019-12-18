@@ -1,0 +1,60 @@
+.slick-slider {
+    position: relative;
+
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .slick-dots {
+        max-width: 1100px;
+        text-align: left;
+        display: flex !important;
+
+        li {
+            margin: 0;
+            height: 1px;
+            width: 100%;
+            background-color: $color-gray-dark-2;
+            &.slick-active {
+                height: 4px;
+                position: relative;
+                bottom: 3px;
+                padding: 0;
+                background-color: $color-black;
+            }
+            button {
+                height: 40px;
+                width: 100%;
+                padding: 0;
+                position: relative;
+                bottom: 20px;
+                &:before {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: $screen-md) {
+        position: static;
+
+        .slick-list {
+            padding-left: 0!important;
+        }
+
+        .slick-dots {
+            position: static;
+            max-width: 100%;
+            width: 100% !important;
+            padding-right: 20px;
+            display: flex !important;
+
+            li {
+                width: 100%;
+            }
+        }
+    }
+}
+

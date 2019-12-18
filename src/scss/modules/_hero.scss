@@ -1,0 +1,158 @@
+.hero {
+  padding-top: 390px;
+  padding-bottom: 127px;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+
+  .video-background {
+    background: #000;
+    position: absolute;
+    top: 0; 
+    right: 0; 
+    bottom: 0; 
+    left: 0;
+    z-index: 0;
+  }
+
+  .video-background video {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: -moz-linear-gradient(left, rgba(0, 0, 0, 0.7) 50%, rgba(350, 50, 50, 0.15) 100%);
+    background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.7) 50%, rgba(350, 50, 50, 0.15) 100%);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 50%, rgba(350, 50, 50, 0.15) 100%);
+    z-index: 0;
+  }
+
+  .container {
+    z-index: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  &__title {
+    font-size: 71px;
+    letter-spacing: -1.8px;
+    color: $color-white;
+    line-height: 1.3;
+
+    @media screen and (min-width: $screen-lg + 1) {
+      @include fadeInBottom(.1s);
+    }
+  }
+
+  &__badge {
+    text-align: right;
+    margin-top: 10px;
+    margin-right: -35px;
+    position: relative;
+    animation-name: fadeIn;
+    opacity: 0;
+    animation-duration: .8s;
+    animation-delay: .8s;
+    animation-fill-mode: forwards;
+    display: inline-block;
+    align-self: flex-end;
+
+    &__outer {
+      width: 255px;
+      animation: rotate 16s linear infinite;
+    }
+
+    &__inner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50%;
+    }
+  }
+
+  @media screen and (max-width: $screen-lg-x) {
+    h1 {
+      font-size: 46px;
+    }
+
+    &__badge {
+      img {
+        width: 170px;
+      }
+    }
+  }
+
+  @media screen and (max-width: $screen-lg-max) {
+    &__badge {
+      margin-right: 0;
+    }
+  }
+
+  @media screen and (max-width: $screen-lg-m) {
+    padding-top: 340px;
+  }
+
+  @media screen and (max-width: $screen-lg) {
+    h1 {
+      font-size: 38px;
+    }
+
+    &__badge {
+      img {
+        width: 150px;
+      }
+    }
+  }
+
+  @media screen and (max-width: $screen-md) {
+    padding-top: 180px;
+    
+    h1 {
+      font-size: 36px;
+      max-width: 600px;
+      line-height: 1.5;
+    }
+
+    &__badge {
+      margin-top: 100px;
+      img {
+        width: 140px;
+      }
+    }
+  }
+
+  @media screen and (max-width: $screen-sm) {
+    padding-top: 180px;
+    padding-bottom: 100px;
+
+    &__badge {
+      margin-top: 80px;
+    }
+  }
+
+  @media screen and (max-width: $screen-sm-m) {
+    padding-top: 140px;
+    padding-bottom: 100px;
+
+    h1 {
+      line-height: 1.3;
+    }
+
+    &__badge {
+      margin-top: 60px;
+    }
+  }
+}

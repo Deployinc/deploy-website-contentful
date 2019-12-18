@@ -1,0 +1,344 @@
+// === MODAL STYLES == //
+.modal {
+  display: none;
+  justify-content: unset;
+  text-align: left;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+
+  &--open {
+    display: block;
+  }
+
+  &__content {
+      display: block;
+      width: 100%;
+      margin: 0 auto;
+      height: 100%;
+      background: $color-gray-light;
+      animation-name: fadeIn;
+      animation-duration: 0.7s;
+  }
+
+  &__header {
+    padding: 25px;
+    background: $color-gray;
+  }
+
+  &__button {
+    position: absolute;
+    border: 2px solid #e0e0e0;
+    right: 80px;
+    top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 103px;
+    height: 103px;
+    cursor: pointer;
+    transition: all .3s;
+
+    &:hover {
+      background-color: #e0e0e0;
+    }
+
+    img {
+      width: 23px;
+    }
+  }
+}
+
+.modal--showcase {
+  &__content {
+    background-color: $color-gray-light;
+    display: flex;
+
+    &__featured-img {
+      background-image: url('assets/images/modal-bg.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      flex: 0 0 45%;
+      max-width: 45%;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 110%;
+        object-fit: cover;
+        margin-top: -6%;
+      }
+    }
+
+    &__project {
+      position: relative;
+      flex: 0 0 55%;
+      max-width: 55%;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow-y: auto;
+      padding-top: 90px;
+      padding-left: 145px;
+      padding-right: 200px;
+      padding-bottom: 70px;
+      @media  screen and (orientation: portrait) {
+        justify-content: center;
+      }
+
+      &__share {
+        margin-bottom: auto;
+        color: $color-gray-dark-3;
+        font-size: 13px;
+        position: absolute;
+        top: 70px;
+      }
+
+      &__text {
+        max-width: 90%;
+      }
+
+      .line {
+        display: inline-block;
+        width: 78px;
+        height: 1px;
+        background-color: #d0d0d0;
+        vertical-align: middle;
+        margin-left: 39px;
+      }
+
+      &__client {
+        color: $color-gray-dark-3;
+        margin-top: 120px;
+      }
+
+      &__title {
+        font-size: 62px;
+        margin-top: 50px;
+        margin-bottom: 30px;
+      }
+
+      &__desc {
+        font-size: 36px;
+        line-height: 1.4;
+        margin-bottom: 80px;
+        max-width: 1000px;
+      }
+
+      &__info {
+        margin-top: 50px;
+        display: flex;
+
+        & > div {
+          flex-grow: 1;
+          flex-basis: 0;
+        }
+
+        &__title {
+          font-weight: 600;
+        }
+
+        .text-small {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $screen-lg-x) {
+  .modal {
+    &__button {
+      width: 45px;
+      height: 45px;
+      right: 40px;
+      top: 40px;
+
+      img {
+        width: 14px; 
+      }
+    }
+  }
+  
+  .modal--showcase {
+    &__content {
+      &__project {
+        padding-left: 50px;
+        padding-right: 100px;
+
+        &__title {
+          font-size: 35px;
+          margin-top: 35px;
+          margin-bottom: 25px;
+          line-height: 1.3;
+        }
+
+        &__desc {
+          font-size: 20px;
+          margin-bottom: 50px;
+        }
+
+        &__info {
+          margin-bottom: 40px;
+          & > div {
+            flex-basis: auto;
+
+            &:first-child {
+              padding-right: 10px;
+            }
+          }
+
+          .text-small {
+            font-size: 16px;
+          }
+        }
+
+        &__share {
+          top: 60px;
+        }
+
+        &__text {
+          max-width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $screen-lg-max) {
+  .modal--showcase {
+    &__content {
+      &__project {
+        padding-left: 40px;
+        padding-right: 95px;
+        &__title {
+          font-size: 30px;
+        }
+
+        &__desc {
+          font-size: 18px;
+          margin-bottom: 40px;
+        }
+
+        &__info {
+          margin-bottom: 30px;
+          .text-small {
+            font-size: 14px;
+          }
+        }
+
+        &__share {
+          font-size: 11px;
+          top: 50px;
+        }
+
+        &__client {
+          margin-top: 60px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $screen-lg) {
+  .modal {
+    &__button {
+      width: 30px;
+      height: 30px;
+      right: 20px;
+      top: 40px;
+
+      img {
+        width: 10px; 
+      }
+    }
+  }
+
+  .modal--showcase {
+    &__content {
+      &__project {
+        padding-left: 20px;
+        padding-right: 60px;
+        &__title {
+          font-size: 24px;
+        }
+
+        &__desc {
+          font-size: 16px;
+          margin-bottom: 40px;
+        }
+
+        &__info {
+          margin-bottom: 30px;
+        }
+      }
+    }
+  }
+
+  .text-medium {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: $screen-md + 1) {
+
+  .modal--showcase {
+    &__content {
+      display: block;
+      overflow: scroll;
+      -webkit-overflow-scrolling: touch;
+
+      &__featured-img {
+        max-width: 100%;
+        height: 420px;
+        text-align: center;
+
+        img {
+          width: 100%;
+          margin-left: 0;
+          height: 100%;
+          margin-top: 0;
+          object-fit: cover;
+        }
+      }
+
+      &__project {
+        max-width: 100%;
+        padding: 30px;
+
+        &__desc {
+          margin-bottom: 40px;
+        }
+
+        &__info {
+          margin-top: 40px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $screen-sm) {
+  .modal--showcase {
+    &__content {
+      &__featured-img {
+        height: 340px;
+
+        img {
+          width: 100%;
+          height: 110%;
+          margin-top: -4%;
+          object-fit: cover;
+        }
+      }
+
+      &__project {
+        padding: 30px 20px;
+      }
+    }
+  }
+}

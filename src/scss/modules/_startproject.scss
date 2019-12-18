@@ -1,0 +1,62 @@
+.startProject {
+    .col-5 {
+      @media screen and (min-width: $screen-lg + 1) {
+        @include fadeIn(.05s);
+      }
+    }
+
+    &__content {
+        position: relative;
+        top: 15px;
+        font-size: 30px;
+        letter-spacing: -1.3px;
+    }
+
+    .button-underlined {
+        font-size: 60px;
+        span {
+            margin-top: -7%;
+            height: 22px;
+        }
+    }
+
+    @media screen and (max-width: $screen-lg-x) {
+        &__content {
+            top: 10px;
+            font-size: 19px;
+            letter-spacing: -0.25px;
+        }
+
+        .button-underlined {
+            font-size: 38px;
+            letter-spacing: -0.25px;
+            span {
+                height: 17px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 991px) {
+        .button-underlined {
+            font-size: 35px;
+            span {
+                height: 15px;
+            }
+        }
+    } 
+
+    @media screen and (max-width: $screen-md) {
+        &__content {
+            margin-bottom: 20px;
+        }
+    } 
+
+    @media screen and (max-width: $screen-sm) {
+        .button-underlined {
+            font-size: 32px;  
+            span {
+                height: 14px;
+            }
+        }
+    } 
+}

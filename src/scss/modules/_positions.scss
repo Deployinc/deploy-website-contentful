@@ -1,0 +1,168 @@
+.modal--positions {
+  &__content {
+    &__project {
+      justify-content: flex-start;
+
+      &__share {
+        margin-bottom: 0;
+      }
+    }
+
+    &__open-positions {
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      justify-content: center;
+    }
+    
+
+    .BambooHR-ATS-board {
+      h2 {
+        font-size: 54px;
+        margin-top: 60px;
+        margin-bottom: 60px;
+      }
+    }
+
+    .BambooHR-ATS-Department-List {
+      .BambooHR-ATS-Department-Item {
+
+        .BambooHR-ATS-Department-Header {
+          font-weight: 600;
+          font-size: 24px;
+          margin-bottom: 5px;
+          display: none;
+        }
+      }
+    }
+
+    .BambooHR-ATS-Jobs-Item {
+      line-height: 1.45;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+
+      a {
+        font-size: 24px;
+        color: $color-black;
+      }
+
+      span {
+        color: #636363;
+        padding-left: 10px;
+      }
+    }
+  }
+
+  @media screen and (max-width: $screen-lg) {
+    &__content {
+      .BambooHR-ATS-board {
+        h2 {
+          font-size: 38px;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $screen-md + 1) {
+    &__content {
+      &__featured-img {
+        img {
+          object-position: center 20%;
+        }
+      }
+
+      &__project {
+        padding-top: 90px;
+      }
+
+      .BambooHR-ATS-board {
+        h2 {
+          font-size: 32px;
+          line-height: 1.2;
+          margin-top: 30px;
+          margin-bottom: 40px;
+
+        }
+      }
+
+      .BambooHR-ATS-Department-List {
+        .BambooHR-ATS-Department-Item {
+          .BambooHR-ATS-Department-Header {
+            font-size: 21px;
+          }
+        }
+      }
+
+      .BambooHR-ATS-Jobs-Item {
+        margin-bottom: 20px;
+  
+        a {
+          font-size: 20px;
+        }
+
+        span {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $screen-sm) {
+    &__content {
+
+      .BambooHR-ATS-board {
+        h2 {
+          font-size: 26px;
+        }
+      }
+
+      .BambooHR-ATS-Department-List {
+        .BambooHR-ATS-Department-Item {
+          .BambooHR-ATS-Department-Header {
+            font-size: 17px;
+          }
+        }
+      }
+
+      .BambooHR-ATS-Jobs-Item {
+        margin-bottom: 20px;
+  
+        a {
+          font-size: 19px;
+        }
+
+        span {
+          font-size: 14px;
+          min-width: 145px;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $screen-sm-m) {
+    &__content {
+      .BambooHR-ATS-Department-List {
+        .BambooHR-ATS-Department-Item {
+          .BambooHR-ATS-Department-Header {
+            font-size: 17px;
+          }
+        }
+      }
+
+      .BambooHR-ATS-Jobs-Item {
+        margin-bottom: 20px;
+  
+        a {
+          font-size: 17px;
+        }
+
+        span {
+          font-size: 13px;
+          min-width: 135px;
+        }
+      }
+    }
+  }
+}

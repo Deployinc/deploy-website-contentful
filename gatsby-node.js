@@ -40,3 +40,23 @@ exports.createPages = ({ graphql, actions }) => {
     )
   })
 }
+
+exports.onCreateWebpackConfig = ({
+  stage,
+  rules,
+  loaders,
+  plugins,
+  actions,
+}) => {
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        "@pages": path.resolve(__dirname, 'src/pages'),
+        "@components": path.resolve(__dirname, 'src/components'),
+        "@assets": path.resolve(__dirname, 'src/scss/assets'),
+        "@lib": path.resolve(__dirname, 'src/lib'),
+        "@styles": path.resolve(__dirname, 'src/scss')
+      }
+    }
+  })
+}

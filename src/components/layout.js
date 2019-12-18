@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 import base from './base.css'
 import Container from './container'
 import Navigation from './navigation'
+import "@styles/style.scss"
 
 class Template extends React.Component {
   render() {

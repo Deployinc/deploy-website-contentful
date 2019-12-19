@@ -53,6 +53,7 @@ exports.onCreateWebpackConfig = ({
       alias: {
         "@pages": path.resolve(__dirname, 'src/pages'),
         "@components": path.resolve(__dirname, 'src/components'),
+        "@constants": path.resolve(__dirname, 'src/constants'),
         "@assets": path.resolve(__dirname, 'src/scss/assets'),
         "@lib": path.resolve(__dirname, 'src/lib'),
         "@styles": path.resolve(__dirname, 'src/scss')

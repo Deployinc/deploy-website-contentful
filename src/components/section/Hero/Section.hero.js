@@ -3,7 +3,7 @@ import badgeImg from '@assets/images/badge.svg';
 import badgeInnerImg from '@assets/images/badge-inner.svg';
 import { Video } from '../../index';
 
-const SectionHero = () => {
+const SectionHero = ({data}) => {
   const [isLoaded, setIsLoaded] = useState(window.innerWidth > 767 ? false : true);
   useEffect(() => {
     onMount();
@@ -17,10 +17,10 @@ const SectionHero = () => {
 
   return (
     <section className={ `hero ${isLoaded ? 'enter' : ''}` }>
-    <div className="container">
+      <div className="container">
         <div className="row">
           <div className="col-7">
-            <h1 className="hero__title">We deliver critical technology at unparalleled value and speed to help your business thrive.</h1>
+            <h1 className="hero__title">{data.text}</h1>
           </div>
         </div>
 
@@ -30,7 +30,7 @@ const SectionHero = () => {
         </div>
       </div>
 
-      <Video video="https://d2q89e5vc2fpyi.cloudfront.net/hero.mp4" />
+      <Video video={data.backgroundVideo} />
     </section>
   )
 };

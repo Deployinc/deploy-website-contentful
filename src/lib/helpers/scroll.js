@@ -24,8 +24,7 @@ export const Scroll = {
 
   onScroll (evt) {
     let i = this.listeners.size;
-    const listeners = [...this.listeners.values()];
-
+    const listeners = Array.from(this.listeners.values());
     while (i--) {
       listeners[i](evt);
     }

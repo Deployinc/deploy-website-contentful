@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import base from './base.css'
-import Container from './container'
+import Helmet from 'react-helmet';
 import "@styles/style.scss"
 
 class Template extends React.Component {
@@ -14,7 +13,29 @@ class Template extends React.Component {
       rootPath = __PATH_PREFIX__ + `/`
     }
 
-    return children;
+    return (
+      <React.Fragment>
+        <Helmet>
+          <script async src="https://www.googletagmanager.com/gtag/js?id=AW-UA-30456352-1"></script>
+          <script>
+            {`
+              if(window) {
+                window.dataLayer = window.dataLayer || [];
+                function gtag() { dataLayer.push(arguments) }
+                gtag('js', new Date());
+                gtag('config', 'UA-30456352-1');
+              }
+            `}
+          </script>
+          <script
+            async 
+            defer 
+            src="https://www.google.com/recaptcha/api.js">
+          </script>
+        </Helmet>
+        {children}
+      </React.Fragment>
+    );
   }
 }
 

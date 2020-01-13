@@ -1,8 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import { SliderItem, OpenPositions, Modal } from '../../index';
-import { Button } from '../../index';
 import Slider from 'react-slick';
-// import axios from 'axios';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import { SliderItem, OpenPositions, Modal, Button } from '@components';
 
 import officeImg from '@assets/images/office/office.jpg';
 import officeImg1 from '@assets/images/office/1.jpg';
@@ -39,6 +38,7 @@ class Careers extends Component {
   getJobs = async () => {
     try {
       const { data } = await fetch('https://deploy.bamboohr.com/jobs/embed2.php'); 
+      if(!data) return;
       const editedData = data.replace(new RegExp('<a', 'g'), '<a target="_blank"');
       this.setState({positions: editedData});
     } catch (error) {
@@ -104,7 +104,7 @@ class Careers extends Component {
     }
   }
 
-  render() {
+  renderSlider = () => {
     const settings = {
       dots: true,
       arrows: false,
@@ -128,35 +128,49 @@ class Careers extends Component {
       afterChange: () => gtag('event', 'CareersSlider', { event_category: 'slideChanged' })
     };
 
+    const { careersCarousel } = this.props;
+    const { careersImage } = careersCarousel;
+    if(!careersImage) return null;
+
+    return(
+      <div className="slider" ref={this.careersRef}>
+        <Slider {...settings} ref={this.sliderRef} after>
+          {
+            careersImage.map(item =>
+              <SliderItem key={ item.id } image={ item } imgName="Deploy Inc. Office" />  
+            )
+          }
+        </Slider>
+      </div>
+    )
+  }
+
+  render() {
+    const { data } = this.props;
     const { modal, positions } = this.state;
+    const html = documentToHtmlString( data && data.text.json);
 
     return(
       <Fragment>
         <section className="careers section-padding">
           <div className="careers__row" ref={this.props.forwardRef}>
             <div className="col-5">
-              <img src={officeImg} alt="Office" className="careers__office-img" />
+              <img 
+                src={ data && data.image && data.image.fluid.src } 
+                srcSet={ data && data.image && data.image.fluid.srcSet } 
+                alt="Deploy Inc. Office" 
+                className="careers__office-img" />
             </div>
 
             <div className="col-5">
               <div className="careers__content">
-                <p className="text-medium">We partner with companies and brands globally, strategically holding offices in Los Angeles, Seattle, Austin and Belgrade. Our unique locations and diverse backgrounds enable us to bring strong perspectives to our clients’ most difficult challenges.</p>
+                <div className="text-medium" dangerouslySetInnerHTML={{ __html: html }} />
 
-                <Button text="View openings" href="#" color="#fdd4bd" onClick={this.openModal} />
+                <Button text={ data.ctaButtonText } color="#fdd4bd" onClick={ data.ctaButtonLink === 'careersPopup' ? this.openModal : null} />
 
-                <div className="slider" ref={this.careersRef}>
-                  <Slider {...settings} ref={this.sliderRef} after>
-                    <SliderItem img={officeImg1} imgName="Deploy Office" />
-                    <SliderItem img={officeImg2} imgName="Deploy Office" />
-                    <SliderItem img={officeImg3} imgName="Deploy Office" />
-                    <SliderItem img={officeImg4} imgName="Deploy Office" />
-                    <SliderItem img={officeImg5} imgName="Deploy Office" />
-                    <SliderItem img={officeImg6} imgName="Deploy Office" />
-                    <SliderItem img={officeImg7} imgName="Deploy Office" />
-                    <SliderItem img={officeImg8} imgName="Deploy Office" />
-                    <SliderItem img={officeImg9} imgName="Deploy Office" />
-                  </Slider>
-                </div>
+                {
+                  this.renderSlider()
+                }
               </div>
             </div>
           </div>

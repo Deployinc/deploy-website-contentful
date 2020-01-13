@@ -12,7 +12,7 @@ const SectionWork = ({data}) => (
                 </h2>
             </div>
             <div className="col-5">
-                <p className="section-title">{data.text}</p>
+                <p className="section-title">{data.howWeWorkText}</p>
             </div>
             </div>
         </div>

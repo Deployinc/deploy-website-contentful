@@ -74,7 +74,7 @@ class AnimationScroll extends Component {
     return (
       <div
         ref={ this.element }
-        className={ `animation__fade ${this.props.className}` }>
+        className={ `animation__fade ${this.props.className || ''}` }>
         { this.props.children }
       </div>
     );

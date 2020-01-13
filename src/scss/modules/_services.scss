@@ -35,18 +35,38 @@
 
     &__item {
         margin-bottom: 120px;
+
         &:last-child {
             margin-bottom: 0;
         }
 
-        &__title {
+        h3 {
+          font-size: 36px;
+          line-height: 50px;
+          letter-spacing: -1.3px;
+          margin-bottom: 120px;
+        }
+
+        h4 {
             font-size: 30px;
-            margin-bottom: 50px;
+            margin: 50px 0;
+        }
+
+        p {
+          font-size: 24px;
+          line-height: 35px;
+        }
+
+        b {
+          font-weight: 600;
+          margin-top: 50px;
+          display: inline-block;
         }
     }
 
     &__subitem {
         margin-bottom: 50px;
+
         &__title {
             font-size: 24px;
             line-height: 35px;
@@ -79,9 +99,26 @@
 
         &__item {
             margin-bottom: 50px;
-            &__title {
+
+            h3 {
+              font-size: 23px;
+              line-height: 31px;
+              margin-bottom: 50px;
+              letter-spacing: -0.25px;
+            }
+
+            h4 {
                 font-size: 19px;
-                margin-bottom: 30px;
+                margin: 30px 0;
+            }
+
+            p {
+              font-size: 16px;
+              line-height: 23px;
+            }
+
+            b {
+              margin-top: 25px;
             }
         }
         &__subitem {
@@ -169,8 +206,11 @@
             &:last-child {
                 margin-bottom: 60px;
             }
-            &__title {
-                margin-bottom: 30px;
+            h4 {
+                margin: 30px 0;
+            }
+            b {
+              margin-top: 30px;
             }
         }
 

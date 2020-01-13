@@ -15,6 +15,7 @@ import OpenPositions from './open-positions';
 import Image from './image';
 import AnimationScroll from './animations';
 import ContactForm from './contact-form';
+import Layout from './layout';
 
 export {
   Header,
@@ -33,5 +34,6 @@ export {
   OpenPositions,
   Image,
   AnimationScroll,
-  ContactForm
+  ContactForm,
+  Layout
 };

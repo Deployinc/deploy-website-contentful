@@ -1,7 +1,9 @@
-import React from 'react'
-import { Link } from 'gatsby'
+import React from 'react';
+import { Link } from 'gatsby';
 import Helmet from 'react-helmet';
-import "@styles/style.scss"
+import "@styles/style.scss";
+import "slick-carousel/slick/slick.scss"; 
+import "slick-carousel/slick/slick-theme.scss";
 
 class Template extends React.Component {
   render() {

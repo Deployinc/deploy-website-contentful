@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default ({img}) => (
+export default ({data}) => (
   <section className="fluid-img">
-    <img src={img} alt="Featured" />
+    <img alt="Featured" src={ data.image && data.image.fluid.src } srcSet={ data.image && data.image.fluid.srcSet } />
   </section>
-)
+);

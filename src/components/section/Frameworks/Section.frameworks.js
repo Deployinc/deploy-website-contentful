@@ -1,41 +1,36 @@
 import React from 'react';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import { Frameworks, Button } from '@components';
 
-import { Frameworks, Button } from '../../index';
+export default ({ data, openModal }) => {
+  const html = documentToHtmlString(data.frameworksText.json);
+  return (
+    <section className="frameworks section-padding">
+      <div className="container">
+        <h2 className="section-title">{data.title}</h2>
 
-export default ({ onScrollTo, openModal }) => (
-  <section className="frameworks section-padding">
-    <div className="container">
-      <h2 className="section-title">Experience across all major frameworks</h2>
+        <Frameworks frameworks={data.frameworks} />
 
-      <Frameworks />
+        <div className="row">
+          <div className="col-1"></div>
 
-      <div className="row">
-        <div className="col-1"></div>
+          <div className="col-4">
+            <ul className="frameworks__list">
+              {
+                data.list && data.list.map((item, i) => <li key={ i } className="frameworks__list__item text-medium">{item}</li>)
+              }
+            </ul>
+          </div>
 
-        <div className="col-4">
-          <ol className="frameworks__list">
-            <li className="frameworks__list__item text-medium">Web Applications</li>
-            <li className="frameworks__list__item text-medium">Mobile Apps</li>
-            <li className="frameworks__list__item text-medium">Responsive Websites</li>
-            <li className="frameworks__list__item text-medium">eCommerce</li>
-            <li className="frameworks__list__item text-medium">Digital Platforms</li>
-            <li className="frameworks__list__item text-medium">Enterprise Software</li>
-            <li className="frameworks__list__item text-medium">Data Management</li>
-            <li className="frameworks__list__item text-medium">Connected Ecosystems</li>
-            <li className="frameworks__list__item text-medium">Blockchain</li>
-          </ol>
-        </div>
+          <div className="col-5">
+            <div className="frameworks__description">
+              <div className="text-medium" dangerouslySetInnerHTML={{ __html: html }} />
 
-        <div className="col-5">
-          <div className="frameworks__description">
-            <p className="text-medium">Our offering is multifaceted, finding simple solutions to the most complex problems. Responsive websites, mobile apps, interactive platforms, IoT, Blockchain, web apps, CMS, data management...we've got it covered. Most importantly, we're really great at what we do. We'll work collaboratively, alongside your teams to develop the best technical solutions for any challenge — leading to measurable results.
-
-            <br /><br />Not sure what your project requires?</p>
-
-            <Button text="Let's chat" href="#" color="#fdd4bd" onClick={openModal} />
+              <Button text={ data.ctaButtonText } color="#fdd4bd" onClick={data.ctaButtonLink === 'contactForm' ? openModal : null} />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+}

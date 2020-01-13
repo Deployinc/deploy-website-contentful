@@ -15,6 +15,14 @@ a {
   text-decoration: none;
 }
 
+h1, h2, h3, h4, h5, h6, p, span {
+  line-height: 1.5;
+}
+
+b {
+  font-weight: 600;
+}
+
 .section-padding {
   padding: 293px 0;
 }
@@ -22,6 +30,7 @@ a {
 .title-underlined {
   font-size: 40px;
   display: inline-block;
+  line-height: 1;
 
   &.large {
     font-size: 60px;

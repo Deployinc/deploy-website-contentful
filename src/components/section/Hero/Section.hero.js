@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { Video } from '@components';
+
 import badgeImg from '@assets/images/badge.svg';
 import badgeInnerImg from '@assets/images/badge-inner.svg';
-import { Video } from '../../index';
 
 const SectionHero = ({data}) => {
   const [isLoaded, setIsLoaded] = useState(window.innerWidth > 767 ? false : true);
@@ -20,7 +21,7 @@ const SectionHero = ({data}) => {
       <div className="container">
         <div className="row">
           <div className="col-7">
-            <h1 className="hero__title">{data.text}</h1>
+            <h1 className="hero__title">{data.homepageText}</h1>
           </div>
         </div>
 

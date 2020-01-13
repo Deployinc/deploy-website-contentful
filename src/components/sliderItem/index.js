@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default ({img, imgName, fullName, title}) => (
+export default ({ image = {}, name, position }) => (
     <div className="leadership__item">
-        <img src={img} alt={imgName} />
-        { fullName && <h3 className="leadership__title">{fullName} <span>{title}</span></h3>}
+        <img src={ image && image.fluid.src } srcSet={ image && image.fluid.srcSet } alt={ name } />
+        { position && <h3 className="leadership__title">{name} <span>{position}</span></h3> }
     </div>
 );

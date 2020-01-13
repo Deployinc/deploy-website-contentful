@@ -1,14 +1,16 @@
 import React from 'react';
-
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import closeImg from '@assets/images/close-button.svg';
 
 export default ({project, onModalClose}) => {
-  const { image, client, name, description, smallDescription, services, technologies } = project;
+  console.log(project);
+  const { title, image, eyebrowHeadline, text, servicesTitle, servicesList, technologiesTitle, technologiesList } = project;
+  const html = documentToHtmlString(text.json);
 
   return(
     <div className="modal__content modal--showcase__content">
       <div className="modal--showcase__content__featured-img">
-        <img src={image} alt={name} />
+        <img src={ image && image.fluid.src } srcSet={ image && image.fluid.srcSet } alt={ title } />
       </div>
 
       <div className="modal--showcase__content__project">
@@ -16,27 +18,31 @@ export default ({project, onModalClose}) => {
           CASES <span className="line"></span>
         </div>
         <div className="modal--showcase__content__project__text">
-          <button type="button" className="modal__button" onClick={ () => onModalClose(`modal${project.id}`) }><img src={closeImg} alt="close" /></button>
-          <div className="modal--showcase__content__project__client text-medium">{client}</div>
+          <button type="button" className="modal__button" onClick={ () => onModalClose(`modal${project.id}`) }><img src={ closeImg } alt="close" /></button>
+          <div className="modal--showcase__content__project__client text-medium">{eyebrowHeadline}</div>
 
-          <h4 className="modal--showcase__content__project__title">{name}</h4>
+          <h4 className="modal--showcase__content__project__title">{title}</h4>
 
-          <p className="modal--showcase__content__project__desc" dangerouslySetInnerHTML={{__html: description}} />
-
-          {smallDescription && <p className="text-small" dangerouslySetInnerHTML={{__html: smallDescription}} />}
+          <div className="modal--showcase__content__project__desc" dangerouslySetInnerHTML={{__html: html}} />
 
           <div className="modal--showcase__content__project__info">
-            {services && 
+            {
+              servicesList && 
               <div>
-                <p className="text-small modal--showcase__content__project__info__title">Services</p>
-                { services.map((service, i) => <p key={i} className="text-small">{service}</p>)}
+                <p className="text-small modal--showcase__content__project__info__title">{servicesTitle}</p>
+                { 
+                  servicesList.map((service, i) => <p key={ i } className="text-small">{service}</p>) 
+                }
               </div>
             }
 
-            {technologies && 
+            {
+              technologiesList && 
               <div>
-                <p className="text-small modal--showcase__content__project__info__title">Technologies</p>
-                {technologies.map((technology, i) => <p key={i} className="text-small">{technology}</p>)}
+                <p className="text-small modal--showcase__content__project__info__title">{technologiesTitle}</p>
+                { 
+                  technologiesList.map((technology, i) => <p key={ i } className="text-small">{technology}</p>) 
+                }
               </div> 
             }
           </div>

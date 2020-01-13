@@ -127,6 +127,11 @@
         line-height: 1.4;
         margin-bottom: 80px;
         max-width: 1000px;
+
+        p {
+          font-size: 16px;
+          margin-top: 80px;
+        }
       }
 
       &__info {
@@ -179,7 +184,9 @@
 
         &__desc {
           font-size: 20px;
-          margin-bottom: 50px;
+          p {
+            margin-top: 50px;
+          }
         }
 
         &__info {
@@ -221,7 +228,9 @@
 
         &__desc {
           font-size: 18px;
-          margin-bottom: 40px;
+          p {
+            margin-top: 40px;
+          }
         }
 
         &__info {
@@ -269,7 +278,6 @@
 
         &__desc {
           font-size: 16px;
-          margin-bottom: 40px;
         }
 
         &__info {
@@ -311,7 +319,9 @@
         padding: 30px;
 
         &__desc {
-          margin-bottom: 40px;
+          p {
+            font-size: 14px;
+          }
         }
 
         &__info {

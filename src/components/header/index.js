@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-
 import { Navigation } from '@components';
-
 import logoImg from '@assets/images/deploy-logo.svg';
 
 class Header extends Component {
@@ -149,6 +147,7 @@ class Header extends Component {
 
   render() {
     const { sidebarOpened, isSticky, isStickyVisible, loaded } = this.state;
+    const { data } = this.props;
 
     return(
       <header className={'header ' + (loaded && 'enter ') + (sidebarOpened ? 'opened' : '') + (isSticky ? ' sticky' : '') + (isStickyVisible ? ' visible' : '') }>
@@ -157,7 +156,7 @@ class Header extends Component {
             <div className="col-5">
               <div className="header__brand">
                 <a href="/">
-                  <img src={logoImg} alt="deploy" />
+                  <img src={ data.logo ? data.logo.file.url : logoImg } alt="Deploy Inc." />
                 </a>
 
                 <button className="header__brand__sidebar-toggle" onClick={this.toggleSidebar}>
@@ -168,7 +167,7 @@ class Header extends Component {
               </div>
             </div>
 
-            <div className={"col-5"}>
+            <div className="col-5">
               <Navigation onNavItemClick={this.onNavItemClick} />
             </div>
           </div>

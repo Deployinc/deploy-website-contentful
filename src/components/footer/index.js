@@ -1,19 +1,139 @@
-import React from 'react';
-import { Button, Copyright, SocialNav } from '@components';
+import React, { Component } from 'react';
+import { Button, Copyright, SocialNav, Modal, ContactForm } from '@components';
+import { HOST } from '@constants/host';
 
-export default ({ data, forwardRef, openModal, onSocialItemClick, onContactInfoClick }) => {
-  if(!data) return null;
+class Footer extends Component { 
+  state = {
+    contactModal: false,
+    email: '',
+    first_name: '',
+    phone: '',
+    message: '',
+    formError: {},
+    formSuccess: '',
+    isSending: false
+  }
 
-  const { title, copyrightsText, offices, ctaButtonLink, ctaButtonText, contactInfo, socialMedia } = data;
+  formRef = React.createRef();
 
-  const renderOffices = () => 
-    offices.map((office, i) => 
+  componentDidUpdate(prevProps, prevState) {
+    if(this.props.contactModal && !prevProps.contactModal) {
+      this.openModal();
+    }
+  }
+
+  openModal = (e) => {
+    this.setState({ contactModal: true, formSuccess: '', formError: {} });
+  }
+
+  onModalClose = (value) => {
+    this.setState({ contactModal: value });
+    this.props.toggleModal(false);
+    if(!this.state.formSuccess) {
+      gtag('event', 'ContacFormAbandonment', {
+        event_category: 'click'
+      });
+    }
+  }
+
+  onChange = e => {
+    const { name, value } = e.target;
+
+    if (name === 'phone') {
+      if (this.validatePhone(value)) return;
+    }
+
+    this.setState({ [name]: value });
+  }
+
+  sendMail = async e => {
+    e.preventDefault();
+    this.setState({ formError: {}, formSuccess: '' });
+    let { email, first_name, phone, message, formError } = this.state;
+
+    if (!email) {
+      formError.email = 'Email is required.';
+      this.setState({ formError });
+    }
+
+    if (!first_name) {
+      formError.first_name = 'Name is required.';
+      this.setState({ formError });
+    }
+
+    if (!phone) {
+      formError.phone = 'Phone is required.';
+      this.setState({ formError });
+    }
+
+    if (!message) {
+      formError.message = 'Message is required.';
+      this.setState({ formError });
+    }
+
+    const recaptcha = grecaptcha.getResponse();
+
+    if (!grecaptcha || !recaptcha) {
+      formError.global = 'Please prove that you are not a robot.';
+      this.setState({ formError: formError });
+      return;
+    }
+
+    try {
+      this.setState({ isSending: true });
+
+      const url = `${HOST}/api/email/`;
+
+      email = encodeURIComponent(email);
+      first_name = encodeURIComponent(first_name);
+      phone = encodeURIComponent(phone);
+      message = encodeURIComponent(message);
+      
+      let serializedData = `email=${email}&first_name=${first_name}&phone=${phone}&message=${message}&g-recaptcha-response=${recaptcha}`;
+      
+      const options = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        data: serializedData,
+        url
+      };
+      
+      const { data } = await axios(options);
+
+      if (data.success) {
+        this.setState({ isSending: false, formSuccess: 'Thank you! Your message has been sent successfully.', first_name: '', email: '', phone: '', message: '' });
+        gtag('event', 'ContacFormSend', {
+          event_category: 'click'
+        });
+      } else {
+        formError.global = 'Some of the field values are invalid.'
+        this.setState({ isSending: false, formError });
+      }
+
+      grecaptcha.reset();
+    } catch (err) {
+      formError.global = 'An unknown error occured. Check your internet connection please.';
+      this.setState({ isSending: false, formError })
+    }
+  }
+
+  validatePhone = (phoneNumber) => {
+    if (!phoneNumber) return false;
+    var re = /[^0-9-+()]/g;
+    return re.test(phoneNumber);
+  }
+
+  renderOffices = () => {
+    const { offices } = this.props.data;
+    if(!offices) return null;
+    return offices.map((office, i) => 
       <p key={ i } className=" footer__contact-box__content__value footer__contact-box__content--offices__value">{office}</p>
     );
+  }
 
-  const renderContactInfo = (info, title) => {
+  renderContactInfo = (info, title) => {
+    const { onContactInfoClick } = this.props.data;
     if(!info) return null;
-
     return(
       <div className="col-4">
         <h4 className="footer__contact-box__title">{title}</h4>
@@ -30,53 +150,85 @@ export default ({ data, forwardRef, openModal, onSocialItemClick, onContactInfoC
     );
   };
 
-  return (
-    <footer className="footer" ref={forwardRef}>
-      <div className="container">
-        <div className="row">
-          <div className="col-5">
-            <h3 className="footer__title">{title}</h3>
+  renderContactForm = () => {
+    const { contactModal, first_name, email, phone, message, formError, formSuccess, isSending } = this.state;
+    return (
+      <Modal active={ contactModal } onModalClose={ this.onModalClose }>
+        <ContactForm
+          forwardRef={ this.formRef }
+          onModalClose={ this.onModalClose }
+          sendMail={ this.sendMail }
+          onChange={ this.onChange }
+          formError={ formError }
+          formSuccess={ formSuccess }
+          email={ email }
+          name={ first_name }
+          phone={ phone }
+          message={ message }
+          isSending={ isSending }
+        />
+      </Modal>
+    );
+  }
 
-            <div className="footer__contact-box">
-              <p className="footer__contact-box__title">Offices</p>
+  render() {
+    const { data, forwardRef, onSocialItemClick, className } = this.props;
+    const { title, copyrightsText, ctaButtonLink, ctaButtonText, contactInfo, socialMedia } = data;
 
-                <div className="footer__contact-box__content footer__contact-box__content--offices">
-                  {
-                    renderOffices()
-                  }
+    return (
+      <React.Fragment>
+        <footer className={`footer ${className || ''}`} ref={forwardRef} id="footer">
+          <div className="container">
+            <div className="row">
+              <div className="col-5">
+                <h3 className="footer__title">{title}</h3>
+
+                <div className="footer__contact-box">
+                  <p className="footer__contact-box__title">Offices</p>
+
+                    <div className="footer__contact-box__content footer__contact-box__content--offices">
+                      {
+                        this.renderOffices()
+                      }
+                    </div>
                 </div>
+              </div>
+
+              <div className="col-5">
+                <Button text={ ctaButtonText } type="white" size="large" color="#f2894e" onClick={ ctaButtonLink === 'contactForm' ? this.openModal : null } />
+
+                <div className="footer__contact-box">
+                  <div className="row">
+                    { 
+                      this.renderContactInfo(contactInfo && contactInfo[0], 'General Inquiries') 
+                    }
+                    { 
+                      this.renderContactInfo(contactInfo && contactInfo[1], 'New Business') 
+                    }
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div className="col-5">
-            <Button text={ ctaButtonText } type="white" size="large" color="#f2894e" onClick={ ctaButtonLink === 'contactForm' ? openModal : null } />
+            <div className="row copyright">
+              <div className="col-5">
+                <Copyright text={ copyrightsText } />
+              </div>
 
-            <div className="footer__contact-box">
-              <div className="row">
-                { 
-                  renderContactInfo(contactInfo && contactInfo[0], 'General Inquiries') 
-                }
-                { 
-                  renderContactInfo(contactInfo && contactInfo[1], 'New Business') 
-                }
+              <div className="col-5">
+                <SocialNav
+                  onSocialItemClick={ onSocialItemClick }
+                  links={ socialMedia }
+                />
               </div>
             </div>
           </div>
-        </div>
+        </footer>
 
-        <div className="row copyright">
-          <div className="col-5">
-            <Copyright text={ copyrightsText } />
-          </div>
+        { this.renderContactForm() }
+      </React.Fragment>
+    );
+  }
+}
 
-          <div className="col-5">
-            <SocialNav
-              onSocialItemClick={ onSocialItemClick }
-              links={ socialMedia }
-            />
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-};
+export default Footer;

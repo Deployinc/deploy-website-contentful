@@ -4,7 +4,7 @@ import { Video } from '@components';
 import badgeImg from '@assets/images/badge.svg';
 import badgeInnerImg from '@assets/images/badge-inner.svg';
 
-const SectionHero = ({data}) => {
+const SectionHero = ({ data, className}) => {
   const [isLoaded, setIsLoaded] = useState(window.innerWidth > 767 ? false : true);
   useEffect(() => {
     onMount();
@@ -17,7 +17,7 @@ const SectionHero = ({data}) => {
   };
 
   return (
-    <section className={ `hero ${isLoaded ? 'enter' : ''}` }>
+    <section className={ `hero ${isLoaded ? 'enter' : ''} ${className}` }>
       <div className="container">
         <div className="row">
           <div className="col-7">

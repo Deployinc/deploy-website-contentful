@@ -43,7 +43,7 @@ class Clients extends Component {
 
     return(
       <Fragment>
-        <section className="clients" ref={forwardRef}>
+        <section className="clients" ref={forwardRef} id="cases">
           <div className="container">
             <div className="row">
               <div className="col-1"></div>

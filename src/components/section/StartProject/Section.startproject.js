@@ -9,7 +9,7 @@ const SectionStartProject = ({ openModal, data }) => (
           <p className="startProject__content">{data.startAProjectText}</p>
         </div>
         <div className="col-5">
-          <Button text={data.ctaButtonText} size="large" color="#d5f0d3" onClick={data.ctaButtonLink === 'contactForm' ? openModal : null} />
+          <Button text={data.ctaButtonText} size="large" color="#d5f0d3" onClick={ data.ctaButtonLink === 'contactForm' ? () => openModal(true) : null } />
         </div>
       </div>
     </div>

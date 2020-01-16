@@ -9,7 +9,7 @@ export default class SectionLeadership extends Component {
 
     componentDidMount = () => {
       window.addEventListener('touchstart', this.touchStart);
-      window.addEventListener('touchmove', this.preventTouch, {passive: false});
+      window.addEventListener('touchmove', this.preventTouch, { passive: false });
       this.intervalId = setInterval(this.toggleScroll, 200);
       if(this.leadershipRef){
         this.leadershipRef.current.addEventListener('wheel', this.onScroll);
@@ -17,8 +17,8 @@ export default class SectionLeadership extends Component {
     }
 
     componentWillUnmount(){
-      window.removeEventListener('touchstart');
-      window.removeEventListener('touchmove', this.preventTouch, {passive: false});
+      window.removeEventListener('touchstart', this.touchStart);
+      window.removeEventListener('touchmove', this.preventTouch, { passive: false });
       clearInterval(this.intervalId);
     }
 

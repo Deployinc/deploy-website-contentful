@@ -5,7 +5,7 @@ const SectionServices = ({forwardRef, data}) => {
   const leftColumn = documentToHtmlString(data.leftColumnText.json);
   const rightColumn = documentToHtmlString(data.rightColumnTex.json);
   return(
-    <section className = "services section-padding" ref={forwardRef}>
+    <section className = "services section-padding" ref={forwardRef} id="services">
         <div className="container">
             <div className="row">
                 <div className="col-4">

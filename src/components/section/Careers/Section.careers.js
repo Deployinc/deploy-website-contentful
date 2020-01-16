@@ -3,17 +3,6 @@ import Slider from 'react-slick';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { SliderItem, OpenPositions, Modal, Button } from '@components';
 
-import officeImg from '@assets/images/office/office.jpg';
-import officeImg1 from '@assets/images/office/1.jpg';
-import officeImg2 from '@assets/images/office/2.jpg';
-import officeImg3 from '@assets/images/office/3.jpg';
-import officeImg4 from '@assets/images/office/4.jpg';
-import officeImg5 from '@assets/images/office/5.jpg';
-import officeImg6 from '@assets/images/office/6.jpg';
-import officeImg7 from '@assets/images/office/7.jpg';
-import officeImg8 from '@assets/images/office/8.jpg';
-import officeImg9 from '@assets/images/office/9.jpg';
-
 class Careers extends Component {
 
   sliderRef = React.createRef();
@@ -152,7 +141,7 @@ class Careers extends Component {
 
     return(
       <Fragment>
-        <section className="careers section-padding">
+        <section className="careers section-padding" id="careers">
           <div className="careers__row" ref={this.props.forwardRef}>
             <div className="col-5">
               <img 

@@ -2,9 +2,8 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 import get from 'lodash/get';
 import Helmet from 'react-helmet';
-import { Layout, AnimationScroll, Header, Footer } from "@components";
+import { Layout, AnimationScroll, Header, ArticlePreview, Footer } from "@components";
 import { SectionHero } from '@components/section';
-import ArticlePreview from '../components/article-preview';
 
 class BlogIndex extends React.Component {
   state = {

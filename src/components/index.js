@@ -16,6 +16,7 @@ import Image from './image';
 import AnimationScroll from './animations';
 import ContactForm from './contact-form';
 import Layout from './layout';
+import ArticlePreview from './article';
 
 export {
   Header,
@@ -35,5 +36,6 @@ export {
   Image,
   AnimationScroll,
   ContactForm,
-  Layout
+  Layout,
+  ArticlePreview
 };

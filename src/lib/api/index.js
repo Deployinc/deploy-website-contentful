@@ -1,5 +1,5 @@
 import 'whatwg-fetch';
-import { HOST } from 'constants/refs';
+import { HOST } from 'constants/host';
 import storage from 'constants/localStorage';
 
 export default class Api {

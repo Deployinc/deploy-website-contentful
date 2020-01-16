@@ -3,7 +3,6 @@ import officeImg from '@assets/images/office.jpg';
 import closeImg from '@assets/images/close-button.svg';
 
 export default ({positions, onModalClose, onPositionCLick}) => {
-  console.log(positions);
   if(!positions) return null;
   return (
     <div className="modal__content modal--showcase__content modal--positions__content">

@@ -1,11 +1,13 @@
-const requestAnimationFrame = window.requestAnimationFrame ||
+import window from '@constants/window';
+
+const requestAnimationFrame = window && window.requestAnimationFrame ||
   window.webkitRequestAnimationFrame ||
   window.mozRequestAnimationFrame ||
   function (callback) {
     window.setTimeout(callback, 1000 / 60);
   };
 
-const cancelAnimationFrame = window.cancelAnimationFrame ||
+const cancelAnimationFrame = window && window.cancelAnimationFrame ||
   window.mozCancelAnimationFrame ||
   window.webkitCancelAnimationFrame;
 

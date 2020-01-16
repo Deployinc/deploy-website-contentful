@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Video } from '@components';
-
+import window from '@constants/window';
 import badgeImg from '@assets/images/badge.svg';
 import badgeInnerImg from '@assets/images/badge-inner.svg';
 

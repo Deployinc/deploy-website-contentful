@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { reqAnimationFrame, Scroll } from '@lib/helpers';
+import window from '@constants/window';
 
 class AnimationScroll extends Component {
 
@@ -28,7 +29,7 @@ class AnimationScroll extends Component {
     Scroll.unregister(this.props.section);
   }
 
-  innerWidth = Math.min(window.innerWidth, window.screen.width)
+  innerWidth = window && Math.min(window.innerWidth, window.screen.width)
   scrolledTo = false;
   top = 0;
   ticking = false;

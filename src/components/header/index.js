@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Navigation } from '@components';
+import window from '@constants/window';
 import logoImg from '@assets/images/deploy-logo.svg';
 
 const navData = [

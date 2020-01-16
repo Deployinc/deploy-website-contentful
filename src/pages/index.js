@@ -7,8 +7,6 @@ import {
   Footer, 
   Image, 
   AnimationScroll, 
-  Modal, 
-  ContactForm, 
   Layout 
 } from '@components';
 import {
@@ -21,7 +19,6 @@ import {
   SectionLeadership,
   SectionCareers 
 } from '@components/section';
-import { HOST } from '@constants/refs';
 
 const MODULES = {
   ContentfulHomepageHero: SectionHero,
@@ -36,35 +33,18 @@ const MODULES = {
 };
 
 class RootIndex extends React.Component {
-  footerRef = React.createRef();
+  state = {
+    contactModal: false
+  };
+
+  toggleModal = (value) => {
+    this.setState({ contactModal: value });
+  }
+  
   servicesRef = React.createRef();
   casesRef = React.createRef();
   careersRef = React.createRef();
-  formRef = React.createRef();
-
-  state = {
-    contactModal: false,
-    email: '',
-    first_name: '',
-    phone: '',
-    message: '',
-    formError: {},
-    formSuccess: '',
-    isSending: false
-  }
-
-  openModal = (e) => {
-    this.setState({ contactModal: true, formSuccess: '', formError: {} });
-  }
-
-  onModalClose = (value) => {
-    this.setState({ contactModal: value });
-    if(!this.state.formSuccess) {
-      gtag('event', 'ContacFormAbandonment', {
-        event_category: 'click'
-      });
-    }
-  }
+  footerRef = React.createRef();
 
   onScrollTo = type => {
     const ref = type || 'footerRef';
@@ -75,93 +55,6 @@ class RootIndex extends React.Component {
       behavior: 'smooth',
       block: 'start'
     });
-  }
-
-  onChange = e => {
-    const { name, value } = e.target;
-
-    if (name === 'phone') {
-      if (this.validatePhone(value)) return;
-    }
-
-    this.setState({ [name]: value });
-  }
-
-  sendMail = async e => {
-    e.preventDefault();
-    this.setState({ formError: {}, formSuccess: '' });
-    let { email, first_name, phone, message, formError } = this.state;
-
-    if (!email) {
-      formError.email = 'Email is required.';
-      this.setState({ formError });
-    }
-
-    if (!first_name) {
-      formError.first_name = 'Name is required.';
-      this.setState({ formError });
-    }
-
-    if (!phone) {
-      formError.phone = 'Phone is required.';
-      this.setState({ formError });
-    }
-
-    if (!message) {
-      formError.message = 'Message is required.';
-      this.setState({ formError });
-    }
-
-    const recaptcha = grecaptcha.getResponse();
-
-    if (!grecaptcha || !recaptcha) {
-      formError.global = 'Please prove that you are not a robot.';
-      this.setState({ formError: formError });
-      return;
-    }
-
-    try {
-      this.setState({ isSending: true });
-
-      const url = `${HOST}/api/email/`;
-
-      email = encodeURIComponent(email);
-      first_name = encodeURIComponent(first_name);
-      phone = encodeURIComponent(phone);
-      message = encodeURIComponent(message);
-      
-      let serializedData = `email=${email}&first_name=${first_name}&phone=${phone}&message=${message}&g-recaptcha-response=${recaptcha}`;
-      
-      const options = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        data: serializedData,
-        url
-      };
-      
-      const { data } = await axios(options);
-
-      if (data.success) {
-        this.setState({ isSending: false, formSuccess: 'Thank you! Your message has been sent successfully.', first_name: '', email: '', phone: '', message: '' });
-        gtag('event', 'ContacFormSend', {
-          event_category: 'click'
-        });
-      } else {
-        formError.global = 'Some of the field values are invalid.'
-        this.setState({ isSending: false, formError });
-      }
-
-      grecaptcha.reset();
-    } catch (err) {
-      formError.global = 'An unknown error occured. Check your internet connection please.';
-      this.setState({ isSending: false, formError })
-    }
-  }
-
-  validatePhone = (phoneNumber) => {
-    if (!phoneNumber) return false;
-    var re = /[^0-9-+()]/g;
-    return re.test(phoneNumber);
   }
 
   onSocialItemClick = () => {
@@ -189,7 +82,7 @@ class RootIndex extends React.Component {
         const careersCarousel = modules.find(module => module.__typename === 'ContentfulCareersCarousel');
         return (
           <AnimationScroll section={module.id} key={ module.id }>
-            <Section data={ module } openModal={ this.openModal } careersCarousel={ careersCarousel } forwardRef={this.careersRef} />
+            <Section data={ module } openModal={ this.toggleModal } careersCarousel={ careersCarousel } forwardRef={ this.careersRef } />
           </AnimationScroll>
         );
       }
@@ -198,9 +91,12 @@ class RootIndex extends React.Component {
         <AnimationScroll section={module.id} key={ module.id }>
           <Section 
             data={ module } 
-            openModal={ this.openModal } 
+            openModal={ this.toggleModal }
             onScrollTo={this.onScrollTo} 
-            forwardRef={ module.__typename === 'ContentfulCaseStudiesContainer' ? this.casesRef : null } />
+            forwardRef={ 
+              module.__typename === 'ContentfulCaseStudiesContainer' ? this.casesRef : 
+              (module.__typename === 'ContentfulServices' ? this.servicesRef : null) 
+            } />
         </AnimationScroll>
       );
     });
@@ -214,30 +110,11 @@ class RootIndex extends React.Component {
         openModal={ this.openModal } 
         onSocialItemClick={ this.onSocialItemClick } 
         onContactInfoClick={ this.onContactInfoClick } 
+        contactModal={ this.state.contactModal }
+        toggleModal={ this.toggleModal }
       />
     </AnimationScroll>
   );
-
-  renderContactForm = () => {
-    const { first_name, email, phone, message, formError, formSuccess, isSending } = this.state;
-    return (
-      <Modal active={ this.state.contactModal } onModalClose={ this.onModalClose }>
-        <ContactForm
-          forwardRef={ this.formRef }
-          onModalClose={ this.onModalClose }
-          sendMail={ this.sendMail }
-          onChange={ this.onChange }
-          formError={ formError }
-          formSuccess={ formSuccess }
-          email={ email }
-          name={ first_name }
-          phone={ phone }
-          message={ message }
-          isSending={ isSending }
-        />
-      </Modal>
-    );
-  }
 
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title');
@@ -258,10 +135,6 @@ class RootIndex extends React.Component {
         
         {
           this.renderFooter(footerData)
-        }
-
-        {
-          this.renderContactForm()
         }
       </Layout>
     )

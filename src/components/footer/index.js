@@ -28,7 +28,8 @@ class Footer extends Component {
 
   onModalClose = (value) => {
     this.setState({ contactModal: value });
-    this.props.toggleModal(false);
+    if(this.props.toggleModal)
+      this.props.toggleModal(false);
     if(!this.state.formSuccess) {
       gtag('event', 'ContacFormAbandonment', {
         event_category: 'click'
@@ -44,6 +45,18 @@ class Footer extends Component {
     }
 
     this.setState({ [name]: value });
+  }
+
+  onSocialItemClick = () => {
+    gtag('event', 'SocialMediaLink', {
+      event_category: 'click'
+    });
+  }
+
+  onContactInfoClick = () => {
+    gtag('event', 'ContactInfoLinks', {
+      event_category: 'click'
+    });
   }
 
   sendMail = async e => {
@@ -132,7 +145,6 @@ class Footer extends Component {
   }
 
   renderContactInfo = (info, title) => {
-    const { onContactInfoClick } = this.props.data;
     if(!info) return null;
     return(
       <div className="col-4">
@@ -140,10 +152,10 @@ class Footer extends Component {
 
         <div className="footer__contact-box__content">
           <p className="footer__contact-box__content__value">
-            <a href={`mailto:${info.emailAddress}`} onClick={ onContactInfoClick }>{info.emailAddress}</a>
+            <a href={`mailto:${info.emailAddress}`} onClick={ this.onContactInfoClick }>{info.emailAddress}</a>
           </p>
           <p className="footer__contact-box__content__value">
-            <a href={`tel:${info.phoneNumber}`} onClick={ onContactInfoClick }>{info.phoneNumber}</a>
+            <a href={`tel:${info.phoneNumber}`} onClick={ this.onContactInfoClick }>{info.phoneNumber}</a>
           </p>
         </div>
       </div>
@@ -172,7 +184,7 @@ class Footer extends Component {
   }
 
   render() {
-    const { data, forwardRef, onSocialItemClick, className } = this.props;
+    const { data, forwardRef, className } = this.props;
     const { title, copyrightsText, ctaButtonLink, ctaButtonText, contactInfo, socialMedia } = data;
 
     return (
@@ -217,7 +229,7 @@ class Footer extends Component {
 
               <div className="col-5">
                 <SocialNav
-                  onSocialItemClick={ onSocialItemClick }
+                  onSocialItemClick={ this.onSocialItemClick }
                   links={ socialMedia }
                 />
               </div>

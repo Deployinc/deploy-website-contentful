@@ -40,7 +40,7 @@ class RootIndex extends React.Component {
   toggleModal = (value) => {
     this.setState({ contactModal: value });
   }
-  
+
   servicesRef = React.createRef();
   casesRef = React.createRef();
   careersRef = React.createRef();
@@ -54,18 +54,6 @@ class RootIndex extends React.Component {
     this[ref].current.scrollIntoView({
       behavior: 'smooth',
       block: 'start'
-    });
-  }
-
-  onSocialItemClick = () => {
-    gtag('event', 'SocialMediaLink', {
-      event_category: 'click'
-    });
-  }
-
-  onContactInfoClick = () => {
-    gtag('event', 'ContactInfoLinks', {
-      event_category: 'click'
     });
   }
 

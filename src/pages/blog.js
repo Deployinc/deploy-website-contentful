@@ -82,10 +82,6 @@ class BlogIndex extends React.Component {
           <Footer
             className="no-margin"
             data={ footerData } 
-            // forwardRef={ this.footerRef } 
-            // openModal={ this.openModal } 
-            // onSocialItemClick={ this.onSocialItemClick } 
-            // onContactInfoClick={ this.onContactInfoClick } 
           />
         </AnimationScroll>
       </Layout>

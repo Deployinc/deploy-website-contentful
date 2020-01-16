@@ -81,7 +81,7 @@ class BlogIndex extends React.Component {
         <AnimationScroll section={ footerData.id }>
           <Footer
             className="no-margin"
-            data={ footerData } 
+            data={ footerData }
           />
         </AnimationScroll>
       </Layout>

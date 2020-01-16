@@ -26,7 +26,8 @@ class Careers extends Component {
 
   getJobs = async () => {
     try {
-      const { data } = await fetch('https://deploy.bamboohr.com/jobs/embed2.php'); 
+      const res = await fetch('https://deploy.bamboohr.com/jobs/embed2.php'); 
+      const data = await res.text();
       if(!data) return;
       const editedData = data.replace(new RegExp('<a', 'g'), '<a target="_blank"');
       this.setState({positions: editedData});
@@ -35,17 +36,17 @@ class Careers extends Component {
     }
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     window.removeEventListener('touchstart', this.touchStart);
     window.removeEventListener('touchmove', this.preventTouch, {passive: false});
   }
 
-  touchStart(e){
+  touchStart(e) {
     this.firstClientX = e.touches[0].clientX;
     this.firstClientY = e.touches[0].clientY;
   }
 
-  preventTouch(e){
+  preventTouch(e) {
     const minValue = 5; // threshold
 
     this.clientX = e.touches[0].clientX - this.firstClientX;
@@ -165,8 +166,8 @@ class Careers extends Component {
           </div>
         </section>
 
-        <Modal active={modal} onModalClose={this.onModalClose}>
-          <OpenPositions positions={positions} onModalClose={this.onModalClose} onPositionCLick={this.onPositionClick} />
+        <Modal active={ modal } onModalClose={ this.onModalClose }>
+          <OpenPositions positions={ positions}  onModalClose={ this.onModalClose } onPositionCLick={ this.onPositionClick } />
         </Modal>
       </Fragment>
     );

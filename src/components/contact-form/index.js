@@ -1,5 +1,5 @@
 import React from 'react';
-import officeImg from '@assets/images/office/office.jpg';
+import officeImg from '@assets/images/office.jpg';
 import closeImg from '@assets/images/close-button.svg';
 import spinner from '@assets/images/spinner.gif';
 
@@ -8,7 +8,7 @@ export default ({ onModalClose, onChange, formError, formSuccess, sendMail, emai
   return (
     <div className="modal__content modal--showcase__content modal--positions__content modal--contact__content">
       <div className="modal--showcase__content__featured-img modal--positions__content__featured-img">
-        <img src={officeImg} alt="Office" />
+        <img src={ officeImg } alt="Office" />
       </div>
       <div className="modal--showcase__content__project modal--positions__content__project">
         <button

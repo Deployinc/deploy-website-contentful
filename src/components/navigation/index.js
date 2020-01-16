@@ -1,20 +1,24 @@
 import React from 'react';
+import { Link } from 'gatsby';
 
-export default ({onNavItemClick}) => (
+export default ({ navData, onNavItemClick, isHomepage }) => (
   <nav className="header__navbar">
     <ul className="header__navbar__nav">
-      <li className="header__navbar__nav__item">
-        <button onClick={() => onNavItemClick('servicesRef')}>Services</button>
-      </li>
-      <li className="header__navbar__nav__item">
-      <button onClick={() => onNavItemClick('casesRef')}>Cases</button>
-      </li>
-      <li className="header__navbar__nav__item">
-        <button onClick={() => onNavItemClick('careersRef')}>Careers</button>
-      </li>
-      <li className="header__navbar__nav__item">
-        <button onClick={() => onNavItemClick('footerRef')}>Contact</button>
-      </li>
+      {
+        navData.map((item, i) => 
+          <li key={ i } className="header__navbar__nav__item">
+            {
+              item.ref ?
+                (
+                  isHomepage ? 
+                  <button onClick={() => onNavItemClick(item.ref)}>{item.title}</button> :
+                  <Link to={item.url}>{item.title}</Link>
+                ) :
+                <Link to={item.url}>{item.title}</Link>
+            }
+          </li>
+        )
+      }
     </ul>
   </nav>
 );

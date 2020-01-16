@@ -5,7 +5,8 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
   return new Promise((resolve, reject) => {
-    const blogPost = path.resolve('./src/templates/blog-post.js')
+    const blogPost = path.resolve('./src/templates/blog-post.js');
+    const blogCategory = path.resolve('./src/templates/category.js');
     resolve(
       graphql(
         `
@@ -15,6 +16,14 @@ exports.createPages = ({ graphql, actions }) => {
                 node {
                   title
                   slug
+                }
+              }
+            }
+            allContentfulCategories {
+              edges {
+                node {
+                  slug
+                  title
                 }
               }
             }
@@ -34,8 +43,19 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: post.node.slug
             },
-          })
-        })
+          });
+        });
+
+        const categories = result.data.allContentfulCategories.edges;
+        categories.map(category => {
+          createPage({
+            path: `/category/${category.node.slug}/`,
+            component: blogCategory,
+            context: {
+              slug: category.node.slug,
+            },
+          });
+        });
       })
     )
   })

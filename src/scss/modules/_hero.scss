@@ -5,6 +5,10 @@
   overflow: hidden;
   min-height: 100vh;
 
+  &--articles {
+    min-height: 70vh;
+  }
+
   .video-background {
     background: #000;
     position: absolute;

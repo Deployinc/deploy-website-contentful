@@ -5,6 +5,10 @@
   padding-bottom: 170px;
   margin-top: 200px;
 
+  &.no-margin {
+    margin-top: 0 !important;
+  }
+
   &__title {
     font-size: 30px;
     letter-spacing: -.75px;

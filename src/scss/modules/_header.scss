@@ -22,6 +22,15 @@
     }
   }
 
+  &--static {
+    position: static !important;
+    padding-top: 25px !important;
+    padding-bottom: 20px !important;
+    background-color: #000;
+    border-bottom: 1px solid rgba(255, 255, 255, .3);
+
+  }
+
   &__navbar {
     height: 100%;
     display: flex;
@@ -35,12 +44,14 @@
       }
 
       &__item {
-        button {
+        button,
+        a {
           font-size: 24px;
           color: $color-white;
           letter-spacing: -.6px;
           cursor: pointer;
           transition: color .3s;
+          padding: 0;
 
           .sticky & { 
             font-size: 20px;
@@ -52,7 +63,6 @@
             width: 0;
             height: 10px;
             background-color: $color-orange-dark;
-            opacity: .9;
             transition: width ease-out .3s;
             margin-top: -10px;
             margin-left: -6%;
@@ -77,7 +87,8 @@
         }
 
         &:nth-child(2) {
-          button {
+          button,
+          a {
             &:after {
               background-color: $color-yellow;
             }
@@ -85,7 +96,8 @@
         }
 
         &:nth-child(3) {
-          button {
+          button,
+          a {
             &:after {
               background-color: $color-pink;
             }
@@ -93,9 +105,19 @@
         }
 
         &:nth-child(4) {
-          button {
+          button,
+          a {
             &:after {
               background-color: $color-blue;
+            }
+          }
+        }
+
+        &:nth-child(5) {
+          button,
+          a {
+            &:after {
+              background-color: $color-green;
             }
           }
         }
@@ -141,7 +163,8 @@
       &__nav {
         
         &__item {
-          button {
+          button,
+          a {
             font-size: 18px;
 
             .sticky & { 
@@ -188,7 +211,8 @@
     &__navbar {
       &__nav {
         &__item {
-          button {
+          button,
+          a {
             &:after {
               content: none;
               display: none;
@@ -285,7 +309,8 @@
             margin-top: 45px;
           }
 
-          button {
+          button,
+          a {
             font-size: 25px !important;
             color: $color-white;
           }

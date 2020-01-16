@@ -2,11 +2,39 @@ import React, { Component } from 'react';
 import { Navigation } from '@components';
 import logoImg from '@assets/images/deploy-logo.svg';
 
+const navData = [
+  {
+    title: 'Services',
+    url: '/#services',
+    ref: 'servicesRef'
+  },
+  {
+    title: 'Cases',
+    url: '/#cases',
+    ref: 'casesRef'
+  },
+  {
+    title: 'Careers',
+    url: '/#careers',
+    ref: 'careersRef'
+  },
+  {
+    title: 'Blog',
+    url: '/blog',
+  },
+  {
+    title: 'Contact',
+    url: '/#footer',
+    ref: 'footerRef'
+  }
+];
+
 class Header extends Component {
   state = {
     sidebarOpened: false,
     isSticky: false,
     isStickyVisible: false,
+    isHomepage: true,
     loaded: window.innerWidth > 767 ? false : true
   }
 
@@ -24,6 +52,10 @@ class Header extends Component {
     setTimeout(() => {
       this.setState({ loaded: true });
     }, 1500);
+
+    if(window.location.pathname !== '/' && window.location.pathname !== '') {
+      this.setState({ isHomepage: false });
+    }
   }
 
   componentWillUnmount() {
@@ -46,27 +78,29 @@ class Header extends Component {
     const { isSticky, sidebarOpened } = this.state;
     const st = window.pageYOffset;
 
-    if (Math.abs(this.lastScrollTop - st) <= this.delta) return;
+    if(!this.props.isStatic) {
+      if (Math.abs(this.lastScrollTop - st) <= this.delta) return;
 
-    if (st > 400) {
-      if(!isSticky) {
-        this.setState({isSticky: true});
+      if (st > 400) {
+        if(!isSticky) {
+          this.setState({isSticky: true});
+        }
+      } else {
+        if(isSticky) {
+          this.setState({isSticky: false});
+        }
       }
-    } else {
-      if(isSticky) {
-        this.setState({isSticky: false});
+
+      if (st < this.lastScrollTop && !sidebarOpened){
+        // Scroll Down
+        this.setState({isStickyVisible: true});
+      } else {
+        // Scroll Up
+        this.setState({isStickyVisible: false});
       }
-    }
 
-    if (st < this.lastScrollTop && !sidebarOpened){
-      // Scroll Down
-      this.setState({isStickyVisible: true});
-    } else {
-      // Scroll Up
-      this.setState({isStickyVisible: false});
+      this.lastScrollTop = st;
     }
-
-    this.lastScrollTop = st;
 
     // Firing GA scroll events
 
@@ -146,11 +180,11 @@ class Header extends Component {
   }
 
   render() {
-    const { sidebarOpened, isSticky, isStickyVisible, loaded } = this.state;
-    const { data } = this.props;
+    const { sidebarOpened, isSticky, isStickyVisible, loaded, isHomepage } = this.state;
+    const { data, isStatic } = this.props;
 
     return(
-      <header className={'header ' + (loaded && 'enter ') + (sidebarOpened ? 'opened' : '') + (isSticky ? ' sticky' : '') + (isStickyVisible ? ' visible' : '') }>
+      <header className={`header ${isStatic ? 'header--static' : ''} ${loaded ? 'enter' : ''} ${sidebarOpened ? 'opened' : ''} ${isSticky ? 'sticky' : ''} ${isStickyVisible ? 'visible' : ''}` }>
         <div className="container">
           <div className="row">
             <div className="col-5">
@@ -168,7 +202,7 @@ class Header extends Component {
             </div>
 
             <div className="col-5">
-              <Navigation onNavItemClick={this.onNavItemClick} />
+              <Navigation navData={ navData } onNavItemClick={this.onNavItemClick} isHomepage={ isHomepage } />
             </div>
           </div>
         </div>

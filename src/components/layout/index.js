@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'gatsby';
 import Helmet from 'react-helmet';
-import "@styles/style.scss";
 import "slick-carousel/slick/slick.scss"; 
 import "slick-carousel/slick/slick-theme.scss";
+import "@styles/style.scss";
+import favicon from '../../../static/favicon/favicon.ico';
 
 class Template extends React.Component {
   render() {
@@ -18,6 +18,7 @@ class Template extends React.Component {
     return (
       <React.Fragment>
         <Helmet>
+          <link rel="icon" href={favicon} />
           <script async src="https://www.googletagmanager.com/gtag/js?id=AW-UA-30456352-1"></script>
           <script>
             {`

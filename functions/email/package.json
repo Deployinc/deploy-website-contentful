@@ -1,0 +1,16 @@
+{
+  "name": "deploy-email",
+  "version": "1.0.0",
+  "description": "Simple Netlify function that sends emails",
+  "main": "email.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "node-fetch": "^2.6.0",
+    "nodemailer": "^6.4.2"
+  }
+}

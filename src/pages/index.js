@@ -105,6 +105,7 @@ class RootIndex extends React.Component {
   );
 
   render() {
+    console.log(process.env.NODE_ENV);
     const siteTitle = get(this, 'props.data.site.siteMetadata.title');
     const homePageComponents = get(this, 'props.data.allContentfulPage.edges[0].node');
     const footerData = homePageComponents.component.find(item => item.__typename === 'ContentfulFooter');

@@ -6,7 +6,7 @@ class Footer extends Component {
   state = {
     contactModal: false,
     email: '',
-    first_name: '',
+    firstName: '',
     phone: '',
     message: '',
     formError: {},
@@ -62,15 +62,15 @@ class Footer extends Component {
   sendMail = async e => {
     e.preventDefault();
     this.setState({ formError: {}, formSuccess: '' });
-    let { email, first_name, phone, message, formError } = this.state;
+    let { email, firstName, phone, message, formError } = this.state;
 
     if (!email) {
       formError.email = 'Email is required.';
       this.setState({ formError });
     }
 
-    if (!first_name) {
-      formError.first_name = 'Name is required.';
+    if (!firstName) {
+      formError.firstName = 'Name is required.';
       this.setState({ formError });
     }
 
@@ -95,36 +95,37 @@ class Footer extends Component {
     try {
       this.setState({ isSending: true });
 
-      const url = `${HOST}/api/email/`;
+      const url = `${HOST}/.netlify/functions/email`;
 
-      email = encodeURIComponent(email);
-      first_name = encodeURIComponent(first_name);
-      phone = encodeURIComponent(phone);
-      message = encodeURIComponent(message);
-      
-      let serializedData = `email=${email}&first_name=${first_name}&phone=${phone}&message=${message}&g-recaptcha-response=${recaptcha}`;
-      
+      const formData = {
+          email,
+          firstName,
+          phone,
+          message,
+          recaptcha
+      };
       const options = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        data: serializedData,
-        url
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       };
       
-      const { data } = await axios(options);
+      const res = await fetch(url, options);
+      const data = await res.json();
 
       if (data.success) {
-        this.setState({ isSending: false, formSuccess: 'Thank you! Your message has been sent successfully.', first_name: '', email: '', phone: '', message: '' });
+        this.setState({ isSending: false, formSuccess: 'Thank you! Your message has been sent successfully.', firstName: '', email: '', phone: '', message: '' });
         gtag('event', 'ContacFormSend', {
           event_category: 'click'
         });
       } else {
-        formError.global = 'Some of the field values are invalid.'
+        formError.global = data.error;
         this.setState({ isSending: false, formError });
       }
 
       grecaptcha.reset();
     } catch (err) {
+      console.log(err);
       formError.global = 'An unknown error occured. Check your internet connection please.';
       this.setState({ isSending: false, formError })
     }
@@ -163,7 +164,7 @@ class Footer extends Component {
   };
 
   renderContactForm = () => {
-    const { contactModal, first_name, email, phone, message, formError, formSuccess, isSending } = this.state;
+    const { contactModal, firstName, email, phone, message, formError, formSuccess, isSending } = this.state;
     return (
       <Modal active={ contactModal } onModalClose={ this.onModalClose }>
         <ContactForm
@@ -174,7 +175,7 @@ class Footer extends Component {
           formError={ formError }
           formSuccess={ formSuccess }
           email={ email }
-          name={ first_name }
+          name={ firstName }
           phone={ phone }
           message={ message }
           isSending={ isSending }

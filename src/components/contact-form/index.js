@@ -4,7 +4,7 @@ import closeImg from '@assets/images/close-button.svg';
 import spinner from '@assets/images/spinner.gif';
 
 export default ({ onModalClose, onChange, formError, formSuccess, sendMail, email, name, phone, message, isSending, forwardRef }) => {
-  const { email: emailErr, first_name: nameErr, phone: phoneErr, message: messageErr, global: globalErr } = formError;
+  const { email: emailErr, firstName: nameErr, phone: phoneErr, message: messageErr, global: globalErr } = formError;
   return (
     <div className="modal__content modal--showcase__content modal--positions__content modal--contact__content">
       <div className="modal--showcase__content__featured-img modal--positions__content__featured-img">
@@ -50,7 +50,7 @@ export default ({ onModalClose, onChange, formError, formSuccess, sendMail, emai
               <label htmlFor="name">Your name</label>
               <input
                 type="text"
-                name="first_name"
+                name="firstName"
                 id="name"
                 className="contact-form__input"
                 placeholder="Your Name"

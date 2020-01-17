@@ -13,18 +13,18 @@ class BlogCategoryTemplate extends React.Component {
   postsPerPage = 6;
 
   renderArticles = () => {
-    const posts = get(this, 'props.data.allContentfulBlogPost.nodes');
+    const posts = get(this, 'props.data.allContentfulBlogPost.edges');
     const from = this.state.activePage * this.postsPerPage;
     const to = (this.state.activePage * this.postsPerPage) + this.postsPerPage;
     const postsToShow = posts.slice(from, to);
-    return postsToShow.map((post) => 
-      <ArticlePreview article={ post } key={ post.slug } />
+    return postsToShow.map(({ node }) => 
+      <ArticlePreview article={ node } key={ node.slug } />
     );
   };
 
   renderPagination = () => {
     const { activePage } = this.state;
-    const posts = get(this, 'props.data.allContentfulBlogPost.nodes');
+    const posts = get(this, 'props.data.allContentfulBlogPost.edges');
     const postsCount = posts ? posts.length : 0;
     const pagesNum = Math.ceil(postsCount / this.postsPerPage);
     const pagination = [];
@@ -122,33 +122,35 @@ export const pageQuery = graphql`
       }
     }
     allContentfulBlogPost(filter: {category: {elemMatch: {slug: {eq: $slug}}}}) {
-      nodes{
-        title
-        slug
-        publishDate(formatString: "MMMM Do, YYYY")
-        tags
-        readTime
-        category {
+      edges {
+        node {
           title
           slug
-        }
-        heroImage {
-          fluid {
-            src
-            srcSet
+          publishDate(formatString: "MMMM Do, YYYY")
+          tags
+          readTime
+          category {
+            title
+            slug
           }
-        }
-        author {
-          name
-        }
-        description {
-          childMarkdownRemark {
-            html
+          heroImage {
+            fluid {
+              src
+              srcSet
+            }
           }
-        }
-        body {
-          childMarkdownRemark {
-            html
+          author {
+            name
+          }
+          description {
+            childMarkdownRemark {
+              html
+            }
+          }
+          body {
+            childMarkdownRemark {
+              html
+            }
           }
         }
       }

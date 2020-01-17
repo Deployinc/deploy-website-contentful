@@ -60,6 +60,7 @@ exports.handler = async (event, context, callback) => {
     const data = await res.json();
 
     if(!data.success) {
+      console.log(data);
       return {
         headers,
         statusCode: 200,

@@ -117,7 +117,7 @@ class Footer extends Component {
         body: this.encode(formData),
       };
       
-      const res = await fetch(url, options);
+      const res = await fetch('/', options);
       const data = await res.json();
 
       if (data.success) {

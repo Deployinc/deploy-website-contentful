@@ -99,6 +99,7 @@ class Footer extends Component {
 
       const formData = {
           email,
+          "form-name": "bontact",
           firstName,
           phone,
           message,

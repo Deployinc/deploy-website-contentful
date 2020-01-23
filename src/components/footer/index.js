@@ -114,7 +114,7 @@ class Footer extends Component {
       const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encode(formData),
+        body: this.encode(formData),
       };
       
       const res = await fetch(url, options);

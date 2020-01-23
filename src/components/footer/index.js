@@ -99,7 +99,7 @@ class Footer extends Component {
 
       const formData = {
           email,
-          "form-name": "bontact",
+          "form-name": "contanct2",
           firstName,
           phone,
           message,
@@ -107,8 +107,8 @@ class Footer extends Component {
       };
       const options = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encode(formData),
       };
       
       const res = await fetch(url, options);

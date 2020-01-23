@@ -23,8 +23,8 @@ export default ({ onModalClose, onChange, formError, formSuccess, sendMail, emai
         </div>
 
         <div className="modal--positions__content__open-positions">
-          <form name="tontact" data-netlify="true" data-netlify-honeypot="bot-field" ref={forwardRef} action="#" className="contact-form" onSubmit={sendMail}>
-            <input type="hidden" name="form-name" value="tontact" />
+          <form name="contact" data-netlify="true" data-netlify-honeypot="bot-field" ref={forwardRef} action="#" className="contact-form" onSubmit={sendMail}>
+            <input type="hidden" name="form-name" value="contact" />
             <h4 className="modal--showcase__content__project__title">
               Get in touch
             </h4>

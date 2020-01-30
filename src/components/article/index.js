@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 
 export default ({ article }) => {
+  console.log(1, article.description.childMarkdownRemark.html);
   return (
     <article className="blog-post container">
       <h3 className="blog-post__title">
@@ -19,7 +20,7 @@ export default ({ article }) => {
         <p>Date: {article.publishDate}</p>
         <p>Category:&nbsp;
           {
-            article.category.length && article.category.map((cat, i) => 
+            article.category && article.category.length && article.category.map((cat, i) => 
               <Link key={ i } to={`/category/${cat.slug}/`}>{cat.title}{i < (article.category.length - 1) ? ', ' : ''}</Link>
             )
           }

@@ -17,6 +17,7 @@ class BlogIndex extends React.Component {
     const from = this.state.activePage * this.postsPerPage;
     const to = (this.state.activePage * this.postsPerPage) + this.postsPerPage;
     const postsToShow = posts.slice(from, to);
+    console.log({postsToShow});
     return postsToShow.map(({ node }) => 
       <ArticlePreview article={ node } key={ node.slug } />
     );

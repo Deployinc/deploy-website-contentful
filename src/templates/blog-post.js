@@ -15,7 +15,7 @@ class BlogPostTemplate extends React.Component {
     return (
       <Layout location={ this.props.location } >
         <Helmet title={`${post.title} | ${siteTitle}`} />
-        <Header data={ navigationData } isStatic={ true } />
+        <Header data={ navigationData } noAnimation={ true } />
 
         <article className="blog-post">
           { post.heroImage && 

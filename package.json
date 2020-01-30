@@ -1,11 +1,8 @@
 {
-  "name": "gatsby-contentful-starter",
-  "description": "Starter Contentful Gatsby Blog",
+  "name": "deploy-website-contentful",
+  "description": "Deploy Inc. Gatsby/Contentful Website",
   "version": "1.0.0",
-  "author": "Stefan Judis <stefanjudis@gmail.com>",
-  "bugs": {
-    "url": "https://github.com/contentful-userland/gatsby-contentful-starter/issues"
-  },
+  "author": "Deploy Inc.",
   "dependencies": {
     "@contentful/rich-text-html-renderer": "^13.4.0",
     "classnames": "^2.2.6",

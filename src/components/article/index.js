@@ -9,7 +9,7 @@ export default ({ article }) => {
         <Link to={ `/blog/${article.slug}` }>{article.title}</Link>
       </h3>
 
-      <p className="blog-post__description text-small"
+      <div className="blog-post__description text-small"
         dangerouslySetInnerHTML={ {
           __html: article.description.childMarkdownRemark.html,
         } }

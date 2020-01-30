@@ -4,7 +4,7 @@ import window from '@constants/window';
 import badgeImg from '@assets/images/badge.svg';
 import badgeInnerImg from '@assets/images/badge-inner.svg';
 
-const SectionHero = ({ data, className}) => {
+const SectionHero = ({ data, className }) => {
   const [isLoaded, setIsLoaded] = useState(window.innerWidth > 767 ? false : true);
   useEffect(() => {
     onMount();

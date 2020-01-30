@@ -53,39 +53,46 @@ class BlogCategoryTemplate extends React.Component {
 
   renderHeader = () => {
     const categories = get(this, 'props.data.allContentfulCategories.nodes');
+    const pageComponents = get(this, 'props.data.allContentfulPage.edges[0].node');
+    const heroData = pageComponents.component.find(item => item.__typename === 'ContentfulHero');
+    const { title, description, image } = heroData;
     const { slug } = this.props.pageContext;
     return (
-      <div className="category-page__header container">
-        <h3 className="category-page__header__title">Tech Topics</h3>
-        <p className="text-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean consequat, nulla eget luctus interdum, ex mauris cursus neque, ut ultricies sem nisl non dolor.</p>
-
-        <ul className="category-page__header__list">
+      <section className="category-page__header">
+        <div className="category-page__header__container container">
+          <h3 className="category-page__header__container__title">{title}</h3>
           {
-            categories && categories.map((category, i) => 
-              <li 
-                key={i} 
-                className={`category-page__header__list__item ${slug === category.slug ? 'category-page__header__list__item--active' : ''}`}>
-                <Link to={`/category/${category.slug}/`}>{category.title}</Link>
-              </li>
-            )
+            description && <div className="text-small" dangerouslySetInnerHTML={{ __html: description.childMarkdownRemark.html }} />
           }
-        </ul>
-      </div>
+          <ul className="category-page__header__container__list">
+            {
+              categories && categories.map((category, i) => 
+                <li 
+                  key={i} 
+                  className={`category-page__header__container__list__item ${slug === category.slug ? 'category-page__header__container__list__item--active' : ''}`}>
+                  <Link to={`/category/${category.slug}/`}>{category.title}</Link>
+                </li>
+              )
+            }
+          </ul>
+        </div>
+        {
+          image && <img src={image.fluid.src} srcSet={image.fluid.srcSet} className="category-page__header__image" />
+        }
+      </section>
     );
   }
   
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title');
-    const homePageComponents = get(this, 'props.data.allContentfulPage.edges[0].node');
-    const navigationData = homePageComponents.component.find(item => item.__typename === 'ContentfulNavigation');
-    const heroData = homePageComponents.component.find(item => item.__typename === 'ContentfulHomepageHero');
-    const footerData = homePageComponents.component.find(item => item.__typename === 'ContentfulFooter');
-    heroData.homepageText = 'Deploy Blog';
+    const pageComponents = get(this, 'props.data.allContentfulPage.edges[0].node');
+    const navigationData = pageComponents.component.find(item => item.__typename === 'ContentfulNavigation');
+    const footerData = pageComponents.component.find(item => item.__typename === 'ContentfulFooter');
 
     return (
       <Layout location={ this.props.location }>
         <Helmet title={siteTitle} />
-        <Header data={ navigationData } isStatic={ true } />
+        <Header data={ navigationData } noAnimation={ true } />
         <main className="main-content category-page">
           {
             this.renderHeader()
@@ -161,7 +168,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    allContentfulPage {
+    allContentfulPage(filter: {title: {eq: "Blog"}}) {
       edges {
         node {
           component {
@@ -173,10 +180,20 @@ export const pageQuery = graphql`
                 }
               }
             },
-            ... on ContentfulHomepageHero {
+            ... on ContentfulHero {
               id
-              backgroundVideo
-              homepageText: text
+              title
+              description {
+                childMarkdownRemark {
+                  html
+                }
+              }
+              image {
+                fluid {
+                  src
+                  srcSet
+                }
+              }
             }
             ... on ContentfulFooter {
               id

@@ -36,7 +36,7 @@ class Header extends Component {
     isSticky: false,
     isStickyVisible: false,
     isHomepage: true,
-    loaded: window.innerWidth > 767 ? false : true
+    loaded: window.innerWidth < 767 ? true : (this.props.noAnimation ? true : false)
   }
 
   hasScroll = false;
@@ -48,6 +48,7 @@ class Header extends Component {
   fourthScroll = false;
 
   componentDidMount() {
+    console.log({loaded: this.state.loaded})
     window.addEventListener('scroll', this.toggleScroll);
     this.intervalId = setInterval(this.ifScrolled, 250);
     setTimeout(() => {

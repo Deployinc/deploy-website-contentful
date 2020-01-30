@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'gatsby';
 
 export default ({ article }) => {
-  console.log(1, article.description.childMarkdownRemark.html);
   return (
     <article className="blog-post container">
       <h3 className="blog-post__title">

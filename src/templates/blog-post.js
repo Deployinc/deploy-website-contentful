@@ -19,7 +19,9 @@ class BlogPostTemplate extends React.Component {
 
         <article className="blog-post">
           { post.heroImage && 
-            <img src={ post.heroImage.fluid.src } srcSet={ post.heroImage.fluid.srcSet } className="blog-post__image" />
+            <div className="blog-post__image">
+              <img src={ post.heroImage.fluid.src } srcSet={ post.heroImage.fluid.srcSet } />
+            </div>
           }
           <div className="section-padding">
             <div className="container">
@@ -50,10 +52,6 @@ class BlogPostTemplate extends React.Component {
           <Footer
             className="no-margin"
             data={ footerData } 
-            // forwardRef={ this.footerRef } 
-            // openModal={ this.openModal } 
-            // onSocialItemClick={ this.onSocialItemClick } 
-            // onContactInfoClick={ this.onContactInfoClick } 
           />
         </AnimationScroll>
       </Layout>

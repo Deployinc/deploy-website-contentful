@@ -139,7 +139,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    allContentfulPage {
+    allContentfulPage(filter: {title: {eq: "Homepage"}}) {
       edges {
         node {
           component {

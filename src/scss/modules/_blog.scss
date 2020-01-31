@@ -116,6 +116,12 @@
 }
 
 .category-page {
+
+  &__no-posts {
+    font-size: 18px;
+    text-align: center;
+    margin: 0 15px;
+  }
   &__header {
     position: relative;
     min-height: 75vh;

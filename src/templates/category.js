@@ -17,6 +17,9 @@ class BlogCategoryTemplate extends React.Component {
     const from = this.state.activePage * this.postsPerPage;
     const to = (this.state.activePage * this.postsPerPage) + this.postsPerPage;
     const postsToShow = posts.slice(from, to);
+    if(!postsToShow.length) {
+      return <p className="category-page__no-posts">No articles in this category.</p>
+    }
     return postsToShow.map(({ node }) => 
       <ArticlePreview article={ node } key={ node.slug } />
     );
@@ -29,6 +32,7 @@ class BlogCategoryTemplate extends React.Component {
     const pagesNum = Math.ceil(postsCount / this.postsPerPage);
     const pagination = [];
 
+    if(!pagesNum) return;
     for(let i = 0; i < pagesNum; i++) {
       pagination.push(
         <li key={ i }>
@@ -134,7 +138,6 @@ export const pageQuery = graphql`
           title
           slug
           publishDate(formatString: "MMMM Do, YYYY")
-          tags
           readTime
           category {
             title

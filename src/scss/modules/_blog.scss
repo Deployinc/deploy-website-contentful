@@ -162,7 +162,7 @@
       }
 
       .text-small {
-        max-width: 800px;
+        max-width: 820px;
         margin: 0 auto;
         margin-bottom: 40px;
       }
@@ -171,11 +171,13 @@
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
+        max-width: 820px;
+        margin: 0 auto;
 
         &__item {
           margin-bottom: 15px;
-          padding-left: 30px;
-          padding-right: 30px;
+          padding-left: 17px;
+          padding-right: 17px;
           cursor: pointer;
           
           a {
@@ -190,11 +192,11 @@
             &:after {
               content: '';
               width: 106%;
-              margin-left: -4%;
+              margin-left: -5%;
               margin-top: -0.43em;
               display: block;
-              height: 60%;
-              background-color: $color-green;
+              height: 45%;
+              background-color: $color-orange-dark;
             }
           }
         }

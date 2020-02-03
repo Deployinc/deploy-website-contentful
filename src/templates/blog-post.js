@@ -17,33 +17,37 @@ class BlogPostTemplate extends React.Component {
         <Helmet title={`${post.title} | ${siteTitle}`} />
         <Header data={ navigationData } noAnimation={ true } />
 
-        <article className="blog-post">
+        <article className="blog-post blog-post--single">
           { post.heroImage && 
-            <div className="blog-post__image">
+            <figure className="blog-post__img-wrapper blog-post--single__img-wrapper">
               <img src={ post.heroImage.fluid.src } srcSet={ post.heroImage.fluid.srcSet } />
-            </div>
+            </figure>
           }
           <div className="section-padding">
-            <div className="container">
-              <h1 className="blog-post__title">{post.title}</h1>
-              <div className="blog-post__meta-data blog-post__meta-data--single">
-                {
-                  post.author.image && 
-                  <img src={ post.author.image.fixed.src } className="blog-post__meta-data__author-image" />
-                }
-                <div className="blog-post__meta-data__info">
-                  <p>{post.author.name}</p>
-                  <p>{post.publishDate} - {post.readTime} read</p>
-                  <p>
+            <div className="blog-post__content blog-post--single__content">
+              <div className="container">
+                <h1 className="blog-post__content__title blog-post--single__content__title">{post.title}</h1>
+                <div className="blog-post__content__meta-data blog-post--single__content__meta-data">
                   {
-                    post.category && post.category.map((cat, i) => 
-                      <Link key={ i } to={`/category/${cat.slug}/`}>{cat.title}{i < (post.category.length - 1) ? ', ' : ''}</Link>
-                    )
+                    post.author.image && 
+                    <img 
+                      src={ post.author.image.fixed.src } 
+                      className="blog-post__content__meta-data__author-image blog-post--single__content__meta-data__author-image" />
                   }
-                  </p>
+                  <div className="blog-post__content__meta-data__info blog-post--single__content__meta-data__info">
+                    <p>{post.author.name}</p>
+                    <p>{post.publishDate} - {post.readTime} read</p>
+                    <p>
+                    {
+                      post.category && post.category.map((cat, i) => 
+                        <Link key={ i } to={`/category/${cat.slug}/`}>{cat.title}{i < (post.category.length - 1) ? ', ' : ''}</Link>
+                      )
+                    }
+                    </p>
+                  </div>
                 </div>
+                <div className="text-small" dangerouslySetInnerHTML={{ __html: post.body.childMarkdownRemark.html }} />
               </div>
-              <div className="text-small" dangerouslySetInnerHTML={{ __html: post.body.childMarkdownRemark.html }} />
             </div>
           </div>
         </article>

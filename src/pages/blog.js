@@ -13,14 +13,43 @@ class BlogIndex extends React.Component {
   postsPerPage = 6;
 
   renderArticles = () => {
+    const { activePage } = this.state;
+    const postsPerPage = activePage === 0 ? (this.postsPerPage + 1) : this.postsPerPage;
     const posts = get(this, 'props.data.allContentfulBlogPost.edges');
-    const from = this.state.activePage * this.postsPerPage;
-    const to = (this.state.activePage * this.postsPerPage) + this.postsPerPage;
-    const postsToShow = posts.slice(from, to);
+    if(!posts) return;
+    let featured = posts.findIndex(({ node }) => node.featured === true);
+    if(featured === -1) {
+      featured = 0;
+    }
 
-    return postsToShow.map(({ node }) => 
-      <ArticlePreview article={ node } key={ node.slug } />
-    );
+    const postsNew = [
+      posts[featured],
+      ...posts.filter((post, i) => i !== featured)
+    ];
+
+    const from = this.state.activePage * postsPerPage;
+    const to = (activePage * postsPerPage) + postsPerPage;
+    const postsToShow = postsNew.slice(from, to);
+
+    return(
+      <div className="container">
+        <div className="row">
+          {
+            postsToShow.map(({ node }, i) => {
+              const isFeatured = activePage === 0 && i === 0;
+              return (
+                <div className={`${!isFeatured ? 'col-3' : 'col-10'}`}>
+                  <ArticlePreview 
+                    article={ node } 
+                    key={ node.slug } 
+                    isFeatured={ isFeatured } />
+                </div>
+              )
+            })
+          }
+        </div>
+      </div>
+    )
   };
 
   renderPagination = () => {
@@ -32,7 +61,7 @@ class BlogIndex extends React.Component {
 
     for(let i = 0; i < pagesNum; i++) {
       pagination.push(
-        <li key={ i }>
+        <li>
           <button className={ activePage === i ? 'active' : '' } onClick={ () => this.setState({ activePage: i }) }>{i + 1}</button>
         </li>
       );
@@ -44,7 +73,12 @@ class BlogIndex extends React.Component {
           <button className={`button ${activePage > 0 && 'button--active'}`} onClick={ () => this.setState({ activePage: activePage - 1 }) }>&lt;</button>
         </li>
 
-        { pagination }
+        { 
+          pagination.map((el,i) => 
+            <React.Fragment key={ i }>
+              { el }
+            </React.Fragment>) 
+        }
         <li>
           <button className={`button ${activePage < (pagesNum - 1) && 'button--active' }`} onClick={ () => this.setState({ activePage: activePage + 1 }) }>&gt;</button>
         </li>
@@ -137,12 +171,24 @@ export const pageQuery = graphql`
           slug
           publishDate(formatString: "MMMM Do, YYYY")
           readTime
+          heroImage {
+            fixed(width: 800) {
+              src
+              srcSet
+            }
+          }
           category {
             slug
             title
           }
           author {
             name
+            image {
+              fixed(width: 140) {
+                src
+                srcSet
+              }
+            }
           }
           description {
             childMarkdownRemark {

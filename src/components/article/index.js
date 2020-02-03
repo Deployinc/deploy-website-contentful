@@ -6,7 +6,10 @@ export default ({ article, isFeatured }) => {
     <article className={`blog-post blog-post--shadow ${isFeatured ? 'blog-post--featured' : ''}`}>
       <figure className="blog-post__img-wrapper">
         <Link to={ `/blog/${article.slug}` }>
-          <img src={article.heroImage.fixed.src} srcSet={article.heroImage.fixed.srcSet} alt={article.title}/>
+          {
+          article.heroImage && 
+            <img src={article.heroImage.fixed.src} srcSet={article.heroImage.fixed.srcSet} alt={article.title}/>
+          }
         </Link>
       </figure>
       

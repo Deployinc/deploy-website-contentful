@@ -13,16 +13,48 @@ class BlogCategoryTemplate extends React.Component {
   postsPerPage = 6;
 
   renderArticles = () => {
+    const { activePage } = this.state;
+    const postsPerPage = activePage === 0 ? (this.postsPerPage + 1) : this.postsPerPage;
     const posts = get(this, 'props.data.allContentfulBlogPost.edges');
-    const from = this.state.activePage * this.postsPerPage;
-    const to = (this.state.activePage * this.postsPerPage) + this.postsPerPage;
-    const postsToShow = posts.slice(from, to);
-    if(!postsToShow.length) {
+
+    if(!posts.length) {
       return <p className="category-page__no-posts">No articles in this category.</p>
+    };
+
+    let featured = posts.findIndex(({ node }) => node.featured === true);
+    if(featured === -1) {
+      featured = 0;
     }
-    return postsToShow.map(({ node }) => 
-      <ArticlePreview article={ node } key={ node.slug } />
-    );
+
+    const postsNew = [
+      posts[featured],
+      ...posts.filter((post, i) => i !== featured)
+    ];
+
+    const from = this.state.activePage * postsPerPage;
+    const to = (activePage * postsPerPage) + postsPerPage;
+    const postsToShow = postsNew.slice(from, to);
+    
+    return(
+      <div className="container">
+        <div className="row">
+          {
+            postsToShow.map((post, i) => {
+              console.log(post, i)
+              const isFeatured = activePage === 0 && i === 0;
+              return (
+                <div className={`${!isFeatured ? 'col-3' : 'col-10'}`}>
+                  <ArticlePreview 
+                    article={ post.node } 
+                    key={ post.node.slug } 
+                    isFeatured={ isFeatured } />
+                </div>
+              )
+            })
+          }
+        </div>
+      </div>
+    )
   };
 
   renderPagination = () => {
@@ -33,6 +65,7 @@ class BlogCategoryTemplate extends React.Component {
     const pagination = [];
 
     if(!pagesNum) return;
+
     for(let i = 0; i < pagesNum; i++) {
       pagination.push(
         <li key={ i }>
@@ -144,7 +177,7 @@ export const pageQuery = graphql`
             slug
           }
           heroImage {
-            fluid {
+            fixed(width: 800) {
               src
               srcSet
             }

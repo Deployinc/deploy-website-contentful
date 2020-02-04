@@ -16,7 +16,11 @@ class BlogIndex extends React.Component {
     const { activePage } = this.state;
     const postsPerPage = activePage === 0 ? (this.postsPerPage + 1) : this.postsPerPage;
     const posts = get(this, 'props.data.allContentfulBlogPost.edges');
-    if(!posts) return;
+
+    if(!posts.length) {
+      return <p className="category-page__no-posts">Currently we don't have any articles.</p>
+    };
+    
     let featured = posts.findIndex(({ node }) => node.featured === true);
     if(featured === -1) {
       featured = 0;
@@ -58,6 +62,7 @@ class BlogIndex extends React.Component {
     const postsCount = posts ? posts.length : 0;
     const pagesNum = Math.ceil(postsCount / this.postsPerPage);
     const pagination = [];
+    if (!pagesNum) return;
 
     for(let i = 0; i < pagesNum; i++) {
       pagination.push(

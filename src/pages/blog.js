@@ -80,17 +80,12 @@ class BlogIndex extends React.Component {
     return (
       <ul className="articles__pagination">
         <li>
-          <button className={`button ${activePage > 0 && 'button--active'}`} onClick={ () => this.setState({ activePage: activePage - 1 }) }>&lt;</button>
+          <button className={`button ${activePage > 0 && 'button--active'}`} onClick={ () => this.onPaginationItemClick(activePage - 1) }>&lt;</button>
         </li>
 
-        { 
-          pagination.map((el,i) => 
-            <React.Fragment key={ i }>
-              { el }
-            </React.Fragment>) 
-        }
+        { pagination }
         <li>
-          <button className={`button ${activePage < (pagesNum - 1) && 'button--active' }`} onClick={ () => this.setState({ activePage: activePage + 1 }) }>&gt;</button>
+          <button className={`button ${activePage < (pagesNum - 1) && 'button--active' }`} onClick={ () => this.onPaginationItemClick(activePage + 1) }>&gt;</button>
         </li>
       </ul>
     )

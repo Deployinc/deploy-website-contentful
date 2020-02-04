@@ -70,12 +70,12 @@ class BlogCategoryTemplate extends React.Component {
     return (
       <ul className="articles__pagination">
         <li>
-          <button className={`button ${activePage > 0 && 'button--active'}`} onClick={ () => this.setState({ activePage: activePage - 1 }) }>&lt;</button>
+          <button className={`button ${activePage > 0 && 'button--active'}`} onClick={ () => this.onPaginationItemClick(activePage - 1) }>&lt;</button>
         </li>
 
         { pagination }
         <li>
-          <button className={`button ${activePage < (pagesNum - 1) && 'button--active' }`} onClick={ () => this.setState({ activePage: activePage + 1 }) }>&gt;</button>
+          <button className={`button ${activePage < (pagesNum - 1) && 'button--active' }`} onClick={ () => this.onPaginationItemClick(activePage + 1) }>&gt;</button>
         </li>
       </ul>
     )
@@ -85,8 +85,8 @@ class BlogCategoryTemplate extends React.Component {
     const categories = get(this, 'props.data.allContentfulCategories.nodes');
     const pageComponents = get(this, 'props.data.allContentfulPage.edges[0].node');
     const heroData = pageComponents.component.find(item => item.__typename === 'ContentfulHero');
-    const { title, description, image } = heroData;
-    const { slug } = this.props.pageContext;
+    const { description, image } = heroData;
+    const { slug, title } = this.props.pageContext;
     return (
       <section className="category-page__header">
         <div className="category-page__header__container container">
@@ -158,7 +158,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    allContentfulBlogPost(filter: {category: {elemMatch: {slug: {eq: $slug}}}}) {
+    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }, filter: {category: {elemMatch: {slug: {eq: $slug}}}}) {
       edges {
         node {
           title
@@ -191,7 +191,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    allContentfulCategories {
+    allContentfulCategories(sort: {fields: title}) {
       nodes {
         slug
         title

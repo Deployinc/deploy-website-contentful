@@ -53,6 +53,7 @@ exports.createPages = ({ graphql, actions }) => {
             component: blogCategory,
             context: {
               slug: category.node.slug,
+              title: category.node.title,
             },
           });
         });

@@ -3,6 +3,7 @@ import { Link, graphql } from 'gatsby';
 import get from 'lodash/get';
 import Helmet from 'react-helmet';
 import { Layout, AnimationScroll, Header, ArticlePreview, Footer } from "@components";
+import window from '@constants/window';
 
 class BlogCategoryTemplate extends React.Component {
 
@@ -12,6 +13,11 @@ class BlogCategoryTemplate extends React.Component {
 
   postsPerPage = 6;
 
+  onPaginationItemClick = activePage => {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+    this.setState({ activePage });
+  }
+
   renderArticles = () => {
     const { activePage } = this.state;
     const postsPerPage = activePage === 0 ? (this.postsPerPage + 1) : this.postsPerPage;
@@ -20,16 +26,6 @@ class BlogCategoryTemplate extends React.Component {
     if(!posts.length) {
       return <p className="category-page__no-posts">No articles in this category.</p>
     };
-
-    // let featured = posts.findIndex(({ node }) => node.featured === true);
-    // if(featured === -1) {
-    //   featured = 0;
-    // }
-
-    // const postsNew = [
-    //   posts[featured],
-    //   ...posts.filter((post, i) => i !== featured)
-    // ];
 
     const from = this.state.activePage * postsPerPage;
     const to = (activePage * postsPerPage) + postsPerPage;
@@ -66,7 +62,7 @@ class BlogCategoryTemplate extends React.Component {
     for(let i = 0; i < pagesNum; i++) {
       pagination.push(
         <li key={ i }>
-          <button className={ activePage === i ? 'active' : '' } onClick={ () => this.setState({ activePage: i }) }>{i + 1}</button>
+          <button className={ activePage === i ? 'active' : '' } onClick={ () => this.onPaginationItemClick(i) }>{i + 1}</button>
         </li>
       );
     }

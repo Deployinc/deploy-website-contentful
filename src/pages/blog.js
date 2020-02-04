@@ -12,6 +12,11 @@ class BlogIndex extends React.Component {
 
   postsPerPage = 6;
 
+  onPaginationItemClick = activePage => {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+    this.setState({ activePage });
+  }
+
   renderArticles = () => {
     const { activePage } = this.state;
     const postsPerPage = activePage === 0 ? (this.postsPerPage + 1) : this.postsPerPage;
@@ -67,7 +72,7 @@ class BlogIndex extends React.Component {
     for(let i = 0; i < pagesNum; i++) {
       pagination.push(
         <li>
-          <button className={ activePage === i ? 'active' : '' } onClick={ () => this.setState({ activePage: i }) }>{i + 1}</button>
+          <button className={ activePage === i ? 'active' : '' } onClick={ () => this.onPaginationItemClick(i) }>{i + 1}</button>
         </li>
       );
     }

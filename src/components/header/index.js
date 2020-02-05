@@ -149,11 +149,16 @@ class Header extends Component {
   }
 
   toggleSidebar = () => {
+    const width = window.innerWidth;
+    
+    if(width > 767) return;
+
     const { sidebarOpened } = this.state;
+
     if(sidebarOpened) {
       this.setState({sidebarOpened: false});
       document.body.style.overflow = 'initial';
-    } else {
+    } else if(sidebarOpened === false) {
       this.setState({sidebarOpened: true});
       document.body.style.overflow = 'hidden';
     }

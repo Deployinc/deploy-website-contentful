@@ -203,7 +203,12 @@ class Header extends Component {
             </div>
 
             <div className="col-5">
-              <Navigation navData={ navData } onNavItemClick={this.onNavItemClick} isHomepage={ isHomepage } />
+              <Navigation 
+                navData={ navData } 
+                onNavItemClick={this.onNavItemClick} 
+                isHomepage={ isHomepage } 
+                toggleSidebar={ this.toggleSidebar }
+              />
             </div>
           </div>
         </div>

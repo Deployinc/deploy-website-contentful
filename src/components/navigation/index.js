@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
-export default ({ navData, onNavItemClick, isHomepage }) => (
+export default ({ navData, onNavItemClick, isHomepage, toggleSidebar }) => (
   <nav className="header__navbar">
     <ul className="header__navbar__nav">
       {
@@ -12,9 +12,9 @@ export default ({ navData, onNavItemClick, isHomepage }) => (
                 (
                   isHomepage ? 
                   <button onClick={() => onNavItemClick(item.ref)}>{item.title}</button> :
-                  <Link to={item.url}>{item.title}</Link>
+                  <Link to={item.url} onClick={ toggleSidebar }>{item.title}</Link>
                 ) :
-                <Link to={item.url}>{item.title}</Link>
+                <Link to={item.url} onClick={ toggleSidebar }>{item.title}</Link>
             }
           </li>
         )

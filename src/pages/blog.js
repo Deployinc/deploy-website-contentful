@@ -7,7 +7,8 @@ import { Layout, AnimationScroll, Header, ArticlePreview, Footer } from "@compon
 class BlogIndex extends React.Component {
 
   state = {
-    activePage: 0
+    activePage: 0,
+    data: null
   };
 
   postsPerPage = 6;
@@ -47,10 +48,9 @@ class BlogIndex extends React.Component {
             postsToShow.map(({ node }, i) => {
               const isFeatured = activePage === 0 && i === 0;
               return (
-                <div className={`${!isFeatured ? 'col-3' : 'col-10'}`}>
+                <div key={ node.slug } className={`${!isFeatured ? 'col-3' : 'col-10'}`}>
                   <ArticlePreview 
                     article={ node } 
-                    key={ node.slug } 
                     isFeatured={ isFeatured } />
                 </div>
               )
@@ -106,6 +106,9 @@ class BlogIndex extends React.Component {
             description && <div className="text-small" dangerouslySetInnerHTML={{ __html: description.childMarkdownRemark.html }} />
           }
           <ul className="category-page__header__container__list">
+            <li className="category-page__header__container__list__item">
+              <Link to="/blog">All</Link>
+            </li>
             {
               categories && categories.map((category, i) => 
                 <li 
@@ -208,7 +211,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    allContentfulCategories {
+    allContentfulCategories(sort: {fields: title}) {
       nodes {
         slug
         title

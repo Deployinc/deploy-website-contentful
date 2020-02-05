@@ -37,10 +37,8 @@ class BlogCategoryTemplate extends React.Component {
           {
             postsToShow.map((post, i) => {
               return (
-                <div className="col-3">
-                  <ArticlePreview 
-                    article={ post.node } 
-                    key={ post.node.slug } />
+                <div key={ post.node.slug } className="col-3">
+                  <ArticlePreview article={ post.node } />
                 </div>
               )
             })
@@ -87,6 +85,7 @@ class BlogCategoryTemplate extends React.Component {
     const heroData = pageComponents.component.find(item => item.__typename === 'ContentfulHero');
     const { description, image } = heroData;
     const { slug, title } = this.props.pageContext;
+
     return (
       <section className="category-page__header">
         <div className="category-page__header__container container">
@@ -95,6 +94,9 @@ class BlogCategoryTemplate extends React.Component {
             description && <div className="text-small" dangerouslySetInnerHTML={{ __html: description.childMarkdownRemark.html }} />
           }
           <ul className="category-page__header__container__list">
+            <li className="category-page__header__container__list__item">
+              <Link to="/blog">All</Link>
+            </li>
             {
               categories && categories.map((category, i) => 
                 <li 

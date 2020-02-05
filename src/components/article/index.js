@@ -18,11 +18,16 @@ export default ({ article, isFeatured }) => {
           <Link to={ `/blog/${article.slug}` }>{article.title}</Link>
         </h3>
 
-        <div className="blog-post__content__description text-small"
-          dangerouslySetInnerHTML={ {
-            __html: article.description.childMarkdownRemark.html,
-          } }
-        />
+        <div className="blog-post__content__meta-data blog-post__meta-data--single">
+          {
+            article.author.image && 
+            <img src={ article.author.image.fixed.src } className="blog-post__content__meta-data__author-image" />
+          }
+          <div className="blog-post__content__meta-data__info">
+            <p>{article.author.name}</p>
+            <p>{article.publishDate} - {article.readTime} read</p>
+          </div>
+        </div>
 
         <div className="blog-post__content__meta-data blog-post__meta-data--categories">
           <p>Category:&nbsp;
@@ -34,16 +39,11 @@ export default ({ article, isFeatured }) => {
           </p>
         </div>
 
-        <div className="blog-post__content__meta-data blog-post__meta-data--single">
-          {
-            article.author.image && 
-            <img src={ article.author.image.fixed.src } className="blog-post__content__meta-data__author-image" />
-          }
-          <div className="blog-post__content__meta-data__info">
-            <p>{article.author.name}</p>
-            <p>{article.publishDate} - {article.readTime} read</p>
-          </div>
-        </div>
+        <div className="blog-post__content__description text-small"
+          dangerouslySetInnerHTML={ {
+            __html: article.description.childMarkdownRemark.html,
+          } }
+        />
         
         {/* <div className="blog-post__meta-data">
           <p>Author: {article.author.name}</p>

@@ -76,7 +76,8 @@ b {
   z-index: 1;
   cursor: pointer;
 
-  .arrow-right {
+  .arrow-right,
+  .arrow-left {
     position: absolute;
     width: 26px;
     height: 9px;
@@ -86,6 +87,10 @@ b {
     background-size: contain;
     background-repeat: no-repeat;
     background-image: url(assets/images/arrow.svg);
+  }
+
+  .arrow-left {
+    transform: rotate(180deg);
   }
 
   &.white {

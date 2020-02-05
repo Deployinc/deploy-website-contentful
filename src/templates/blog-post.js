@@ -3,6 +3,7 @@ import { graphql, Link } from 'gatsby';
 import Helmet from 'react-helmet';
 import get from 'lodash/get';
 import { Layout, AnimationScroll, Header, Footer } from "@components";
+import COLORS from '@constants/colors';
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -47,6 +48,13 @@ class BlogPostTemplate extends React.Component {
                   </div>
                 </div>
                 <div className="text-small" dangerouslySetInnerHTML={{ __html: post.body.childMarkdownRemark.html }} />
+                
+                <Link className="button-underlined button-underlined--back" to="/blog">
+                  <i className="arrow-left"></i>
+                  Back to the blog
+                  <span style={{ backgroundColor: COLORS.orangeDark }}></span>
+                </Link>
+                  
               </div>
             </div>
           </div>

@@ -26,7 +26,15 @@
       padding: 7px;
 
       &.active {
-        font-weight: 700;
+        &::after {
+          content: '';
+          margin-left: -10%;
+          margin-top: -0.43em;
+          display: block;
+          height: .45em;
+          background-color: $color-orange-dark;
+          width: 120%;
+        }
       }
 
       &.button {
@@ -248,6 +256,7 @@
       }
 
       code {
+        font-size: 15px;
         margin: 20px 0;
         padding: 20px;
         display: block;
@@ -291,6 +300,19 @@
           font-size: 18px;
         }
       }
+    }
+  }
+
+  .button-underlined--back {
+    margin-left: 45px;
+    margin-top: 45px;
+    font-size: 24px;
+
+    span {
+      height: .4em;
+    }
+    .arrow-left {
+      left: -45px;
     }
   }
 
@@ -451,22 +473,25 @@
           a {
             color: #fff;
 
-            &::after {
-              content: '';
-              margin-left: -3%;
-              margin-top: -0.43em;
-              display: block;
-              height: 45%;
-              background-color: $color-orange-dark;
-              transition: .4s width;
-              width: 0;
-            }
-  
-            &:hover {
+            @media screen and (min-width: $screen-lg) {
               &::after {
-                width: 106%;
+                content: '';
+                margin-left: -3%;
+                margin-top: -0.43em;
+                display: block;
+                height: 45%;
+                background-color: $color-orange-dark;
+                transition: .4s width;
+                width: 0;
+              }
+    
+              &:hover {
+                &::after {
+                  width: 106%;
+                }
               }
             }
+            
           }
           
           border-right: 1px solid #fff;

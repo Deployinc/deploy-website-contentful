@@ -3,5 +3,6 @@ export default {
   orange: '#fceccb',
   red: '#ffcdcd',
   blue: '#d3e7f2',
-  yellow: '#fff9db'
+  yellow: '#fff9db',
+  orangeDark: '#f2894e'
 };

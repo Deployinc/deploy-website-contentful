@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'gatsby';
 import { Navigation } from '@components';
 import window from '@constants/window';
 import logoImg from '@assets/images/deploy-logo.svg';
@@ -195,9 +196,9 @@ class Header extends Component {
           <div className="row">
             <div className="col-5">
               <div className="header__brand">
-                <a href="/">
+                <Link to="/">
                   <img src={ data.logo ? data.logo.file.url : logoImg } alt="Deploy Inc." />
-                </a>
+                </Link>
 
                 <button className="header__brand__sidebar-toggle" onClick={this.toggleSidebar}>
                   <span></span>

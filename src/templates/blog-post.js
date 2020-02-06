@@ -51,7 +51,7 @@ class BlogPostTemplate extends React.Component {
                 
                 <Link className="button-underlined button-underlined--back" to="/blog">
                   <i className="arrow-left"></i>
-                  Back to the blog
+                  Back to blog
                   <span style={{ backgroundColor: COLORS.orangeDark }}></span>
                 </Link>
                   

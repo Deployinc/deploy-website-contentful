@@ -199,7 +199,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    allContentfulCategories(sort: {fields: title}) {
+    allContentfulCategories(sort: {fields: slug}) {
       nodes {
         slug
         title

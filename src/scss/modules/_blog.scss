@@ -473,7 +473,7 @@
           a {
             color: #fff;
 
-            @media screen and (min-width: $screen-lg) {
+            @media screen and (min-width: $screen-lg) and (hover: hover) {
               &::after {
                 content: '';
                 margin-left: -3%;

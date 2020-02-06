@@ -271,6 +271,25 @@
           transition: color .3s;
         }
       }
+
+      table {
+        max-width: 100%;
+        margin: 30px 0;
+        border: 1px solid $color-gray-2;
+
+        tr {
+          border-bottom: 1px solid $color-gray-2;
+        }
+
+        th, td {
+          padding: 5px 15px;
+          border-right: 1px solid $color-gray-2;
+
+          &:last-child {
+            border-right: 0;
+          }
+        }
+      }
     }
 
     .blog-post--featured & {

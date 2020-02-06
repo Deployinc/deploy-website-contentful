@@ -179,6 +179,12 @@ export const pageQuery = graphql`
           }
           author {
             name
+            image {
+              fixed(width: 140) {
+                src
+                srcSet
+              }
+            }
           }
           description {
             childMarkdownRemark {

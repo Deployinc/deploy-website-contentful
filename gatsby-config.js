@@ -16,7 +16,8 @@ if (!spaceId || !accessToken || !host) {
 
 module.exports = {
   siteMetadata: {
-    title: 'Deploy Inc.',
+    title: 'A Technology Agency | Deploy Inc.',
+    description: 'We build digital platforms for startups, product companies and creatives that enable them to reach millions of people around the world.'
   },
   pathPrefix: '/gatsby-contentful-starter',
   plugins: [

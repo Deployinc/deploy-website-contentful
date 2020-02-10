@@ -50,6 +50,7 @@ class BlogIndex extends React.Component {
               return (
                 <div key={ node.slug } className={`${!isFeatured ? 'col-3' : 'col-10'}`}>
                   <ArticlePreview 
+                    activePage={ activePage }
                     article={ node } 
                     isFeatured={ isFeatured } />
                 </div>
@@ -128,14 +129,22 @@ class BlogIndex extends React.Component {
   }
   
   render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title');
-    const pageComponents = get(this, 'props.data.allContentfulPage.edges[0].node');
-    const navigationData = pageComponents.component.find(item => item.__typename === 'ContentfulNavigation');
-    const footerData = pageComponents.component.find(item => item.__typename === 'ContentfulFooter');
+    const meta = get(this, 'props.data.site.siteMetadata');
+    const page = get(this, 'props.data.allContentfulPage.edges[0].node');
+    const footerData = page.component.find(item => item.__typename === 'ContentfulFooter');
+    const navigationData = page.component.find(item => item.__typename === 'ContentfulNavigation');
+    const { title, metaDescription } = page;
+
+    const metaData = [
+      {
+        name: "description",
+        content: metaDescription || meta.description
+      }
+    ];
 
     return (
       <Layout location={ this.props.location }>
-        <Helmet title={siteTitle} />
+        <Helmet title={ title || `Blog | ${meta.siteTitle}` } meta={ metaData } />
         <Header data={ navigationData } noAnimation={ true } />
         <main className="main-content category-page">
           {
@@ -217,9 +226,11 @@ export const pageQuery = graphql`
         title
       }
     }
-    allContentfulPage(filter: {title: {eq: "Blog"}}) {
+    allContentfulPage(filter: {slug: {eq: "blog"}}) {
       edges {
         node {
+          title
+          metaDescription
           component {
             ... on ContentfulNavigation {
               id

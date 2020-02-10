@@ -105,20 +105,27 @@ class RootIndex extends React.Component {
   );
 
   render() {
-    console.log(process.env.NODE_ENV);
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title');
-    const homePageComponents = get(this, 'props.data.allContentfulPage.edges[0].node');
-    const footerData = homePageComponents.component.find(item => item.__typename === 'ContentfulFooter');
-    const navigationData = homePageComponents.component.find(item => item.__typename === 'ContentfulNavigation');
+    const meta = get(this, 'props.data.site.siteMetadata');
+    const page = get(this, 'props.data.allContentfulPage.edges[0].node');
+    const footerData = page.component.find(item => item.__typename === 'ContentfulFooter');
+    const navigationData = page.component.find(item => item.__typename === 'ContentfulNavigation');
+    const { title, metaDescription } = page;
+
+    const metaData = [
+      {
+        name: "description",
+        content: metaDescription || meta.description
+      }
+    ];
 
     return (
       <Layout location={ this.props.location } >
-        <Helmet title={ siteTitle } />
+        <Helmet title={ title || meta.siteTitle } meta={ metaData } />
         <Header onScrollTo={ this.onScrollTo } data={ navigationData } />
 
         <main className="main-content">
           {
-            this.renderModules(homePageComponents.component)
+            this.renderModules(page.component)
           }
         </main>
         
@@ -139,9 +146,11 @@ export const pageQuery = graphql`
         title
       }
     }
-    allContentfulPage(filter: {title: {eq: "Homepage"}}) {
+    allContentfulPage(filter: {slug: {eq: "homepage"}}) {
       edges {
         node {
+          title
+          metaDescription
           component {
             ... on ContentfulNavigation {
               id

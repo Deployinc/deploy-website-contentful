@@ -205,7 +205,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    allContentfulPage(filter: {title: {eq: "Blog"}}) {
+    allContentfulPage(filter: {slug: {eq: "blog"}}) {
       edges {
         node {
           component {

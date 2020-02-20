@@ -107,7 +107,6 @@ class Footer extends Component {
     };
 
     const { success, error } = await SendEmail(formData, url);
-    console.log({ success, error });
 
     if(success) {
       this.setState({ isSending: false, formSuccess: 'Thank you! Your message has been sent successfully.', firstName: '', email: '', phone: '', message: '' });

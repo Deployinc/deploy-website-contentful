@@ -12,8 +12,7 @@ const postToNetlify = async (formData) => {
   };
   
   try {
-    const res = await fetch('/', options);
-    const data = await res.json();
+    await fetch('/', options);
   } catch(err) {
     console.log(err);
   }

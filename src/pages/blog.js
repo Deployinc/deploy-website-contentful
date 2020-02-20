@@ -7,7 +7,7 @@ import { Layout, AnimationScroll, Header, ArticlePreview, Footer } from "@compon
 class BlogIndex extends React.Component {
 
   state = {
-    activePage: this.props.location.state.activePage || 0,
+    activePage: (this.props.location.state && this.props.location.state.activePage) || 0,
     data: null
   };
 

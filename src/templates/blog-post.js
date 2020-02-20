@@ -14,7 +14,7 @@ class BlogPostTemplate extends React.Component {
     const navigationData = homePageComponents.component.find(item => item.__typename === 'ContentfulNavigation');
     const footerData = homePageComponents.component.find(item => item.__typename === 'ContentfulFooter');
     const { title, metaDescription } = post;
-    const { activePage, slug } = this.props.location.state;
+    const { activePage, slug } = this.props.location && this.props.location.state || {};
     const backLink = slug ? `/category/${slug}` : 'blog';
 
     const metaData = [

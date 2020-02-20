@@ -8,7 +8,7 @@ import window from '@constants/window';
 class BlogCategoryTemplate extends React.Component {
 
   state = {
-    activePage: this.props.location.state.activePage || 0
+    activePage: (this.props.location.state && this.props.location.state.activePage) || 0
   };
 
   postsPerPage = 6;

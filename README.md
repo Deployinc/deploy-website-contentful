@@ -16,6 +16,10 @@ Dependencies will need to be installed **globally**.
 $ yarn
 ```
 
+## Environment Variables
+
+Create .env file and add environment variables using .env.example as example.
+
 ## Tasks
 
 | Environment |        Command           | Description                                        |

@@ -1,5 +1,3 @@
-# Deploy Inc. Website
-
 ## Stack
 
 * Gatsby

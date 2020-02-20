@@ -58,9 +58,8 @@ exports.handler = async (event, context, callback) => {
     const url = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.CAPTCHA_SECRET}&response=${recaptcha}`;
     const res = await fetch(url);
     const data = await res.json();
-
+    
     if(!data.success) {
-      console.log(data);
       return {
         headers,
         statusCode: 200,

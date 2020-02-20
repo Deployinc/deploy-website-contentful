@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Copyright, SocialNav, Modal, ContactForm } from '@components';
 import { HOST } from '@constants/host';
+import SendEmail from '@lib/services/email.js';
 
 class Footer extends Component { 
   state = {
@@ -59,12 +60,6 @@ class Footer extends Component {
     });
   }
 
-  encode = (data) => {
-    return Object.keys(data)
-        .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-        .join("&");
-  }
-
   sendMail = async e => {
     e.preventDefault();
     this.setState({ formError: {}, formSuccess: '' });
@@ -98,43 +93,28 @@ class Footer extends Component {
       return;
     }
 
-    try {
-      this.setState({ isSending: true });
+    this.setState({ isSending: true });
 
-      const url = `${HOST}/.netlify/functions/email`;
+    const url = `${HOST}/.netlify/functions/email`;
+    
+    const formData = {
+      email,
+      "form-name": "site-contact-form",
+      firstName,
+      phone,
+      message,
+      recaptcha
+    };
 
-      const formData = {
-          email,
-          "form-name": "contact-from-site",
-          firstName,
-          phone,
-          message,
-          recaptcha
-      };
-      const options = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: this.encode(formData),
-      };
-      
-      const res = await fetch('/', options);
-      const data = await res.json();
+    const { success, error } = await SendEmail(formData, url);
+    console.log({ success, error });
 
-      if (data.success) {
-        this.setState({ isSending: false, formSuccess: 'Thank you! Your message has been sent successfully.', firstName: '', email: '', phone: '', message: '' });
-        gtag('event', 'ContacFormSend', {
-          event_category: 'click'
-        });
-      } else {
-        formError.global = data.error;
-        this.setState({ isSending: false, formError });
-      }
-
-      grecaptcha.reset();
-    } catch (err) {
-      console.log(err);
-      formError.global = 'An unknown error occured. Check your internet connection please.';
-      this.setState({ isSending: false, formError })
+    if(success) {
+      this.setState({ isSending: false, formSuccess: 'Thank you! Your message has been sent successfully.', firstName: '', email: '', phone: '', message: '' });
+      return;
+    } else {
+      console.log({error});
+      this.setState({ isSending: false, formError: { global: error } });
     }
   }
 

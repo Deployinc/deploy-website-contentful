@@ -1,4 +1,5 @@
 import React from 'react';
+import ReCAPTCHA from "react-google-recaptcha";
 import officeImg from '@assets/images/office.jpg';
 import closeImg from '@assets/images/close-button.svg';
 import spinner from '@assets/images/spinner.gif';
@@ -92,7 +93,7 @@ export default ({ onModalClose, onChange, formError, formSuccess, sendMail, emai
             </div>
 
             <div className="contact-form__field">
-              <div className="g-recaptcha" data-sitekey="6LflousSAAAAAHZrouwhH3YGs4a0B7w7KBvDOZDK"></div>
+              <ReCAPTCHA sitekey="6LflousSAAAAAHZrouwhH3YGs4a0B7w7KBvDOZDK" />
             </div>
 
             {globalErr && <p className="contact-form__error">{globalErr}</p>}

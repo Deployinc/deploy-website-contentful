@@ -30,11 +30,11 @@ class Template extends React.Component {
               }
             `}
           </script>
-          <script
+          {/* <script
             async 
             defer 
             src="https://www.google.com/recaptcha/api.js">
-          </script>
+          </script> */}
         </Helmet>
         {children}
       </React.Fragment>

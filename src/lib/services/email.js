@@ -4,6 +4,7 @@ const encode = (data) =>
     .join("&");
 
 const postToNetlify = async (formData) => {
+  delete formData.recaptcha;
   const options = {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },

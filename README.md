@@ -18,10 +18,10 @@ $ yarn
 
 ## Tasks
 
-| Environment |        Command           | Description               |
-| ----------- | :----------------------: | ------------------------- |
-| Local       |   **yarn dev**           | Run project locally.      |
-| Production  |   **yarn build**         | Run production build.     |
+| Environment |        Command           | Description                                        |
+| ----------- | :----------------------: | ---------------------------------------------------|
+| Local       |   **yarn dev**           | Run project locally on: http://localhost:8000      |
+| Production  |   **yarn build**         | Run production build.                              |
 
 ## Troubleshooting
 

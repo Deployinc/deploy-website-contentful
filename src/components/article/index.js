@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
-export default ({ article, isFeatured }) => {
+export default ({ article, isFeatured, activePage, slug }) => {
   return (
     <article className={`blog-post blog-post--shadow ${isFeatured ? 'blog-post--featured' : ''}`}>
       <figure className="blog-post__img-wrapper">
-        <Link to={ `/blog/${article.slug}` }>
+        <Link to={ `/blog/${article.slug}` } state={ { activePage, slug } }>
           {
           article.heroImage && 
             <img src={article.heroImage.fixed.src} srcSet={article.heroImage.fixed.srcSet} alt={article.title}/>
@@ -15,7 +15,7 @@ export default ({ article, isFeatured }) => {
       
       <div className="blog-post__content blog-post--shadow__content">
         <h3 className="blog-post__content__title">
-          <Link to={ `/blog/${article.slug}` }>{article.title}</Link>
+          <Link to={ `/blog/${article.slug}` }  state={ { activePage, slug } }>{article.title}</Link>
         </h3>
 
         <div className="blog-post__content__meta-data blog-post__meta-data--single">
@@ -45,13 +45,7 @@ export default ({ article, isFeatured }) => {
           } }
         />
         
-        {/* <div className="blog-post__meta-data">
-          <p>Author: {article.author.name}</p>
-          <p>Date: {article.publishDate}</p>
-          
-          <p>Read Time: {article.readTime}</p>
-        </div> */}
-        <Link className="button-underlined" to={`/blog/${article.slug}`}>
+        <Link className="button-underlined" to={`/blog/${article.slug}`} state={ { activePage, slug } }>
           Read More <span style={{ backgroundColor: "#fdd4bd" }}></span>
         </Link>
       </div>

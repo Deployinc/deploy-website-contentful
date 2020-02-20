@@ -7,7 +7,7 @@ import { Layout, AnimationScroll, Header, ArticlePreview, Footer } from "@compon
 class BlogIndex extends React.Component {
 
   state = {
-    activePage: 0,
+    activePage: this.props.location.state.activePage || 0,
     data: null
   };
 
@@ -134,7 +134,6 @@ class BlogIndex extends React.Component {
     const footerData = page.component.find(item => item.__typename === 'ContentfulFooter');
     const navigationData = page.component.find(item => item.__typename === 'ContentfulNavigation');
     const { title, metaDescription } = page;
-
     const metaData = [
       {
         name: "description",

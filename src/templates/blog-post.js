@@ -7,15 +7,26 @@ import COLORS from '@constants/colors';
 
 class BlogPostTemplate extends React.Component {
   render() {
+    const meta = get(this, 'props.data.site.siteMetadata');
     const post = get(this.props, 'data.contentfulBlogPost');
     const siteTitle = get(this.props, 'data.site.siteMetadata.title');
     const homePageComponents = get(this, 'props.data.allContentfulPage.edges[0].node');
     const navigationData = homePageComponents.component.find(item => item.__typename === 'ContentfulNavigation');
     const footerData = homePageComponents.component.find(item => item.__typename === 'ContentfulFooter');
+    const { title, metaDescription } = post;
+    const { activePage, slug } = this.props.location.state;
+    const backLink = slug ? `/category/${slug}` : 'blog';
+
+    const metaData = [
+      {
+        name: "description",
+        content: metaDescription || meta.description
+      }
+    ];
 
     return (
       <Layout location={ this.props.location } >
-        <Helmet title={`${post.title} | ${siteTitle}`} />
+        <Helmet title={`${title} | ${siteTitle}`} meta={ metaData } />
         <Header data={ navigationData } noAnimation={ true } />
 
         <article className="blog-post blog-post--single">
@@ -49,7 +60,7 @@ class BlogPostTemplate extends React.Component {
                 </div>
                 <div className="text-small" dangerouslySetInnerHTML={{ __html: post.body.childMarkdownRemark.html }} />
                 
-                <Link className="button-underlined button-underlined--back" to="/blog">
+                <Link className="button-underlined button-underlined--back" to={ backLink } state={ { activePage } }>
                   <i className="arrow-left"></i>
                   Back to blog
                   <span style={{ backgroundColor: COLORS.orangeDark }}></span>
@@ -84,6 +95,7 @@ export const pageQuery = graphql`
       title
       publishDate(formatString: "MMMM Do, YYYY")
       readTime
+      metaDescription
       category {
         slug
         title
@@ -98,7 +110,7 @@ export const pageQuery = graphql`
         }
       }
       heroImage {
-        fluid {
+        fluid(quality: 100) {
           src
           srcSet
         }

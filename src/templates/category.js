@@ -8,7 +8,7 @@ import window from '@constants/window';
 class BlogCategoryTemplate extends React.Component {
 
   state = {
-    activePage: 0
+    activePage: this.props.location.state.activePage || 0
   };
 
   postsPerPage = 6;
@@ -20,8 +20,9 @@ class BlogCategoryTemplate extends React.Component {
 
   renderArticles = () => {
     const { activePage } = this.state;
-    const postsPerPage = activePage === 0 ? (this.postsPerPage + 1) : this.postsPerPage;
+    const postsPerPage = this.postsPerPage;
     const posts = get(this, 'props.data.allContentfulBlogPost.edges');
+    const { slug } = this.props.pageContext;
 
     if(!posts.length) {
       return <p className="category-page__no-posts">No articles in this category.</p>
@@ -38,7 +39,7 @@ class BlogCategoryTemplate extends React.Component {
             postsToShow.map((post, i) => {
               return (
                 <div key={ post.node.slug } className="col-3">
-                  <ArticlePreview article={ post.node } />
+                  <ArticlePreview article={ post.node } slug={ slug } activePage={ activePage } />
                 </div>
               )
             })

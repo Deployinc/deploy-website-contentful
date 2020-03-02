@@ -13,14 +13,14 @@ class BlogPostTemplate extends React.Component {
     const homePageComponents = get(this, 'props.data.allContentfulPage.edges[0].node');
     const navigationData = homePageComponents.component.find(item => item.__typename === 'ContentfulNavigation');
     const footerData = homePageComponents.component.find(item => item.__typename === 'ContentfulFooter');
-    const { title, metaDescription } = post;
+    const { title, description } = post;
     const { activePage, slug } = this.props.location && this.props.location.state || {};
     const backLink = slug ? `/category/${slug}` : 'blog';
 
     const metaData = [
       {
         name: "description",
-        content: metaDescription || meta.description
+        content: description || meta.description
       }
     ];
 
@@ -95,7 +95,6 @@ export const pageQuery = graphql`
       title
       publishDate(formatString: "MMMM Do, YYYY")
       readTime
-      metaDescription
       category {
         slug
         title

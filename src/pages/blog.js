@@ -72,7 +72,7 @@ class BlogIndex extends React.Component {
 
     for(let i = 0; i < pagesNum; i++) {
       pagination.push(
-        <li>
+        <li key={ i }>
           <button className={ activePage === i ? 'active' : '' } onClick={ () => this.onPaginationItemClick(i) }>{i + 1}</button>
         </li>
       );

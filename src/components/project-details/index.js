@@ -3,7 +3,6 @@ import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import closeImg from '@assets/images/close-button.svg';
 
 export default ({project, onModalClose}) => {
-  console.log(project);
   const { title, image, eyebrowHeadline, text, servicesTitle, servicesList, technologiesTitle, technologiesList } = project;
   const html = documentToHtmlString(text.json);
 

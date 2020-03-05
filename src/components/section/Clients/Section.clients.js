@@ -33,7 +33,7 @@ class Clients extends Component {
     const { caseStudies } = this.props.data;
     if(!caseStudies) return;
 
-    return caseStudies.map(item => 
+    return caseStudies.slice(0, 9).map(item => 
       <ClientItem key={ item.id } data={ item } onClick={ () => this.openModal(item) } />
     );
   }

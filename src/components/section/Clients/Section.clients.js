@@ -20,11 +20,9 @@ class Clients extends Component {
 
   renderProjectModal = () => {
     const { modal } = this.state;
-    if(!modal) return;
-
     return (
-      <Modal key={ modal.id } active={ modal ? true : false } onModalClose={ this.onModalClose }>
-        <ProjectDetails project={ modal } onModalClose={ this.onModalClose } />
+      <Modal active={ modal ? true : false } onModalClose={ this.onModalClose }>
+        { modal && <ProjectDetails project={ modal } onModalClose={ this.onModalClose } /> }
       </Modal>
     );
   }

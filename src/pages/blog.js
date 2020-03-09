@@ -31,8 +31,6 @@ class BlogIndex extends React.Component {
       featured = 0;
     }
 
-    console.log({posts, featured})
-
     const postsNew = [
       posts[featured],
       ...posts.filter((post, i) => i !== featured)

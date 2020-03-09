@@ -93,7 +93,7 @@ exports.handler = async (event, context, callback) => {
 
   const mailOptions = {
     from: process.env.GMAIL_USER,
-    to: 'eplojovic@deployinc.com',
+    to: 'biz@deployinc.com',
     subject: 'Deploy Inc. Website | Contact Form Submited',
     html
   };

@@ -31,10 +31,11 @@ class BlogIndex extends React.Component {
       featured = 0;
     }
 
+    console.log({posts, featured})
+
     const postsNew = [
       posts[featured],
-      ...posts.filter((post, i) => i !== featured),
-      ...posts.slice(0, 7)
+      ...posts.filter((post, i) => i !== featured)
     ];
 
     const from = activePage === 0 ? 0 : (activePage * postsPerPage) + 1;

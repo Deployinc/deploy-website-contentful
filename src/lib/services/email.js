@@ -1,3 +1,5 @@
+import 'whatwg-fetch'; 
+
 const encode = (data) => 
   Object.keys(data)
     .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))

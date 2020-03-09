@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import Slider from 'react-slick';
+import 'whatwg-fetch';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { SliderItem, OpenPositions, Modal, Button } from '@components';
 

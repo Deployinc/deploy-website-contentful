@@ -21,7 +21,8 @@
     "react-helmet": "^5.2.0",
     "react-slick": "^0.25.2",
     "sharp": "^0.22.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",

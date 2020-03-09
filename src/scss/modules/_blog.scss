@@ -431,6 +431,12 @@
     margin-top: 60px;
   }
 
+  @media screen and (max-width: $screen-lg) {
+    .col-1 {
+      display: none;
+    }
+  }
+
   @media screen and (max-width: $screen-md) {
     &__meta-data {
       &__author-image {
@@ -447,8 +453,16 @@
       }
 
       &__content {
+        padding: 0;
+        
         &__title {
           font-size: 30px;
+        }
+
+        .text-small {
+          p {
+            font-size: 16px;
+          }
         }
       }
     }

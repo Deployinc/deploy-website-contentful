@@ -5454,6 +5454,16 @@ gatsby-plugin-sharp@^2.0.34, gatsby-plugin-sharp@^2.2.0:
     sharp "^0.22.1"
     svgo "^1.2.0"
 
+gatsby-plugin-sitemap@^2.2.28:
+  version "2.2.28"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-sitemap/-/gatsby-plugin-sitemap-2.2.28.tgz#11a31a3736cee3712b80795f4f8e8c47aa0235a3"
+  integrity sha512-OAdBmIJFR/w3ReBrC0Bz/0dVjpi8x8GqOqrLOeW2S0E0My3zYM7xNZjymGhgU4Ji+AQesUcZ4x6E1akKUjfFHg==
+  dependencies:
+    "@babel/runtime" "^7.7.6"
+    minimatch "^3.0.4"
+    pify "^3.0.0"
+    sitemap "^1.13.0"
+
 gatsby-react-router-scroll@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/gatsby-react-router-scroll/-/gatsby-react-router-scroll-2.1.0.tgz#4aa36e1e5a5d181cb70902ea7e801796b6c32a7e"
@@ -11216,6 +11226,14 @@ sisteransi@^1.0.0:
   resolved "https://registry.yarnpkg.com/sisteransi/-/sisteransi-1.0.0.tgz#77d9622ff909080f1c19e5f4a1df0c1b0a27b88c"
   integrity sha512-N+z4pHB4AmUv0SjveWRd6q1Nj5w62m5jodv+GD8lvmbY/83T/rpbJGZOnK5T149OldDj4Db07BSv9xY4K6NTPQ==
 
+sitemap@^1.13.0:
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/sitemap/-/sitemap-1.13.0.tgz#569cbe2180202926a62a266cd3de09c9ceb43f83"
+  integrity sha1-Vpy+IYAgKSamKiZs094Jyc60P4M=
+  dependencies:
+    underscore "^1.7.0"
+    url-join "^1.1.0"
+
 slash@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"
@@ -12235,6 +12253,11 @@ underscore.string@^3.3.5:
     sprintf-js "^1.0.3"
     util-deprecate "^1.0.2"
 
+underscore@^1.7.0:
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.9.2.tgz#0c8d6f536d6f378a5af264a72f7bec50feb7cf2f"
+  integrity sha512-D39qtimx0c1fI3ya1Lnhk3E9nONswSKhnffBI0gME9C99fYOkNi04xs8K6pePLhvl1frbDemkaBQ5ikWllR2HQ==
+
 unescape-js@^1.0.3:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/unescape-js/-/unescape-js-1.1.1.tgz#a4345e654b857c29fa66469e311ccaf2e93063bd"
@@ -12440,6 +12463,11 @@ uri-js@^4.2.2:
 urix@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/urix/-/urix-0.1.0.tgz#da937f7a62e21fec1fd18d49b35c2935067a6c72"
+
+url-join@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/url-join/-/url-join-1.1.0.tgz#741c6c2f4596c4830d6718460920d0c92202dc78"
+  integrity sha1-dBxsL0WWxIMNZxhGCSDQySIC3Hg=
 
 url-loader@^1.0.1:
   version "1.1.1"

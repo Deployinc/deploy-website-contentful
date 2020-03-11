@@ -16,6 +16,7 @@ if (!spaceId || !accessToken || !host) {
 
 module.exports = {
   siteMetadata: {
+    siteUrl: 'https://deployinc.com',
     title: 'A Technology Agency | Deploy Inc.',
     description: 'We build digital platforms for startups, product companies and creatives that enable them to reach millions of people around the world.'
   },
@@ -26,6 +27,7 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sharp',
     'gatsby-plugin-sass',
+    'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-source-contentful',
       options: contentfulConfig,

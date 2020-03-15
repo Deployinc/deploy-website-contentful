@@ -189,7 +189,7 @@ class Header extends Component {
   render() {
     const { sidebarOpened, isSticky, isStickyVisible, loaded, isHomepage } = this.state;
     const { data, isStatic, narrow } = this.props;
-
+    console.log({narrow})
     return(
       <header className={`header ${isStatic ? 'header--static' : ''} ${loaded ? 'enter' : ''} ${sidebarOpened ? 'opened' : ''} ${isSticky ? 'sticky' : ''} ${isStickyVisible ? 'visible' : ''} ${narrow ? 'header--narrow' : ''}` }>
         <div className="container">

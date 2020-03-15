@@ -37,41 +37,35 @@ class BlogPostTemplate extends React.Component {
           }
           <div className="section-padding">
             <div className="container">
-              <div className="row">
-                <div className="col-1"></div>
-                <div className="col-8">
-                  <div className="blog-post__content blog-post--single__content">
-                  
-                    <h1 className="blog-post__content__title blog-post--single__content__title">{post.title}</h1>
-                    <div className="blog-post__content__meta-data blog-post--single__content__meta-data">
-                      {
-                        post.author.image && 
-                        <img 
-                          src={ post.author.image.fixed.src } 
-                          className="blog-post__content__meta-data__author-image blog-post--single__content__meta-data__author-image" />
-                      }
-                      <div className="blog-post__content__meta-data__info blog-post--single__content__meta-data__info">
-                        <p>{post.author.name}</p>
-                        <p>{post.publishDate} - {post.readTime} read</p>
-                        <p>
-                        {
-                          post.category && post.category.map((cat, i) => 
-                            <Link key={ i } to={`/category/${cat.slug}/`}>{cat.title}{i < (post.category.length - 1) ? ', ' : ''}</Link>
-                          )
-                        }
-                        </p>
-                      </div>
-                    </div>
-                    <div className="text-small" dangerouslySetInnerHTML={{ __html: post.body.childMarkdownRemark.html }} />
-                  
-                    <Link className="button-underlined button-underlined--back" to={ backLink } state={ { activePage } }>
-                      <i className="arrow-left"></i>
-                      Back to blog
-                      <span style={{ backgroundColor: COLORS.orangeDark }}></span>
-                    </Link>
-                      
+              <div className="blog-post__content blog-post--single__content">
+              
+                <h1 className="blog-post__content__title blog-post--single__content__title">{post.title}</h1>
+                <div className="blog-post__content__meta-data blog-post--single__content__meta-data">
+                  {
+                    post.author.image && 
+                    <img 
+                      src={ post.author.image.fixed.src } 
+                      className="blog-post__content__meta-data__author-image blog-post--single__content__meta-data__author-image" />
+                  }
+                  <div className="blog-post__content__meta-data__info blog-post--single__content__meta-data__info">
+                    <p>{post.author.name}</p>
+                    <p>{post.publishDate} - {post.readTime} read</p>
+                    <p>
+                    {
+                      post.category && post.category.map((cat, i) => 
+                        <Link key={ i } to={`/category/${cat.slug}/`}>{cat.title}{i < (post.category.length - 1) ? ', ' : ''}</Link>
+                      )
+                    }
+                    </p>
                   </div>
                 </div>
+                <div className="text-small" dangerouslySetInnerHTML={{ __html: post.body.childMarkdownRemark.html }} />
+              
+                <Link className="button-underlined button-underlined--back" to={ backLink } state={ { activePage } }>
+                  <i className="arrow-left"></i>
+                  Back to blog
+                  <span style={{ backgroundColor: COLORS.orangeDark }}></span>
+                </Link>
               </div>
             </div>
           </div>

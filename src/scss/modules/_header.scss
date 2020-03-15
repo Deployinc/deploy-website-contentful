@@ -22,6 +22,18 @@
     }
   }
 
+  &--narrow {
+    .col-8 {
+      display: -webkit-flex;
+      flex-wrap: wrap;
+    }
+
+    .col-4,
+    .col-6 {
+      padding: 0;
+    }
+  }
+
   // &--static {
   //   position: static !important;
   //   padding-top: 25px !important;

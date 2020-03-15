@@ -188,33 +188,36 @@ class Header extends Component {
 
   render() {
     const { sidebarOpened, isSticky, isStickyVisible, loaded, isHomepage } = this.state;
-    const { data, isStatic } = this.props;
+    const { data, isStatic, narrow } = this.props;
 
     return(
-      <header className={`header ${isStatic ? 'header--static' : ''} ${loaded ? 'enter' : ''} ${sidebarOpened ? 'opened' : ''} ${isSticky ? 'sticky' : ''} ${isStickyVisible ? 'visible' : ''}` }>
+      <header className={`header ${isStatic ? 'header--static' : ''} ${loaded ? 'enter' : ''} ${sidebarOpened ? 'opened' : ''} ${isSticky ? 'sticky' : ''} ${isStickyVisible ? 'visible' : ''} ${narrow ? 'header--narrow' : ''}` }>
         <div className="container">
-          <div className="row">
-            <div className="col-5">
-              <div className="header__brand">
-                <Link to="/">
-                  <img src={ data.logo ? data.logo.file.url : logoImg } alt="Deploy Inc." />
-                </Link>
+          <div className={`${narrow ? 'row' : ''}`}>
+            { narrow && <div className="col-1" /> }
+            <div className={`${narrow ? 'col-8' : 'row'}`}>
+              <div className="col-4">
+                <div className="header__brand">
+                  <Link to="/">
+                    <img src={ data.logo ? data.logo.file.url : logoImg } alt="Deploy Inc." />
+                  </Link>
 
-                <button className="header__brand__sidebar-toggle" onClick={this.toggleSidebar}>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </button>
+                  <button className="header__brand__sidebar-toggle" onClick={this.toggleSidebar}>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </button>
+                </div>
               </div>
-            </div>
 
-            <div className="col-5">
-              <Navigation 
-                navData={ navData } 
-                onNavItemClick={this.onNavItemClick} 
-                isHomepage={ isHomepage } 
-                toggleSidebar={ this.toggleSidebar }
-              />
+              <div className="col-6">
+                <Navigation 
+                  navData={ navData } 
+                  onNavItemClick={this.onNavItemClick} 
+                  isHomepage={ isHomepage } 
+                  toggleSidebar={ this.toggleSidebar }
+                />
+              </div>
             </div>
           </div>
         </div>

@@ -61,6 +61,7 @@ export default class SectionLeadership extends Component {
       const { carouselItem } = this.props.data;
 
       if(!carouselItem) return;
+      console.log({carouselItem});
 
       return carouselItem.map(item => 
         <SliderItem key={ item.id } image={ item.image } name={ item.name } position={ item.position } />

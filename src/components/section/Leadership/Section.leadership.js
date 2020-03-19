@@ -68,38 +68,42 @@ export default class SectionLeadership extends Component {
     }
 
     render() {
-      const settings = {
+      const settingsDesktop = {
         dots: true,
         arrows: false,
         infinite: true,
         speed: 700,
-        slidesToShow: 2,
-        initialSlide: 1,
+        slidesToShow: 3,
         slidesToScroll: 1,
-        centerMode: true,
         verticalSwiping: false,
-        centerPadding: '12%',
+        afterChange: () => gtag('event', 'LeadershipSlider', { event_category: 'slideChanged' })
+      };
+
+      const settingsMobile = {
+        dots: true,
+        arrows: false,
+        infinite: true,
+        speed: 700,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        verticalSwiping: false,
         centerMode: true,
-        responsive: [
-          {
-            breakpoint: 767,
-            settings: {
-              // initialSlide: 0,
-              // slidesToShow: 1,
-              // centerPadding: '14%',
-            }
-          }
-        ],
+        centerPadding: '14%',
         afterChange: () => gtag('event', 'LeadershipSlider', { event_category: 'slideChanged' })
       };
 
       return (
         <section className="leadership">
             <div className="leadership__row">
-                <div className="col-2"></div>
-                <div className="col-8">
-                    <div className="leadership__slider" ref={this.leadershipRef}>
-                      <Slider {...settings} ref={this.sliderRef}>
+                <div className="col-1"></div>
+                <div className="col-9">
+                    <div className="leadership__slider" ref={ this.leadershipRef }>
+                      <Slider { ...settingsDesktop } ref={ this.sliderRef } className="leadership__slider__slick--desktop">
+                        { 
+                          this.renderSlides() 
+                        }
+                      </Slider>
+                      <Slider { ...settingsMobile } ref={ this.sliderRef } className="leadership__slider__slick--mobile">
                         { 
                           this.renderSlides() 
                         }

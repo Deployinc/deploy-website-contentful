@@ -2,16 +2,22 @@
   overflow-x: hidden;
 
   &__slider {
-    // left: 18.666%;
+    left: 18.666%;
     position: relative;
     overflow-y: hidden;
+
+    &__slick {
+      &--mobile {
+        display: none;
+      }
+    }
   }
 
     &__row {
       display: flex;
       flex-wrap: wrap;
 
-      .col-8 {
+      .col-9 {
         padding-right: 0;
       }
     }
@@ -28,7 +34,7 @@
     }
 
     .slick-list {
-      // padding-left: 0 !important;
+      padding-left: 0 !important;
     }
 
     &__item {
@@ -90,6 +96,16 @@
     @media screen and (max-width: $screen-md) {
         &__slider {
           left: initial;
+
+          &__slick {
+            &--mobile {
+              display: block;
+            }
+
+            &--desktop {
+              display: none;
+            }
+          }
         }
         
         &__item {

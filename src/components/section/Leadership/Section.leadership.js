@@ -76,7 +76,7 @@ export default class SectionLeadership extends Component {
         slidesToShow: 2,
         initialSlide: 1,
         slidesToScroll: 1,
-        centerMode: false,
+        centerMode: true,
         verticalSwiping: false,
         centerPadding: '12%',
         centerMode: true,
@@ -84,10 +84,9 @@ export default class SectionLeadership extends Component {
           {
             breakpoint: 767,
             settings: {
-              initialSlide: 0,
-              slidesToShow: 1,
-              centerMode: true,
-              centerPadding: '14%',
+              // initialSlide: 0,
+              // slidesToShow: 1,
+              // centerPadding: '14%',
             }
           }
         ],

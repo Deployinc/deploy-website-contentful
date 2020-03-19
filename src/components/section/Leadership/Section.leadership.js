@@ -61,7 +61,6 @@ export default class SectionLeadership extends Component {
       const { carouselItem } = this.props.data;
 
       if(!carouselItem) return;
-      console.log({carouselItem});
 
       return carouselItem.map(item => 
         <SliderItem key={ item.id } image={ item.image } name={ item.name } position={ item.position } />
@@ -74,10 +73,13 @@ export default class SectionLeadership extends Component {
         arrows: false,
         infinite: true,
         speed: 700,
-        slidesToShow: 3,
+        slidesToShow: 2,
+        initialSlide: 1,
         slidesToScroll: 1,
         centerMode: false,
         verticalSwiping: false,
+        centerPadding: '12%',
+        centerMode: true,
         responsive: [
           {
             breakpoint: 767,
@@ -95,8 +97,8 @@ export default class SectionLeadership extends Component {
       return (
         <section className="leadership">
             <div className="leadership__row">
-                <div className="col-1"></div>
-                <div className="col-9">
+                <div className="col-2"></div>
+                <div className="col-8">
                     <div className="leadership__slider" ref={this.leadershipRef}>
                       <Slider {...settings} ref={this.sliderRef}>
                         { 

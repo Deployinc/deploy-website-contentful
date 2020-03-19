@@ -127,7 +127,7 @@ class Careers extends Component {
         <Slider {...settings} ref={this.sliderRef} after>
           {
             careersImage.map(item =>
-              <SliderItem key={ item.id } image={ item } imgName="Deploy Inc. Office" />  
+              <SliderItem key={ item.id } image={ item } name="Deploy Inc. Office" />  
             )
           }
         </Slider>

@@ -101,6 +101,7 @@ exports.handler = async (event, context, callback) => {
   try {
     const { error } = await transporter.sendMail(mailOptions);
     if(error) {
+      console.log(error);
       return {
         headers,
         statusCode: 200,

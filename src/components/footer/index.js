@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Button, Copyright, SocialNav, Modal, ContactForm } from '@components';
-import { HOST } from '@constants/host';
 import SendEmail from '@lib/services/email.js';
 
 class Footer extends Component { 
@@ -95,7 +94,7 @@ class Footer extends Component {
 
     this.setState({ isSending: true });
 
-    const url = `${HOST}/.netlify/functions/email`;
+    const url = '/.netlify/functions/email';
     
     const formData = {
       email,

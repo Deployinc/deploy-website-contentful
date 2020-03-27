@@ -13,26 +13,33 @@ class BlogPostTemplate extends React.Component {
     const homePageComponents = get(this, 'props.data.allContentfulPage.edges[0].node');
     const navigationData = homePageComponents.component.find(item => item.__typename === 'ContentfulNavigation');
     const footerData = homePageComponents.component.find(item => item.__typename === 'ContentfulFooter');
-    const { title, description } = post;
+    const { title, description, heroImage, author, publishDate, readTime, category, body } = post;
     const { activePage, slug } = this.props.location && this.props.location.state || {};
     const backLink = slug ? `/category/${slug}` : 'blog';
 
     const metaData = [
       {
         name: "description",
-        content: description || meta.description
+        content: description.description || meta.description
       }
     ];
 
+    const seo = {
+      article: true,
+      title: title,
+      description: description.description,
+      image: heroImage.fixed.src
+    };
+
     return (
-      <Layout location={ this.props.location } >
+      <Layout location={ this.props.location } seo={ seo }>
         <Helmet title={`${title} | ${siteTitle}`} meta={ metaData } />
         <Header data={ navigationData } noAnimation={ true } narrow />
 
         <article className="blog-post blog-post--single">
-          { post.heroImage && 
+          { heroImage && 
             <figure className="blog-post__img-wrapper blog-post--single__img-wrapper">
-              <img src={ post.heroImage.fluid.src } srcSet={ post.heroImage.fluid.srcSet } />
+              <img src={ heroImage.fluid.src } srcSet={ heroImage.fluid.srcSet } />
             </figure>
           }
           <div className="section-padding">
@@ -42,27 +49,27 @@ class BlogPostTemplate extends React.Component {
                 <div className="col-8">
                   <div className="blog-post__content blog-post--single__content">
                     
-                    <h1 className="blog-post__content__title blog-post--single__content__title">{post.title}</h1>
+                    <h1 className="blog-post__content__title blog-post--single__content__title">{title}</h1>
                     <div className="blog-post__content__meta-data blog-post--single__content__meta-data">
                       {
-                        post.author.image && 
+                        author.image && 
                         <img 
-                          src={ post.author.image.fixed.src } 
+                          src={ author.image.fixed.src } 
                           className="blog-post__content__meta-data__author-image blog-post--single__content__meta-data__author-image" />
                       }
                       <div className="blog-post__content__meta-data__info blog-post--single__content__meta-data__info">
-                        <p>{post.author.name}</p>
-                        <p>{post.publishDate} - {post.readTime} read</p>
+                        <p>{author.name}</p>
+                        <p>{publishDate} - {readTime} read</p>
                         <p>
                         {
-                          post.category && post.category.map((cat, i) => 
-                            <Link key={ i } to={`/category/${cat.slug}/`}>{cat.title}{i < (post.category.length - 1) ? ', ' : ''}</Link>
+                          category && category.map((cat, i) => 
+                            <Link key={ i } to={`/category/${cat.slug}/`}>{cat.title}{i < (category.length - 1) ? ', ' : ''}</Link>
                           )
                         }
                         </p>
                       </div>
                     </div>
-                    <div className="text-small" dangerouslySetInnerHTML={{ __html: post.body.childMarkdownRemark.html }} />
+                    <div className="text-small" dangerouslySetInnerHTML={{ __html: body.childMarkdownRemark.html }} />
                   
                     <Link className="button-underlined button-underlined--back" to={ backLink } state={ { activePage } }>
                       <i className="arrow-left"></i>
@@ -118,6 +125,12 @@ export const pageQuery = graphql`
           src
           srcSet
         }
+        fixed(width: 1200, quality: 80) {
+          src
+        }
+      }
+      description {
+        description
       }
       body {
         childMarkdownRemark {

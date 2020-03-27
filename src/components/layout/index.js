@@ -15,10 +15,17 @@ class Template extends React.Component {
       rootPath = __PATH_PREFIX__ + `/`
     }
 
+    const seo = this.props.seo || {};
+    const { image, title, description, article } = seo;
     return (
       <React.Fragment>
         <Helmet>
           <link rel="icon" href={favicon} />
+          { image && <meta name="image" content={ image } /> }
+          { article && <meta property="og:type" content="article" /> }
+          { title && <meta property="og:title" content={ title } /> }
+          { description && <meta property="og:description" content={ description } /> }
+          { image && <meta property="og:image" content={ image } /> }
         </Helmet>
         {children}
       </React.Fragment>

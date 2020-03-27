@@ -257,8 +257,8 @@
 
       code {
         font-size: 15px;
-        margin: 10px 0;
-        padding: 10px;
+        margin: 5 0;
+        padding: 5px 7px;
         display: inline-block;
         line-height: 1.5;
         background-color: $color-gray;
@@ -472,6 +472,12 @@
         .text-small {
           p {
             font-size: 16px;
+          }
+
+          code {
+            word-break: break-all;
+            margin: 5px 0;
+            padding: 5px;
           }
         }
       }

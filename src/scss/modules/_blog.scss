@@ -257,9 +257,10 @@
 
       code {
         font-size: 15px;
-        margin: 20px 0;
-        padding: 20px;
-        display: block;
+        margin: 10px 0;
+        padding: 10px;
+        display: inline-block;
+        line-height: 1.5;
         background-color: $color-gray;
       }
   

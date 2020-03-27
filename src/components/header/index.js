@@ -3,6 +3,7 @@ import { Link } from 'gatsby';
 import { Navigation } from '@components';
 import window from '@constants/window';
 import logoImg from '@assets/images/deploy-logo.svg';
+import { trackCustomEvent } from '@lib/helpers';
 
 const navData = [
   {
@@ -114,8 +115,9 @@ class Header extends Component {
 
     if(percent > 25) {
       if(!this.firstScroll) {
-        gtag('event', 'moreThen25%', {
-          event_category: 'Scrolling'
+        trackCustomEvent({
+          category: 'Scrolling',
+          action: 'moreThen25%'
         });
         this.firstScroll = true;
       }
@@ -123,8 +125,9 @@ class Header extends Component {
 
     if(percent > 50) {
       if(!this.secondScroll) {
-        gtag('event', 'moreThen50%', {
-          event_category: 'Scrolling'
+        trackCustomEvent({
+          category: 'Scrolling',
+          action: 'moreThen50%'
         });
         this.secondScroll = true;
       }
@@ -132,8 +135,9 @@ class Header extends Component {
 
     if(percent > 75) {
       if(!this.thirdScroll) {
-        gtag('event', 'moreThen75%', {
-          event_category: 'Scrolling'
+        trackCustomEvent({
+          category: 'Scrolling',
+          action: 'moreThen75%'
         });
         this.thirdScroll = true;
       }
@@ -141,8 +145,9 @@ class Header extends Component {
 
     if(percent > 90) {
       if(!this.fourthScroll) {
-        gtag('event', 'moreThen90%', {
-          event_category: 'Scrolling'
+        trackCustomEvent({
+          category: 'Scrolling',
+          action: 'moreThen90%'
         });
         this.fourthScroll = true;
       }
@@ -167,8 +172,9 @@ class Header extends Component {
 
   onNavItemClick = (type) => {
     const width = window.innerWidth;
-    gtag('event', 'MenuItemClick', {
-      event_category: 'click'
+    trackCustomEvent({
+      category: 'click',
+      action: 'MenuItemClick'
     });
 
     if(width < 768) {

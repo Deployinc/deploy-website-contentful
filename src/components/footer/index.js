@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Copyright, SocialNav, Modal, ContactForm } from '@components';
 import SendEmail from '@lib/services/email.js';
+import { trackCustomEvent } from '@lib/helpers';
 
 class Footer extends Component { 
   state = {
@@ -30,9 +31,11 @@ class Footer extends Component {
     this.setState({ contactModal: value });
     if(this.props.toggleModal)
       this.props.toggleModal(false);
+
     if(!this.state.formSuccess) {
-      gtag('event', 'ContacFormAbandonment', {
-        event_category: 'click'
+      trackCustomEvent({
+        category: 'click',
+        action: 'ContacFormAbandonment'
       });
     }
   }
@@ -48,14 +51,16 @@ class Footer extends Component {
   }
 
   onSocialItemClick = () => {
-    gtag('event', 'SocialMediaLink', {
-      event_category: 'click'
+    trackCustomEvent({
+      category: 'click',
+      action: 'SocialMediaLink'
     });
   }
 
   onContactInfoClick = () => {
-    gtag('event', 'ContactInfoLinks', {
-      event_category: 'click'
+    trackCustomEvent({
+      category: 'click',
+      action: 'ContactInfoLinks'
     });
   }
 
@@ -94,7 +99,7 @@ class Footer extends Component {
 
     this.setState({ isSending: true });
 
-    const url = '/.netlify/functions/email';
+    const url = `/.netlify/functions/email`;
     
     const formData = {
       email,

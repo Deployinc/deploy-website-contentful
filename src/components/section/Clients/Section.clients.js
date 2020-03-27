@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { ClientItem, Modal, ProjectDetails } from '@components';
+import { trackCustomEvent } from '@lib/helpers';
 
 class Clients extends Component {
 
@@ -8,8 +9,9 @@ class Clients extends Component {
   }
 
   openModal = (modal) => {
-    gtag('event', 'CaseStudyModal', {
-      event_category: 'opened'
+    trackCustomEvent({
+      category: 'opened',
+      action: 'CaseStudyModal'
     });
     this.setState({ modal });
   }

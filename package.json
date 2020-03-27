@@ -7,6 +7,7 @@
     "@contentful/rich-text-html-renderer": "^13.4.0",
     "classnames": "^2.2.6",
     "gatsby-image": "^2.0.38",
+    "gatsby-plugin-google-analytics": "^2.2.2",
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-sass": "^2.1.26",
     "gatsby-plugin-sharp": "^2.0.34",

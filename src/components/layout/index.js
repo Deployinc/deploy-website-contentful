@@ -19,17 +19,6 @@ class Template extends React.Component {
       <React.Fragment>
         <Helmet>
           <link rel="icon" href={favicon} />
-          <script async src="https://www.googletagmanager.com/gtag/js?id=AW-UA-30456352-1"></script>
-          <script>
-            {`
-              if(window) {
-                window.dataLayer = window.dataLayer || [];
-                function gtag() { dataLayer.push(arguments) }
-                gtag('js', new Date());
-                gtag('config', 'UA-30456352-1');
-              }
-            `}
-          </script>
         </Helmet>
         {children}
       </React.Fragment>

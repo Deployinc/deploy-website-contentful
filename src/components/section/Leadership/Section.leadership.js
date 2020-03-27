@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
 import { SliderItem } from '@components';
+import { trackCustomEvent } from '@lib/helpers';
 
 export default class SectionLeadership extends Component {
     sliderRef = React.createRef();
+    sliderRefMobile = React.createRef();
     leadershipRef = React.createRef();
     scrollCount = null;
 
@@ -52,8 +54,10 @@ export default class SectionLeadership extends Component {
 
       if (e.deltaX < 0) {
         this.sliderRef.current.slickNext();
+        this.sliderRefMobile.current.slickNext();
       } else if (e.deltaX > 0) {
         this.sliderRef.current.slickPrev();
+        this.sliderRefMobile.current.slickPrev();
       }
     }
 
@@ -76,7 +80,12 @@ export default class SectionLeadership extends Component {
         slidesToShow: 3,
         slidesToScroll: 1,
         verticalSwiping: false,
-        afterChange: () => gtag('event', 'LeadershipSlider', { event_category: 'slideChanged' })
+        afterChange: () => {
+          trackCustomEvent({
+            category: 'slideChanged',
+            action: 'LeadershipSlider'
+          });
+        }
       };
 
       const settingsMobile = {
@@ -89,7 +98,12 @@ export default class SectionLeadership extends Component {
         verticalSwiping: false,
         centerMode: true,
         centerPadding: '14%',
-        afterChange: () => gtag('event', 'LeadershipSlider', { event_category: 'slideChanged' })
+        afterChange: () => {
+          trackCustomEvent({
+            category: 'slideChanged',
+            action: 'LeadershipSlider'
+          });
+        }
       };
 
       return (
@@ -103,7 +117,7 @@ export default class SectionLeadership extends Component {
                           this.renderSlides() 
                         }
                       </Slider>
-                      <Slider { ...settingsMobile } ref={ this.sliderRef } className="leadership__slider__slick--mobile">
+                      <Slider { ...settingsMobile } ref={ this.sliderRefMobile } className="leadership__slider__slick--mobile">
                         { 
                           this.renderSlides() 
                         }

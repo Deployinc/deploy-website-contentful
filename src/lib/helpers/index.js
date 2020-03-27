@@ -1,7 +1,7 @@
 import { preloadSingle, preloadMulti } from './preload';
 import { reqAnimationFrame, cancelAnimation } from './reqAnimationFrame';
 import { promisify } from './promisify';
-import { trackEvent } from './trackEvent';
+import { trackCustomEvent } from './trackEvent';
 import { Scroll } from './scroll';
 
 export {
@@ -10,6 +10,6 @@ export {
   reqAnimationFrame,
   cancelAnimation,
   promisify,
-  trackEvent,
+  trackCustomEvent,
   Scroll
 };

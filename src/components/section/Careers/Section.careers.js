@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Slider from 'react-slick';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { SliderItem, OpenPositions, Modal, Button } from '@components';
+import { trackCustomEvent } from '@lib/helpers';
 
 class Careers extends Component {
 
@@ -76,9 +77,11 @@ class Careers extends Component {
   }
 
   openModal = (e) => {
-    gtag('event', 'CareersModal', {
-      event_category: 'opened'
+    trackCustomEvent({
+      category: 'opened',
+      action: 'CareersModal'
     });
+    
     this.setState({modal: true});
   }
 
@@ -88,8 +91,9 @@ class Careers extends Component {
   
   onPositionClick = event => {
     if(event.target.tagName.toLowerCase() == 'a') {
-      gtag('event', 'openPositionExternalLink', {
-        event_category: 'click'
+      trackCustomEvent({
+        category: 'click',
+        action: 'openPositionExternalLink'
       });
     }
   }
@@ -115,7 +119,12 @@ class Careers extends Component {
           }
         }
       ],
-      afterChange: () => gtag('event', 'CareersSlider', { event_category: 'slideChanged' })
+      afterChange: () => {
+        trackCustomEvent({
+          category: 'slideChanged',
+          action: 'CareersSlider'
+        });
+      }
     };
 
     const { careersCarousel } = this.props;

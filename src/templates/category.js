@@ -90,7 +90,7 @@ class BlogCategoryTemplate extends React.Component {
     return (
       <section className="category-page__header">
         <div className="category-page__header__container container">
-          <h3 className="category-page__header__container__title">{title}</h3>
+          <h1 className="category-page__header__container__title">{title}</h1>
           {
             description && <div className="text-small" dangerouslySetInnerHTML={{ __html: description.childMarkdownRemark.html }} />
           }

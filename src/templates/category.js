@@ -117,14 +117,35 @@ class BlogCategoryTemplate extends React.Component {
   }
   
   render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title');
+    const meta = get(this, 'props.data.site.siteMetadata');
+    const { slug, title: categoryTitle } = this.props.pageContext;
+    const page = get(this, 'props.data.allContentfulPage.edges[0].node');
     const pageComponents = get(this, 'props.data.allContentfulPage.edges[0].node');
     const navigationData = pageComponents.component.find(item => item.__typename === 'ContentfulNavigation');
     const footerData = pageComponents.component.find(item => item.__typename === 'ContentfulFooter');
+    const ogImage = pageComponents.component.find(item => item.__typename === 'ContentfulHero').image;
+
+    const { title, metaDescription } = page;
+
+    const metaData = [
+      {
+        name: "description",
+        content: metaDescription || meta.description
+      }
+    ];
+
+    const pageTitle = `${categoryTitle} - ${title || meta.title}`;
+
+    const seo = {
+      title: pageTitle,
+      description: metaDescription || meta.description,
+      image: ogImage && ogImage.fixed.src,
+      author: false
+    };
 
     return (
-      <Layout location={ this.props.location }>
-        <Helmet title={siteTitle} />
+      <Layout location={ this.props.location } seo={ seo }>
+        <Helmet  title={ pageTitle } meta={ metaData } />
         <Header data={ navigationData } noAnimation={ true } />
         <main className="main-content category-page">
           {
@@ -209,6 +230,8 @@ export const pageQuery = graphql`
     allContentfulPage(filter: {slug: {eq: "blog"}}) {
       edges {
         node {
+          title
+          metaDescription
           component {
             ... on ContentfulNavigation {
               id
@@ -230,6 +253,9 @@ export const pageQuery = graphql`
                 fluid {
                   src
                   srcSet
+                }
+                fixed(width: 1200, quality: 80) {
+                  src
                 }
               }
             }

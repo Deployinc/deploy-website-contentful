@@ -132,6 +132,8 @@ class BlogIndex extends React.Component {
     const page = get(this, 'props.data.allContentfulPage.edges[0].node');
     const footerData = page.component.find(item => item.__typename === 'ContentfulFooter');
     const navigationData = page.component.find(item => item.__typename === 'ContentfulNavigation');
+    const pageComponents = get(this, 'props.data.allContentfulPage.edges[0].node');
+    const ogImage = pageComponents.component.find(item => item.__typename === 'ContentfulHero').image;
     const { title, metaDescription } = page;
     const metaData = [
       {
@@ -140,8 +142,15 @@ class BlogIndex extends React.Component {
       }
     ];
 
+    const seo = {
+      title: title,
+      description: metaDescription || meta.description,
+      image: ogImage && ogImage.fixed.src,
+      author: false
+    };
+
     return (
-      <Layout location={ this.props.location }>
+      <Layout location={ this.props.location } seo={ seo }>
         <Helmet title={ title || `Blog | ${meta.siteTitle}` } meta={ metaData } />
         <Header data={ navigationData } noAnimation={ true } />
         <main className="main-content category-page">
@@ -250,6 +259,9 @@ export const pageQuery = graphql`
                 fluid {
                   src
                   srcSet
+                },
+                fixed(width: 1200, quality: 80) {
+                  src
                 }
               }
             }

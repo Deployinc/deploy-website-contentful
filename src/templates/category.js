@@ -194,7 +194,7 @@ export const pageQuery = graphql`
             slug
           }
           heroImage {
-            fixed(width: 800) {
+            fluid {
               src
               srcSet
             }

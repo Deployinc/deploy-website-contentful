@@ -191,6 +191,21 @@
         line-height: 1.4;
         margin-top: 20px;
       }
+
+      .align-center {
+        text-align: center;
+        display: block;
+      }
+
+      .align-left {
+        text-align: left;
+        display: block;
+      }
+
+      .align-right {
+        text-align: right;
+        display: block;
+      }
   
       i, em {
         font-style: italic;

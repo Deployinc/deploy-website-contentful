@@ -28,7 +28,8 @@ class BlogPostTemplate extends React.Component {
       article: true,
       title: title,
       description: description.description,
-      image: heroImage.fixed.src
+      image: heroImage.fixed.src,
+      author: author.name
     };
 
     return (

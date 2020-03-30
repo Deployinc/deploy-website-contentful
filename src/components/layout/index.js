@@ -16,7 +16,7 @@ class Template extends React.Component {
     }
 
     const seo = this.props.seo || {};
-    const { image, title, description, article } = seo;
+    const { image, title, description, article, author } = seo;
     return (
       <React.Fragment>
         <Helmet>
@@ -26,6 +26,7 @@ class Template extends React.Component {
           { title && <meta property="og:title" content={ title } /> }
           { description && <meta property="og:description" content={ description } /> }
           { image && <meta property="og:image" content={ image } /> }
+          { author && <meta name="author" content={ author } /> }
         </Helmet>
         {children}
       </React.Fragment>

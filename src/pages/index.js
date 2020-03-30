@@ -110,7 +110,7 @@ class RootIndex extends React.Component {
     const footerData = page.component.find(item => item.__typename === 'ContentfulFooter');
     const navigationData = page.component.find(item => item.__typename === 'ContentfulNavigation');
     const { title, metaDescription } = page;
-
+    const ogImage = page.component.find(item => item.__typename === 'ContentfulCareers').image;
     const metaData = [
       {
         name: "description",
@@ -118,8 +118,15 @@ class RootIndex extends React.Component {
       }
     ];
 
+    const seo = {
+      title: title,
+      description: metaDescription || meta.description,
+      image: ogImage && ogImage.fixed.src,
+      author: false
+    };
+
     return (
-      <Layout location={ this.props.location } >
+      <Layout location={ this.props.location } seo={ seo } >
         <Helmet title={ title || meta.siteTitle } meta={ metaData } />
         <Header onScrollTo={ this.onScrollTo } data={ navigationData } />
 
@@ -274,6 +281,9 @@ export const pageQuery = graphql`
                 fluid {
                   src
                   srcSet
+                }
+                fixed(width: 1200, quality: 80) {
+                  src
                 }
               }
             }

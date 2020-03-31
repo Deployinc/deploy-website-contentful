@@ -200,7 +200,7 @@ export const pageQuery = graphql`
             #   src
             #   srcSet
             # }
-            fluid(quality: 100, maxWidth: 600) {
+            fluid(quality: 90, maxWidth: 350) {
               src
               srcSet
             }
@@ -212,7 +212,7 @@ export const pageQuery = graphql`
           author {
             name
             image {
-              fixed(width: 50) {
+              fixed(width: 90, quality: 80) {
                 src
                 srcSet
               }

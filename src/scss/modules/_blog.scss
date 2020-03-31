@@ -58,6 +58,12 @@
   }
 
   @media screen and (max-width: $screen-md) {
+    &__pagination {
+      margin-top: 20px;
+    }
+  }
+
+  @media screen and (max-width: 560px) {
     .col-3,
     .col-10 {
       max-width: 100%;

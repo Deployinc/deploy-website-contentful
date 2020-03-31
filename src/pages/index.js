@@ -246,7 +246,7 @@ export const pageQuery = graphql`
                   }
                 }
                 image {
-                  fluid {
+                  fluid(quality: 80) {
                     srcSet
                     src
                   }
@@ -277,9 +277,8 @@ export const pageQuery = graphql`
               ctaButtonText
               ctaButtonLink
               image {
-                fluid {
-                  src
-                  srcSet
+                fluid(maxWidth: 640, quality: 80) {
+                  ...GatsbyContentfulFluid_tracedSVG
                 }
                 fixed(width: 1200, quality: 80) {
                   src

@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Slider from 'react-slick';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import Img from 'gatsby-image';
 import { SliderItem, OpenPositions, Modal, Button } from '@components';
 import { trackCustomEvent } from '@lib/helpers';
 
@@ -154,9 +155,9 @@ class Careers extends Component {
         <section className="careers section-padding" id="careers">
           <div className="careers__row" ref={this.props.forwardRef}>
             <div className="col-5">
-              <img 
-                src={ data && data.image && data.image.fluid.src } 
-                srcSet={ data && data.image && data.image.fluid.srcSet } 
+              <Img 
+                fluid={ data.image.fluid }
+                // srcSet={ data && data.image && data.image.fluid.srcSet } 
                 alt="Deploy Inc. Office" 
                 className="careers__office-img" />
             </div>

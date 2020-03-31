@@ -244,9 +244,13 @@ export const pageQuery = graphql`
                     src
                     srcSet
                   }
+                  fixed(width: 120, quality: 80) {
+                    src
+                    srcSet
+                  }
                 }
                 image {
-                  fluid(quality: 80) {
+                  fluid {
                     srcSet
                     src
                   }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReCAPTCHA from "react-google-recaptcha";
 import officeImg from '@assets/images/office.jpg';
 import closeImg from '@assets/images/close-button.svg';
@@ -6,6 +6,13 @@ import spinner from '@assets/images/spinner.gif';
 
 export default ({ onModalClose, onChange, formError, formSuccess, sendMail, email, name, phone, message, isSending, forwardRef }) => {
   const { email: emailErr, firstName: nameErr, phone: phoneErr, message: messageErr, global: globalErr } = formError;
+  let googleRecaptcha;
+  useEffect(() => {
+    if(window) {
+      googleRecaptcha = window.grecaptcha;
+    } 
+  }, []);
+
   return (
     <div className="modal__content modal--showcase__content modal--positions__content modal--contact__content">
       <div className="modal--showcase__content__featured-img modal--positions__content__featured-img">
@@ -93,7 +100,7 @@ export default ({ onModalClose, onChange, formError, formSuccess, sendMail, emai
             </div>
 
             <div className="contact-form__field">
-              <ReCAPTCHA sitekey="6LflousSAAAAAHZrouwhH3YGs4a0B7w7KBvDOZDK" />
+              <ReCAPTCHA sitekey="6LflousSAAAAAHZrouwhH3YGs4a0B7w7KBvDOZDK" grecaptcha={ googleRecaptcha } />
             </div>
 
             {globalErr && <p className="contact-form__error">{globalErr}</p>}

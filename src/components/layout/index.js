@@ -27,6 +27,7 @@ class Template extends React.Component {
           { description && <meta property="og:description" content={ description } /> }
           { image && <meta property="og:image" content={ image } /> }
           { author && <meta name="author" content={ author } /> }
+          <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         </Helmet>
         {children}
       </React.Fragment>

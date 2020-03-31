@@ -240,7 +240,7 @@ export const pageQuery = graphql`
                 eyebrowHeadline
                 title
                 logo {
-                  fluid {
+                  fluid(maxWidth: 120, quality: 80) {
                     src
                     srcSet
                   }
@@ -263,9 +263,8 @@ export const pageQuery = graphql`
                 position
                 name
                 image {
-                  fluid {
-                    src
-                    srcSet
+                  fluid(maxWidth: 500, quality: 80) {
+                    ...GatsbyContentfulFluid_tracedSVG
                   }
                 }
               }
@@ -291,9 +290,8 @@ export const pageQuery = graphql`
               id
               careersImage: image {
                 id
-                fluid {
-                  src
-                  srcSet
+                fluid(maxWidth: 500, quality: 80) {
+                  ...GatsbyContentfulFluid_tracedSVG
                 }
               }
             }

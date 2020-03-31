@@ -198,7 +198,7 @@ export const pageQuery = graphql`
             ... on ContentfulFullWidthImage {
               id
               image {
-                fluid(quality: 100) {
+                fluid(quality: 90) {
                   base64
                   tracedSVG
                   aspectRatio
@@ -267,7 +267,7 @@ export const pageQuery = graphql`
                 position
                 name
                 image {
-                  fluid(maxWidth: 500, quality: 80) {
+                  fluid(maxWidth: 500, quality: 80, fm) {
                     ...GatsbyContentfulFluid_tracedSVG
                   }
                 }

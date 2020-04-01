@@ -267,7 +267,7 @@ export const pageQuery = graphql`
                 position
                 name
                 image {
-                  fluid(maxWidth: 500, quality: 80, fm) {
+                  fluid(maxWidth: 500, quality: 80) {
                     ...GatsbyContentfulFluid_tracedSVG
                   }
                 }

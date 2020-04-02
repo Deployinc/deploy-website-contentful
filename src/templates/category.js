@@ -127,18 +127,20 @@ class BlogCategoryTemplate extends React.Component {
 
     const { title, metaDescription } = page;
 
+    const description = `Read our blog for your weekly dose of tech topics. Find out more about ${categoryTitle} and stay up to date with the latest news, best practices, tips & tricks, and more.`
+
     const metaData = [
       {
         name: "description",
-        content: metaDescription || meta.description
+        content: description
       }
     ];
 
-    const pageTitle = `${categoryTitle} - ${title || meta.title}`;
+    const pageTitle = `${categoryTitle} | ${title || meta.title}`;
 
     const seo = {
       title: pageTitle,
-      description: metaDescription || meta.description,
+      description: description,
       image: ogImage && ogImage.fixed.src,
       author: false
     };
@@ -194,7 +196,7 @@ export const pageQuery = graphql`
             slug
           }
           heroImage {
-            fluid(quality: 90, maxWidth: 350) {
+            fixed(quality: 90, width: 400) {
               src
               srcSet
             }
@@ -202,7 +204,7 @@ export const pageQuery = graphql`
           author {
             name
             image {
-              fixed(width: 90, quality: 80) {
+              fixed(width: 45, quality: 80) {
                 src
                 srcSet
               }

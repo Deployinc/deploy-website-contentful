@@ -8,7 +8,10 @@ export default ({ article, isFeatured, activePage, slug }) => {
         <Link to={ `/blog/${article.slug}` } state={ { activePage, slug } }>
           {
           article.heroImage && 
-            <img src={article.heroImage.fluid.src} srcSet={article.heroImage.fluid.srcSet} alt={article.title}/>
+            <img 
+              src={ isFeatured ? article.heroImage.fluid.src : article.heroImage.fixed.src } 
+              srcSet={ isFeatured ? article.heroImage.fluid.srcSet : article.heroImage.fixed.srcSet } 
+              alt={ article.title } />
           }
         </Link>
       </figure>

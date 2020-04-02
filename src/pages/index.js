@@ -198,15 +198,9 @@ export const pageQuery = graphql`
             ... on ContentfulFullWidthImage {
               id
               image {
-                fluid(quality: 90) {
-                  base64
-                  tracedSVG
-                  aspectRatio
+                fluid(quality: 80) {
                   src
                   srcSet
-                  srcWebp
-                  srcSetWebp
-                  sizes
                 }
               }
             }

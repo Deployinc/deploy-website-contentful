@@ -196,11 +196,11 @@ export const pageQuery = graphql`
           publishDate(formatString: "MMMM Do, YYYY")
           readTime
           heroImage {
-            # fixed(width: 800) {
-            #   src
-            #   srcSet
-            # }
-            fluid(quality: 90, maxWidth: 350) {
+            fluid(quality: 90, maxWidth: 800) {
+              src
+              srcSet
+            }
+            fixed(quality: 90, width: 400) {
               src
               srcSet
             }

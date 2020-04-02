@@ -9,8 +9,8 @@ export default ({ article, isFeatured, activePage, slug }) => {
           {
           article.heroImage && 
             <img 
-              src={ isFeatured ? article.heroImage.fluid.src : article.heroImage.fixed.src } 
-              srcSet={ isFeatured ? article.heroImage.fluid.srcSet : article.heroImage.fixed.srcSet } 
+              src={ isFeatured ? (article.heroImage && article.heroImage.fluid.src) : (article.heroImage.fixed && article.heroImage.fixed.src) } 
+              srcSet={ isFeatured ? (article.heroImage && article.heroImage.fluid.srcSet) : (article.heroImage.fixed && article.heroImage.fixed.srcSet) } 
               alt={ article.title } />
           }
         </Link>

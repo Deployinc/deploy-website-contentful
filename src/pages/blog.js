@@ -212,7 +212,7 @@ export const pageQuery = graphql`
           author {
             name
             image {
-              fixed(width: 90, quality: 80) {
+              fixed(width: 45, quality: 80) {
                 src
                 srcSet
               }

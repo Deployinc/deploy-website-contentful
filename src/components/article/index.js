@@ -24,7 +24,7 @@ export default ({ article, isFeatured, activePage, slug }) => {
         <div className="blog-post__content__meta-data blog-post__meta-data--single">
           {
             article.author.image && 
-            <img src={ article.author.image.fixed.src } className="blog-post__content__meta-data__author-image" />
+            <img src={ article.author.image.fixed.src } srcSet={ article.author.image.fixed.srcSet } className="blog-post__content__meta-data__author-image" />
           }
           <div className="blog-post__content__meta-data__info">
             <p>{article.author.name}</p>

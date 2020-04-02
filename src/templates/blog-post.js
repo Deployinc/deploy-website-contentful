@@ -56,6 +56,7 @@ class BlogPostTemplate extends React.Component {
                         author.image && 
                         <img 
                           src={ author.image.fixed.src } 
+                          srcSet={ author.image.fixed.srcSet } 
                           className="blog-post__content__meta-data__author-image blog-post--single__content__meta-data__author-image" />
                       }
                       <div className="blog-post__content__meta-data__info blog-post--single__content__meta-data__info">
@@ -115,14 +116,14 @@ export const pageQuery = graphql`
       author {
         name,
         image {
-          fixed(width: 140) {
+          fixed(width: 70, quality: 80) {
             src
             srcSet
           }
         }
       }
       heroImage {
-        fluid(quality: 100) {
+        fluid(quality: 90) {
           src
           srcSet
         }

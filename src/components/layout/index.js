@@ -17,6 +17,9 @@ class Template extends React.Component {
 
     const seo = this.props.seo || {};
     const { image, title, description, article, author } = seo;
+
+    const canonical = `${ location.hostname }${location.pathname}`;
+
     return (
       <React.Fragment>
         <Helmet>
@@ -27,6 +30,7 @@ class Template extends React.Component {
           { description && <meta property="og:description" content={ description } /> }
           { image && <meta property="og:image" content={ image } /> }
           { author && <meta name="author" content={ author } /> }
+          <link rel="canonical" href={ canonical } />
           <meta name="google-site-verification" content="c7_gfiRbdT0oNSWxeBf1gOQtxrEH_-yDiWr71W3CQyg" />
         </Helmet>
         {children}

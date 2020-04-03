@@ -27,6 +27,7 @@ class Template extends React.Component {
           { description && <meta property="og:description" content={ description } /> }
           { image && <meta property="og:image" content={ image } /> }
           { author && <meta name="author" content={ author } /> }
+          <meta name="google-site-verification" content="c7_gfiRbdT0oNSWxeBf1gOQtxrEH_-yDiWr71W3CQyg" />
         </Helmet>
         {children}
       </React.Fragment>

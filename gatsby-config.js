@@ -16,7 +16,7 @@ if (!spaceId || !accessToken || !host) {
 
 module.exports = {
   siteMetadata: {
-    siteUrl: 'https://deployinc.com',
+    siteUrl: 'https://www.deployinc.com',
     title: 'A Technology Agency | Deploy Inc.',
     description: 'We build digital platforms for startups, product companies and creatives that enable them to reach millions of people around the world.'
   },

@@ -16,7 +16,7 @@ class NotFound extends Component {
 
     return (
       <Layout location={ this.props.location }>
-        <Helmet title={ `Page Not Found | ${meta.siteTitle}` } />
+        <Helmet title={ `Page Not Found | ${meta.title}` } />
         <Header data={ navigationData } noAnimation={ true } />
         <section className="category-page__header header-404">
           <div className="category-page__header__container container">

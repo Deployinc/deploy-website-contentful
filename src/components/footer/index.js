@@ -175,12 +175,12 @@ class Footer extends Component {
   }
 
   render() {
-    const { data, forwardRef, className } = this.props;
+    const { data, forwardRef, className, noAnimation } = this.props;
     const { title, copyrightsText, ctaButtonLink, ctaButtonText, contactInfo, socialMedia } = data;
 
     return (
       <React.Fragment>
-        <footer className={`footer ${className || ''}`} ref={forwardRef} id="footer">
+        <footer className={`footer ${className || ''} ${noAnimation ? '' : 'footer--animated'}`} ref={forwardRef} id="footer">
           <div className="container">
             <div className="row">
               <div className="col-5">

@@ -12,14 +12,19 @@
   &__title {
     font-size: 30px;
     letter-spacing: -.75px;
-    @media screen and (min-width: $screen-lg + 1) {
-      @include fadeIn(.05s);
+    
+    .footer--animated & {
+      @media screen and (min-width: $screen-lg + 1) {
+        @include fadeIn(.05s);
+      }
     }
   }
 
   .button-underlined {
-    @media screen and (min-width: $screen-lg + 1) {
-      @include fadeIn(.05s);
+    .footer--animated & {
+      @media screen and (min-width: $screen-lg + 1) {
+        @include fadeIn(.05s);
+      }
     }
 
     font-size: 38px;
@@ -33,8 +38,11 @@
 
   .copyright {
     margin-top: 210px;
-    @media screen and (min-width: $screen-lg + 1) {
-      @include fadeIn(.1s);
+    
+    .footer--animated & {
+      @media screen and (min-width: $screen-lg + 1) {
+        @include fadeIn(.1s);
+      }
     }
   }
 
@@ -69,8 +77,10 @@
     margin-top: 280px;
     letter-spacing: -.6px;
 
-    @media screen and (min-width: $screen-lg + 1) {
-      @include fadeIn(.15s);
+    .footer--animated & {
+      @media screen and (min-width: $screen-lg + 1) {
+        @include fadeIn(.15s);
+      }
     }
 
     &__title {

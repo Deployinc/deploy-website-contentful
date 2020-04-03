@@ -513,11 +513,17 @@
     text-align: center;
     margin: 0 15px;
   }
+
   &__header {
     position: relative;
     min-height: 60vh;
     display: flex;
     align-items: center;
+
+    &.header-404 {
+      min-height: 70vh;
+      padding: 100px 0;
+    }
 
     &::after {
       content: '';
@@ -550,12 +556,21 @@
       &__title {
         font-size: 40px;
         margin-bottom: 35px;
+
+        .header-404 & {
+          font-size: 70px;
+          font-weight: 700;
+        }
       }
 
       .text-small {
         max-width: 820px;
         margin: 0 auto;
         margin-bottom: 45px;
+
+        .header-404 & {
+          font-size: 30px;
+        }
       }
 
       &__list {
@@ -614,6 +629,24 @@
           //     background-color: $color-orange-dark;
           //   }
           // }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $screen-md) {
+    &__header {
+      &__container {
+        &__title {
+          .header-404 & {
+            font-size: 60px;
+          }
+        }
+
+        .text-small {
+          .header-404 & {
+            font-size: 20px;
+          }
         }
       }
     }

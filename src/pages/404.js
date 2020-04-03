@@ -24,7 +24,8 @@ class NotFound extends Component {
               description && <div className="text-small" dangerouslySetInnerHTML={{ __html: description.childMarkdownRemark.html }} />
             }
             <Link className="button-underlined button-underlined--back white" to='/'>
-              Back to homepage
+              Go to homepage
+              <i className="arrow-right"></i> 
               <span style={{ backgroundColor: COLORS.orangeDark }}></span>
             </Link>
           </div>

@@ -7,6 +7,7 @@ import { Layout, Header, Footer } from "@components";
 
 class NotFound extends Component {
   render() {
+    const meta = get(this, 'props.data.site.siteMetadata');
     const pageComponents = get(this, 'props.data.allContentfulPage.edges[0].node');
     const heroData = pageComponents.component.find(item => item.__typename === 'ContentfulHero');
     const footerData = pageComponents.component.find(item => item.__typename === 'ContentfulFooter');
@@ -15,7 +16,7 @@ class NotFound extends Component {
 
     return (
       <Layout location={ this.props.location }>
-        <Helmet title={ title || `Not Found | ${meta.siteTitle}` } />
+        <Helmet title={ `Page Not Found | ${meta.siteTitle}` } />
         <Header data={ navigationData } noAnimation={ true } />
         <section className="category-page__header header-404">
           <div className="category-page__header__container container">

@@ -110,7 +110,6 @@ class RootIndex extends React.Component {
     const footerData = page.component.find(item => item.__typename === 'ContentfulFooter');
     const navigationData = page.component.find(item => item.__typename === 'ContentfulNavigation');
     const { title, metaDescription } = page;
-    const ogImage = page.component.find(item => item.__typename === 'ContentfulCareers').image;
     const metaData = [
       {
         name: "description",
@@ -121,7 +120,7 @@ class RootIndex extends React.Component {
     const seo = {
       title: title,
       description: metaDescription || meta.description,
-      image: ogImage && ogImage.fixed.src,
+      image: '//images.ctfassets.net/6afke33grie2/3eiey2skOlXAMWFJqwSN5r/e0a9e9b2b27491331f441a1ce73affad/deploy.png',
       author: false
     };
 

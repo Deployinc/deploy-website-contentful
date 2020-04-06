@@ -24,11 +24,11 @@ class Template extends React.Component {
       <React.Fragment>
         <Helmet>
           <link rel="icon" href={favicon} />
-          { image && <meta name="image" content={ image } /> }
+          { image && <meta name="image" content={ `https:${image}` } /> }
           { article && <meta property="og:type" content="article" /> }
           { title && <meta property="og:title" content={ title } /> }
           { description && <meta property="og:description" content={ description } /> }
-          { image && <meta property="og:image" content={ image } /> }
+          { image && <meta property="og:image" content={ `https:${image}` } /> }
           { author && <meta name="author" content={ author } /> }
           <link rel="canonical" href={ canonical } />
           <meta name="google-site-verification" content="c7_gfiRbdT0oNSWxeBf1gOQtxrEH_-yDiWr71W3CQyg" />

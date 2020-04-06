@@ -5,7 +5,7 @@ export default ({links, onSocialItemClick}) => (
     {
       links && links.map((item, i) => 
         <li key={ i } className="footer__social-nav__item">
-          <a href={ item.socialMediaLink } target="_blank" onClick={ onSocialItemClick }>
+          <a href={ item.socialMediaLink } target="_blank" onClick={ onSocialItemClick } rel="nofollow">
             <img src={ item.socialMediaIcon && item.socialMediaIcon.file.url } alt={ item.socialMediaLink.split('.')[1] } />
           </a>
         </li>

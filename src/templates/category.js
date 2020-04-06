@@ -141,7 +141,7 @@ class BlogCategoryTemplate extends React.Component {
     const seo = {
       title: pageTitle,
       description: description,
-      image: ogImage && ogImage.fixed.src,
+      image: '//images.ctfassets.net/6afke33grie2/3eiey2skOlXAMWFJqwSN5r/9d49445b0b1da27f87d4e020a7cea320/deploy-logo.png',
       author: false
     };
 

@@ -120,7 +120,7 @@ class RootIndex extends React.Component {
     const seo = {
       title: title,
       description: metaDescription || meta.description,
-      image: '//images.ctfassets.net/6afke33grie2/3eiey2skOlXAMWFJqwSN5r/e0a9e9b2b27491331f441a1ce73affad/deploy.png',
+      image: '//images.ctfassets.net/6afke33grie2/3eiey2skOlXAMWFJqwSN5r/9d49445b0b1da27f87d4e020a7cea320/deploy-logo.png',
       author: false
     };
 

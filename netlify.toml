@@ -2,7 +2,151 @@
   functions = "./functions"
 
 [[redirects]]
-  from = "https://deploy-dev.netlify.com/*"
-  to = "https://www.deploy-dev.netlify.com/*"
+  from = "https://deploy-dev.netlify.com/blog/tech-stack-gatsby-contentful-netlify/"
+  to = "https://www.deploy-dev.netlify.com/blog/tech-stack-gatsby-contentful-netlify/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://deploy-dev.netlify.com/blog/two-factor-authentication-google-authenticator/"
+  to = "https://www.deploy-dev.netlify.com/blog/two-factor-authentication-google-authenticator/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://deploy-dev.netlify.com/blog/kracking-the-wpa2/"
+  to = "https://www.deploy-dev.netlify.com/blog/kracking-the-wpa2/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://deploy-dev.netlify.com/blog/lifting-the-fog-of-code/"
+  to = "https://www.deploy-dev.netlify.com/blog/lifting-the-fog-of-code/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://deploy-dev.netlify.com/blog/choosing-a-scripting-language-for-big-data-processing/"
+  to = "https://www.deploy-dev.netlify.com/blog/choosing-a-scripting-language-for-big-data-processing/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://deploy-dev.netlify.com/blog/branching-strategy/"
+  to = "https://www.deploy-dev.netlify.com/blog/branching-strategy/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://deploy-dev.netlify.com/blog/web-components/"
+  to = "https://www.deploy-dev.netlify.com/blog/web-components/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://deploy-dev.netlify.com/blog/the-latest-trends-in-css-transformations/"
+  to = "https://www.deploy-dev.netlify.com/blog/the-latest-trends-in-css-transformations/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://deploy-dev.netlify.com/blog/fixing-wordpress-after-hacking/"
+  to = "https://www.deploy-dev.netlify.com/blog/fixing-wordpress-after-hacking/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://deploy-dev.netlify.com/blog/tips-and-tricks-for-fast-handling-of-vast-amounts-of-data/"
+  to = "https://www.deploy-dev.netlify.com/blog/tips-and-tricks-for-fast-handling-of-vast-amounts-of-data/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://deploy-dev.netlify.com/blog/raspberry-pi-fireworks-display/"
+  to = "https://www.deploy-dev.netlify.com/blog/raspberry-pi-fireworks-display/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://deploy-dev.netlify.com/blog/youre-never-alone/"
+  to = "https://www.deploy-dev.netlify.com/blog/youre-never-alone/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://deploy-dev.netlify.com/blog/email-evolution/"
+  to = "https://www.deploy-dev.netlify.com/blog/email-evolution/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://deploy-dev.netlify.com/category/website/"
+  to = "https://www.deploy-dev.netlify.com/category/website/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://deploy-dev.netlify.com/category/design/"
+  to = "https://www.deploy-dev.netlify.com/category/design/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://deploy-dev.netlify.com/category/web-technologies/"
+  to = "https://www.deploy-dev.netlify.com/category/web-technologies/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://deploy-dev.netlify.com/category/tips-n-tricks/"
+  to = "https://www.deploy-dev.netlify.com/category/tips-n-tricks/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://deploy-dev.netlify.com/category/software-development/"
+  to = "https://www.deploy-dev.netlify.com/category/software-development/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://deploy-dev.netlify.com/category/conferences/"
+  to = "https://www.deploy-dev.netlify.com/category/conferences/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://deploy-dev.netlify.com/category/cyber-security/"
+  to = "https://www.deploy-dev.netlify.com/category/cyber-security/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://deploy-dev.netlify.com/category/big-data/"
+  to = "https://www.deploy-dev.netlify.com/category/big-data/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://deploy-dev.netlify.com/category/wordpress/"
+  to = "https://www.deploy-dev.netlify.com/category/wordpress/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://deploy-dev.netlify.com/category/general/"
+  to = "https://www.deploy-dev.netlify.com/category/general/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://deploy-dev.netlify.com/blog/"
+  to = "https://www.deploy-dev.netlify.com/blog/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://deploy-dev.netlify.com/"
+  to = "https://www.deploy-dev.netlify.com/"
   status = 301
   force = true

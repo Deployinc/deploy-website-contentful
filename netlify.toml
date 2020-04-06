@@ -1,2 +1,8 @@
 [build]
   functions = "./functions"
+
+[[redirects]]
+  from = "https://deploy-dev.netlify.com/*"
+  to = "https://www.deploy-dev.netlify.com/*"
+  status = 301
+  force = true

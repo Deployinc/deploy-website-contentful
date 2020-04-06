@@ -18,7 +18,7 @@ class Template extends React.Component {
     const seo = this.props.seo || {};
     const { image, title, description, article, author } = seo;
 
-    const canonical = `${ location.origin }${location.pathname}`;
+    const canonical = `https://www.deployinc.com${location.pathname}`;
 
     return (
       <React.Fragment>

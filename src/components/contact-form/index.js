@@ -98,7 +98,7 @@ export default ({ onModalClose, onChange, formError, formSuccess, sendMail, emai
 
             <div className="contact-form__field">
               <input type="checkbox" id="consent" className="contact-form__input contact-form__input--checkbox" name="consent" onChange={ onChange } value={ consent } />
-              <span className="contact-form__field__label">Check the box on the left if you consent to having this website use your submitted information so we can respond to your inquiry? This website does not store any personal information.</span>
+              <span className="contact-form__field__label">Check the box on the left if you consent to having this website use your submitted information so we can respond to your inquiry. This website does not store any personal information.</span>
             </div>
 
             {globalErr && <p className="contact-form__error">{globalErr}</p>}

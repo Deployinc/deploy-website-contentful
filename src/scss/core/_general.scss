@@ -151,6 +151,15 @@ b {
     background-color: $color-gray-light;
     transition: all .3s;
     resize: none;
+
+    &--checkbox {
+      display: inline-block;
+      height: auto;
+      width: auto;
+      margin-top: 0;
+      vertical-align: text-top;
+      margin-right: 10px;
+    }
   }
 
   &__field {
@@ -162,6 +171,11 @@ b {
       font-size: 14px;
       color: rgb(177, 1, 1);
       margin-top: 7px;
+    }
+
+    &__label {
+      font-size: 14px;
+      line-height: 1.5;
     }
   }
 
@@ -194,6 +208,10 @@ b {
   font-weight: 700;
   transition: all .3s;
   margin-top: 20px;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 
   &:hover {
     background-color: #e0e0e0;

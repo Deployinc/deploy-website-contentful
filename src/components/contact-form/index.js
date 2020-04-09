@@ -4,7 +4,7 @@ import officeImg from '@assets/images/office.jpg';
 import closeImg from '@assets/images/close-button.svg';
 import spinner from '@assets/images/spinner.gif';
 
-export default ({ onModalClose, onChange, formError, formSuccess, sendMail, email, name, phone, message, isSending, forwardRef }) => {
+export default ({ onModalClose, onChange, formError, formSuccess, sendMail, email, name, phone, message, consent, isSending, forwardRef }) => {
   const { email: emailErr, firstName: nameErr, phone: phoneErr, message: messageErr, global: globalErr } = formError;
 
   return (
@@ -96,11 +96,16 @@ export default ({ onModalClose, onChange, formError, formSuccess, sendMail, emai
               <ReCAPTCHA sitekey="6LflousSAAAAAHZrouwhH3YGs4a0B7w7KBvDOZDK" />
             </div>
 
+            <div className="contact-form__field">
+              <input type="checkbox" id="consent" className="contact-form__input contact-form__input--checkbox" name="consent" onChange={ onChange } value={ consent } />
+              <span className="contact-form__field__label">Check the box on the left if you consent to having this website use your submitted information so we can respond to your inquiry? This website does not store any personal information.</span>
+            </div>
+
             {globalErr && <p className="contact-form__error">{globalErr}</p>}
             {formSuccess && <p className="contact-form__success">{formSuccess}</p>}
 
             <div>
-              {isSending ? <img src={spinner} alt="Sending..." className="contact-form__spinner" /> : <button className="border-btn">Send</button>}
+              {isSending ? <img src={spinner} alt="Sending..." className="contact-form__spinner" /> : <button className="border-btn" disabled={ !consent }>Send</button>}
             </div>
           </form>
         </div>

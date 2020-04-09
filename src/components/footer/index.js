@@ -12,7 +12,8 @@ class Footer extends Component {
     message: '',
     formError: {},
     formSuccess: '',
-    isSending: false
+    isSending: false,
+    consent: false
   }
 
   formRef = React.createRef();
@@ -153,7 +154,7 @@ class Footer extends Component {
   };
 
   renderContactForm = () => {
-    const { contactModal, firstName, email, phone, message, formError, formSuccess, isSending } = this.state;
+    const { contactModal, firstName, email, phone, message, consent, formError, formSuccess, isSending } = this.state;
     return (
       <Modal active={ contactModal } onModalClose={ this.onModalClose }>
         <ContactForm
@@ -167,6 +168,7 @@ class Footer extends Component {
           name={ firstName }
           phone={ phone }
           message={ message }
+          consent={ consent }
           isSending={ isSending }
         />
       </Modal>

@@ -67,8 +67,9 @@ class Footer extends Component {
 
   sendMail = async e => {
     e.preventDefault();
+    let { email, firstName, phone, message, consent, formError } = this.state;
+    if(!consent) return;
     this.setState({ formError: {}, formSuccess: '' });
-    let { email, firstName, phone, message, formError } = this.state;
 
     if (!email) {
       formError.email = 'Email is required.';

@@ -3,21 +3,6 @@ const encode = (data) =>
     .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
     .join("&");
 
-const postToNetlify = async (formData) => {
-  delete formData.recaptcha;
-  const options = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: encode(formData),
-  };
-  
-  try {
-    await fetch('/', options);
-  } catch(err) {
-    console.log(err);
-  }
-};
-
 const sendEmail = async (formData, url) => {
   const options = {
     method: 'POST',
@@ -29,8 +14,6 @@ const sendEmail = async (formData, url) => {
     const res = await fetch(url, options);
     const data = await res.json();
     if (data.success) {
-      postToNetlify(formData);
-
       return {
         success: true,
         error: null

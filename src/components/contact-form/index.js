@@ -25,8 +25,7 @@ export default ({ onModalClose, onChange, formError, formSuccess, sendMail, emai
         </div>
 
         <div className="modal--positions__content__open-positions">
-          <form name="site-contact-form" ref={forwardRef} action="#" className="contact-form" onSubmit={sendMail} data-netlify="true">
-            <input type="hidden" name="form-name" value="site-contact-form" />
+          <form ref={forwardRef} action="#" className="contact-form" onSubmit={sendMail}>
             <h4 className="modal--showcase__content__project__title">
               Get in touch
             </h4>

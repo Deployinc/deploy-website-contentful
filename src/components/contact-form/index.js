@@ -1,16 +1,18 @@
 import React from 'react';
 import ReCAPTCHA from "react-google-recaptcha";
-import officeImg from '@assets/images/office.jpg';
+import Img from 'gatsby-image';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import closeImg from '@assets/images/close-button.svg';
 import spinner from '@assets/images/spinner.gif';
 
-export default ({ onModalClose, onChange, formError, formSuccess, sendMail, email, name, phone, message, consent, isSending, forwardRef }) => {
+export default ({ data = {}, onModalClose, onChange, formError, formSuccess, sendMail, email, name, phone, message, consent, isSending, forwardRef }) => {
   const { email: emailErr, firstName: nameErr, phone: phoneErr, message: messageErr, global: globalErr } = formError;
-
+  console.log(data);
+  const html = documentToHtmlString(data.text.json);
   return (
     <div className="modal__content modal--showcase__content modal--positions__content modal--contact__content">
       <div className="modal--showcase__content__featured-img modal--positions__content__featured-img">
-        <img src={ officeImg } alt="Office" />
+        <img src={ data.image.fluid.src } srcSet={ data.image.fluid.srcSet } alt="Office" />
       </div>
       <div className="modal--showcase__content__project modal--positions__content__project">
         <button
@@ -26,21 +28,17 @@ export default ({ onModalClose, onChange, formError, formSuccess, sendMail, emai
 
         <div className="modal--positions__content__open-positions">
           <form ref={forwardRef} action="#" className="contact-form" onSubmit={sendMail}>
-            <h4 className="modal--showcase__content__project__title">
-              Get in touch
-            </h4>
-            <p className="contact-form__subtitle">
-              Send us a message now
-            </p>
+            <h4 className="modal--showcase__content__project__title">{data.title}</h4>
+            <p className="contact-form__subtitle" dangerouslySetInnerHTML={{ __html: html }} />
 
             <div className="contact-form__field">
-              <label htmlFor="email">Your email</label>
+              <label htmlFor="email">{data.emailPlaceholder}</label>
               <input
                 type="email"
                 name="email"
                 id="email"
                 className="contact-form__input"
-                placeholder="Your Email"
+                placeholder={data.emailPlaceholder}
                 value={email}
                 onChange={onChange}
                 maxLength="150"
@@ -49,13 +47,13 @@ export default ({ onModalClose, onChange, formError, formSuccess, sendMail, emai
             </div>
 
             <div className="contact-form__field">
-              <label htmlFor="name">Your name</label>
+              <label htmlFor="name">{data.namePlaceholder}</label>
               <input
                 type="text"
                 name="firstName"
                 id="name"
                 className="contact-form__input"
-                placeholder="Your Name"
+                placeholder={data.namePlaceholder}
                 value={name}
                 onChange={onChange}
                 maxLength="100"
@@ -64,13 +62,13 @@ export default ({ onModalClose, onChange, formError, formSuccess, sendMail, emai
             </div>
 
             <div className="contact-form__field">
-              <label htmlFor="phone">Your phone number</label>
+              <label htmlFor="phone">{data.phonePlaceholder}</label>
               <input
                 type="tel"
                 name="phone"
                 id="phone"
                 className="contact-form__input"
-                placeholder="Phone Number"
+                placeholder={data.phonePlaceholder}
                 value={phone}
                 onChange={onChange}
                 maxLength="15"
@@ -79,12 +77,12 @@ export default ({ onModalClose, onChange, formError, formSuccess, sendMail, emai
             </div>
 
             <div className="contact-form__field">
-              <label htmlFor="message">Your message</label>
+              <label htmlFor="message">{data.messagePlaceholder}</label>
               <textarea
                 name="message"
                 id="message"
                 className="contact-form__input"
-                placeholder="Your Message"
+                placeholder={data.messagePlaceholder}
                 value={message}
                 onChange={onChange}
                 maxLength="500"
@@ -105,7 +103,10 @@ export default ({ onModalClose, onChange, formError, formSuccess, sendMail, emai
             {formSuccess && <p className="contact-form__success">{formSuccess}</p>}
 
             <div>
-              {isSending ? <img src={spinner} alt="Sending..." className="contact-form__spinner" /> : <button className="border-btn" disabled={ !consent }>Send</button>}
+              { 
+                isSending ? 
+                <img src={spinner} alt="Sending..." className="contact-form__spinner" /> : 
+                <button className="border-btn" disabled={ !consent }>{data.ctaButtonText}</button>}
             </div>
           </form>
         </div>

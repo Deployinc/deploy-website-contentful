@@ -90,24 +90,32 @@ class RootIndex extends React.Component {
     });
   }
 
-  renderFooter = footerData => (
-    <AnimationScroll section={ footerData.id }>
-      <Footer 
-        data={ footerData } 
-        forwardRef={ this.footerRef } 
-        openModal={ this.openModal } 
-        onSocialItemClick={ this.onSocialItemClick } 
-        onContactInfoClick={ this.onContactInfoClick } 
-        contactModal={ this.state.contactModal }
-        toggleModal={ this.toggleModal }
-      />
-    </AnimationScroll>
-  );
+  renderFooter = () => {
+    const page = get(this, 'props.data.allContentfulPage.edges[0].node');
+    const footerData = page.component.find(item => item.__typename === 'ContentfulFooter');
+    const contactFormData = get(this, 'props.data.contentfulContactForm');
+
+    return (
+      <AnimationScroll section={ footerData.id }>
+        <Footer 
+          data={ footerData } 
+          contactFormData={ contactFormData }
+          forwardRef={ this.footerRef } 
+          openModal={ this.openModal } 
+          onSocialItemClick={ this.onSocialItemClick } 
+          onContactInfoClick={ this.onContactInfoClick } 
+          contactModal={ this.state.contactModal }
+          toggleModal={ this.toggleModal }
+        />
+      </AnimationScroll>
+    )
+  };
 
   render() {
     const meta = get(this, 'props.data.site.siteMetadata');
     const page = get(this, 'props.data.allContentfulPage.edges[0].node');
     const footerData = page.component.find(item => item.__typename === 'ContentfulFooter');
+    const contactFormData = get(this, 'props.data.contentfulContactForm');
     const navigationData = page.component.find(item => item.__typename === 'ContentfulNavigation');
     const { title, metaDescription } = page;
     const metaData = [
@@ -136,7 +144,7 @@ class RootIndex extends React.Component {
         </main>
         
         {
-          this.renderFooter(footerData)
+          this.renderFooter()
         }
       </Layout>
     )
@@ -313,6 +321,23 @@ export const pageQuery = graphql`
             }
           }
         }
+      }
+    }
+    contentfulContactForm {
+      ctaButtonText
+      emailPlaceholder
+      image {
+        fluid(maxWidth: 1000, quality: 80) {
+          src
+          srcSet
+        }
+      }
+      messagePlaceholder
+      namePlaceholder
+      phonePlaceholder
+      title
+      text {
+        json
       }
     }
   }

@@ -42,12 +42,17 @@ class Footer extends Component {
   }
 
   onChange = e => {
-    const { name, value } = e.target;
+    const { name, value, checked } = e.target;
 
     if (name === 'phone') {
       if (this.validatePhone(value)) return;
     }
 
+    if(name === 'consent') {
+      this.setState({ [name]: checked });
+      return
+    }
+    
     this.setState({ [name]: value });
   }
 
@@ -156,9 +161,11 @@ class Footer extends Component {
 
   renderContactForm = () => {
     const { contactModal, firstName, email, phone, message, consent, formError, formSuccess, isSending } = this.state;
+    const { contactFormData } = this.props;
     return (
       <Modal active={ contactModal } onModalClose={ this.onModalClose }>
         <ContactForm
+          data={ contactFormData }
           forwardRef={ this.formRef }
           onModalClose={ this.onModalClose }
           sendMail={ this.sendMail }

@@ -2,7 +2,6 @@ import React from 'react';
 import closeImg from '@assets/images/close-button.svg';
 
 export default ({ data, positions, onModalClose, onPositionCLick }) => {
-  console.log(data);
   if(!positions) return null;
   return (
     <div className="modal__content modal--showcase__content modal--positions__content">

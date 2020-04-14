@@ -1,13 +1,11 @@
 import React from 'react';
 import ReCAPTCHA from "react-google-recaptcha";
-import Img from 'gatsby-image';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import closeImg from '@assets/images/close-button.svg';
 import spinner from '@assets/images/spinner.gif';
 
 export default ({ data = {}, onModalClose, onChange, formError, formSuccess, sendMail, email, name, phone, message, consent, isSending, forwardRef }) => {
   const { email: emailErr, firstName: nameErr, phone: phoneErr, message: messageErr, global: globalErr } = formError;
-  console.log(data);
   const html = documentToHtmlString(data.text.json);
   return (
     <div className="modal__content modal--showcase__content modal--positions__content modal--contact__content">

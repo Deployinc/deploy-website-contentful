@@ -68,9 +68,15 @@ class RootIndex extends React.Component {
 
       if(module.__typename === 'ContentfulCareers') {
         const careersCarousel = modules.find(module => module.__typename === 'ContentfulCareersCarousel');
+        const careersPopup = get(this, 'props.data.contentfulCareersPopup');
         return (
           <AnimationScroll section={module.id} key={ module.id }>
-            <Section data={ module } openModal={ this.toggleModal } careersCarousel={ careersCarousel } forwardRef={ this.careersRef } />
+            <Section 
+              data={ module }
+              careersPopup={ careersPopup }
+              openModal={ this.toggleModal } 
+              careersCarousel={ careersCarousel } 
+              forwardRef={ this.careersRef } />
           </AnimationScroll>
         );
       }
@@ -322,6 +328,15 @@ export const pageQuery = graphql`
           }
         }
       }
+    }
+    contentfulCareersPopup {
+      image {
+        fluid {
+          src
+          srcSet
+        }
+      }
+      title
     }
     contentfulContactForm {
       ctaButtonText

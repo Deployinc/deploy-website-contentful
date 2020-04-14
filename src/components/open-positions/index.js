@@ -1,13 +1,13 @@
 import React from 'react';
-import officeImg from '@assets/images/office.jpg';
 import closeImg from '@assets/images/close-button.svg';
 
-export default ({positions, onModalClose, onPositionCLick}) => {
+export default ({ data, positions, onModalClose, onPositionCLick }) => {
+  console.log(data);
   if(!positions) return null;
   return (
     <div className="modal__content modal--showcase__content modal--positions__content">
       <div className="modal--showcase__content__featured-img modal--positions__content__featured-img">
-        <img src={ officeImg } alt="Office" />
+        <img src={ data.image.fluid.src } srcSet={ data.image.fluid.srcSet } alt="Office" />
       </div>
       <div className="modal--showcase__content__project modal--positions__content__project" onClick={onPositionCLick}>
         <button type="button" className="modal__button" onClick={ () => onModalClose(false) }><img src={closeImg} alt="close" /></button>
@@ -15,7 +15,10 @@ export default ({positions, onModalClose, onPositionCLick}) => {
           CAREERS <span className="line"></span>
         </div>
 
-        <div className="modal--positions__content__open-positions" dangerouslySetInnerHTML = {{__html: positions}} />
+        <div className="modal--positions__content__open-positions">
+          <h2>{data.title}</h2>
+          <div dangerouslySetInnerHTML = {{__html: positions}} />
+        </div>
 
       </div>
     </div>

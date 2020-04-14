@@ -121,6 +121,7 @@ class BlogCategoryTemplate extends React.Component {
     const { slug, title: categoryTitle } = this.props.pageContext;
     const page = get(this, 'props.data.allContentfulPage.edges[0].node');
     const pageComponents = get(this, 'props.data.allContentfulPage.edges[0].node');
+    const contactFormData = get(this, 'props.data.contentfulContactForm');
     const navigationData = pageComponents.component.find(item => item.__typename === 'ContentfulNavigation');
     const footerData = pageComponents.component.find(item => item.__typename === 'ContentfulFooter');
     const ogImage = pageComponents.component.find(item => item.__typename === 'ContentfulHero').image;
@@ -166,6 +167,7 @@ class BlogCategoryTemplate extends React.Component {
 
         <AnimationScroll section={ footerData.id }>
           <Footer
+            contactFormData={ contactFormData }
             className="no-margin"
             data={ footerData } 
           />
@@ -283,6 +285,23 @@ export const pageQuery = graphql`
             }
           }
         }
+      }
+    }
+    contentfulContactForm {
+      ctaButtonText
+      emailPlaceholder
+      image {
+        fluid(maxWidth: 1000, quality: 80) {
+          src
+          srcSet
+        }
+      }
+      messagePlaceholder
+      namePlaceholder
+      phonePlaceholder
+      title
+      text {
+        json
       }
     }
   }

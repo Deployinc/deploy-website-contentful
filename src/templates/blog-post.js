@@ -11,6 +11,7 @@ class BlogPostTemplate extends React.Component {
     const post = get(this.props, 'data.contentfulBlogPost');
     const siteTitle = get(this.props, 'data.site.siteMetadata.title');
     const homePageComponents = get(this, 'props.data.allContentfulPage.edges[0].node');
+    const contactFormData = get(this, 'props.data.contentfulContactForm');
     const navigationData = homePageComponents.component.find(item => item.__typename === 'ContentfulNavigation');
     const footerData = homePageComponents.component.find(item => item.__typename === 'ContentfulFooter');
     const { title, description, heroImage, author, publishDate, readTime, category, body } = post;
@@ -87,6 +88,7 @@ class BlogPostTemplate extends React.Component {
 
         <AnimationScroll section={ footerData.id }>
           <Footer
+            contactFormData={ contactFormData }
             className="no-margin"
             data={ footerData } 
           />
@@ -174,6 +176,23 @@ export const pageQuery = graphql`
             }
           }
         }
+      }
+    }
+    contentfulContactForm {
+      ctaButtonText
+      emailPlaceholder
+      image {
+        fluid(maxWidth: 1000, quality: 80) {
+          src
+          srcSet
+        }
+      }
+      messagePlaceholder
+      namePlaceholder
+      phonePlaceholder
+      title
+      text {
+        json
       }
     }
   }

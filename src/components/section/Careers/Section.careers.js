@@ -146,10 +146,9 @@ class Careers extends Component {
   }
 
   render() {
-    const { data } = this.props;
+    const { data, careersPopup } = this.props;
     const { modal, positions } = this.state;
     const html = documentToHtmlString( data && data.text.json);
-
     return(
       <Fragment>
         <section className="careers section-padding" id="careers">
@@ -157,7 +156,6 @@ class Careers extends Component {
             <div className="col-5">
               <Img 
                 fluid={ data.image.fluid }
-                // srcSet={ data && data.image && data.image.fluid.srcSet } 
                 alt="Deploy Inc. Office" 
                 className="careers__office-img" />
             </div>
@@ -177,7 +175,7 @@ class Careers extends Component {
         </section>
 
         <Modal active={ modal } onModalClose={ this.onModalClose }>
-          <OpenPositions positions={ positions}  onModalClose={ this.onModalClose } onPositionCLick={ this.onPositionClick } />
+          <OpenPositions data={ careersPopup } positions={ positions}  onModalClose={ this.onModalClose } onPositionCLick={ this.onPositionClick } />
         </Modal>
       </Fragment>
     );
